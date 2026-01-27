@@ -621,11 +621,12 @@
 
         /* Calendar */
         .calendar-container {
-            background: var(--white);
+            background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(244,231,122,0.1));
             padding: 2rem;
             border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
             margin: 2rem 0;
+            border: 1px solid rgba(212, 175, 55, 0.2);
         }
 
         .calendar-header {
@@ -668,19 +669,32 @@
             padding: 1rem;
             text-align: center;
             border-radius: 8px;
-            background: #f5f5f5;
+            background: #fff;
+            border: 2px solid #e0e0e0;
             cursor: pointer;
             transition: all 0.3s ease;
+            font-weight: 500;
+            color: var(--dark);
         }
 
         .calendar-day:hover {
-            background: var(--gold-light);
+            background: var(--gold);
+            color: var(--white);
+            border-color: var(--gold);
             transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.4);
         }
 
         .calendar-day.has-event {
             background: var(--primary-red);
             color: var(--white);
+            border-color: var(--primary-red);
+            font-weight: 600;
+        }
+
+        .calendar-day.has-event:hover {
+            background: #6d0605;
+            border-color: #6d0605;
         }
 
         .event-card {
@@ -835,7 +849,7 @@
                 <li><a href="#pathways" onclick="showPage('pathways')">Pathways</a></li>
                 <li><a href="#prayer" onclick="showPage('prayer')">Prayer</a></li>
                 <li><a href="#events" onclick="showPage('events')">Events</a></li>
-                <li><a href="#partnership" onclick="showPage('partnership')">Partnership</a></li>
+                <li><a href="https://donorbox.org/partner-with-walkinginhis-way-ministries-2-2" target="_blank">Partnership</a></li>
                 <li><a href="#giving" onclick="showPage('giving')">Giving</a></li>
                 <li><a href="#contact" onclick="showPage('contact')">Contact</a></li>
                 <li><a href="#volunteer" onclick="showPage('volunteer')" class="donate-btn">Volunteer</a></li>
@@ -1065,17 +1079,17 @@
                 <div class="card">
                     <h3>Ministry Partner</h3>
                     <p>Stand with us as a faithful ministry partner committed to supporting our mission through consistent monthly giving. As a partner, you'll receive exclusive updates on ministry impact, prayer requests from the field, special teachings from our leadership, invitations to partner-only events, and the satisfaction of knowing you're directly contributing to the transformation of lives and communities worldwide through the power of the Gospel.</p>
-                    <a href="https://www.paypal.com/ncp/payment/T3LDB3F7MRQYS" target="_blank" class="card-btn">Become a Partner</a>
+                    <a href="https://donorbox.org/partner-with-walkinginhis-way-ministries-2-2" target="_blank" class="card-btn">Become a Partner</a>
                 </div>
                 <div class="card">
                     <h3>Mission Support</h3>
                     <p>Support our global mission initiatives and outreach programs that are bringing hope, healing, and the message of Jesus Christ to unreached communities. Your partnership funds missionary work, church planting, humanitarian aid, leadership training, and evangelistic campaigns. Join us in fulfilling the Great Commission by investing in souls, supporting indigenous leaders, and seeing the kingdom of God established in regions that desperately need the light of the Gospel.</p>
-                    <a href="https://www.paypal.com/ncp/payment/T3LDB3F7MRQYS" target="_blank" class="card-btn">Support Missions</a>
+                    <a href="https://donorbox.org/partner-with-walkinginhis-way-ministries-2-2" target="_blank" class="card-btn">Support Missions</a>
                 </div>
                 <div class="card">
                     <h3>Building Fund</h3>
                     <p>Help us create spaces where lives are changed and God's presence dwells. Our building fund supports facility improvements, new construction projects, technology upgrades, and infrastructure development that enable us to serve our community more effectively. Your investment creates welcoming environments for worship, conducive spaces for discipleship, modern facilities for children and youth, and accessible venues where people from all walks of life can encounter Jesus and experience the transforming power of community.</p>
-                    <a href="https://www.paypal.com/ncp/payment/T3LDB3F7MRQYS" target="_blank" class="card-btn">Contribute to Building</a>
+                    <a href="https://donorbox.org/partner-with-walkinginhis-way-ministries-2-2" target="_blank" class="card-btn">Contribute to Building</a>
                 </div>
             </div>
         </div>
@@ -1089,14 +1103,14 @@
             
             <div class="payment-options">
                 <div class="payment-card">
-                    <h3>Square</h3>
-                    <p style="margin: 1.5rem 0; line-height: 1.8;">Give securely through Square with credit card, debit card, or digital wallet. Fast, simple, and secure - your gift makes an immediate impact in advancing God's kingdom and transforming lives.</p>
-                    <a href="https://square.link/u/YyaZ8GPL" target="_blank" class="payment-btn">Give via Square</a>
+                    <h3>Donorbox</h3>
+                    <p style="margin: 1.5rem 0; line-height: 1.8;">Give securely through Donorbox with credit card, debit card, PayPal, or digital wallet. Fast, simple, and secure - your gift makes an immediate impact in advancing God's kingdom and transforming lives.</p>
+                    <a href="https://donorbox.org/partner-with-walkinginhis-way-ministries-2-2" target="_blank" class="payment-btn">Give via Donorbox</a>
                 </div>
                 <div class="payment-card">
-                    <h3>PayPal</h3>
-                    <p style="margin: 1.5rem 0; line-height: 1.8;">Give conveniently using PayPal for one-time gifts or set up recurring contributions. Your online giving is safe, efficient, and helps us continue our mission of spreading the Gospel worldwide.</p>
-                    <a href="https://www.paypal.com/ncp/payment/T3LDB3F7MRQYS" target="_blank" class="payment-btn">Give via PayPal</a>
+                    <h3>Secure Online Giving</h3>
+                    <p style="margin: 1.5rem 0; line-height: 1.8;">Make one-time gifts or set up recurring contributions through our secure online platform. Multiple payment options available including credit cards, debit cards, and PayPal. Your online giving is safe, efficient, and helps us continue our mission of spreading the Gospel worldwide.</p>
+                    <a href="https://donorbox.org/partner-with-walkinginhis-way-ministries-2-2" target="_blank" class="payment-btn">Give Now</a>
                 </div>
             </div>
 
@@ -1503,7 +1517,7 @@
                 <a href="#pathways" onclick="showPage('pathways')">Pathways</a>
                 <a href="#prayer" onclick="showPage('prayer')">Prayer</a>
                 <a href="#events" onclick="showPage('events')">Events</a>
-                <a href="#partnership" onclick="showPage('partnership')">Partnership</a>
+                <a href="https://donorbox.org/partner-with-walkinginhis-way-ministries-2-2" target="_blank">Partnership</a>
                 <a href="#giving" onclick="showPage('giving')">Giving</a>
                 <a href="#contact" onclick="showPage('contact')">Contact</a>
                 <a href="#volunteer" onclick="showPage('volunteer')">Volunteer</a>
