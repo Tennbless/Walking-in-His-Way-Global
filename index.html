@@ -39,12 +39,12 @@
         }
 
         .nav-container {
-            max-width: 1400px;
+            max-width: 1600px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 2rem;
+            padding: 0 1.5rem;
         }
 
         .logo-container {
@@ -74,8 +74,9 @@
         .nav-links {
             display: flex;
             list-style: none;
-            gap: 1.5rem;
+            gap: 1rem;
             align-items: center;
+            flex-wrap: wrap;
         }
 
         .nav-links a {
@@ -83,10 +84,12 @@
             text-decoration: none;
             font-weight: 500;
             transition: all 0.4s ease;
-            padding: 0.7rem 1.2rem;
+            padding: 0.5rem 0.8rem;
             border-radius: 8px;
             position: relative;
             overflow: hidden;
+            font-size: 0.95rem;
+            white-space: nowrap;
         }
 
         .nav-links a::before {
@@ -1695,15 +1698,14 @@
             observer.observe(card);
         });
 
-        // Initialize calendar
-        generateCalendar();
-
         // Sermon file upload handler
-        document.getElementById('sermonFile').addEventListener('change', function(e) {
+        document.getElementById('sermonFile')?.addEventListener('change', function(e) {
             const file = e.target.files[0];
             if (file) {
                 const url = URL.createObjectURL(file);
-                document.getElementById('sermonAudio').src = url;
+                const audio = document.getElementById('sermonAudio');
+                audio.src = url;
+                audio.load();
                 alert('Sermon uploaded successfully! You can now play it.');
             }
         });
