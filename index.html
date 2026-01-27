@@ -273,29 +273,41 @@
             transform: translateY(-3px);
         }
 
-        /* Floating Crosses Animation */
-        .floating-cross {
+        /* Decorative Crosses */
+        .decorative-cross {
             position: absolute;
             color: var(--gold);
-            opacity: 0.25;
-            font-size: 4rem;
+            opacity: 0.15;
+            font-size: 6rem;
             animation: float 20s infinite ease-in-out;
             z-index: 2;
-            filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.8));
-            font-weight: bold;
+            filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.6));
+            font-family: 'Playfair Display', serif;
+            font-weight: 300;
         }
 
-        .cross-1 { top: 15%; left: 10%; animation-delay: 0s; }
-        .cross-2 { top: 70%; right: 15%; animation-delay: 3s; }
-        .cross-3 { bottom: 20%; left: 20%; animation-delay: 6s; }
-        .cross-4 { top: 40%; right: 10%; animation-delay: 9s; }
-        .cross-5 { top: 50%; left: 50%; animation-delay: 12s; }
+        .cross-1 { top: 10%; left: 8%; animation-delay: 0s; font-size: 5rem; }
+        .cross-2 { top: 65%; right: 12%; animation-delay: 4s; font-size: 7rem; }
+        .cross-3 { bottom: 15%; left: 15%; animation-delay: 8s; font-size: 4.5rem; }
+        .cross-4 { top: 35%; right: 8%; animation-delay: 12s; font-size: 6rem; }
 
         @keyframes float {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            25% { transform: translateY(-30px) rotate(5deg); }
-            50% { transform: translateY(0) rotate(0deg); }
-            75% { transform: translateY(30px) rotate(-5deg); }
+            0%, 100% { 
+                transform: translateY(0) rotate(0deg); 
+                opacity: 0.15;
+            }
+            25% { 
+                transform: translateY(-20px) rotate(3deg); 
+                opacity: 0.25;
+            }
+            50% { 
+                transform: translateY(0) rotate(0deg); 
+                opacity: 0.15;
+            }
+            75% { 
+                transform: translateY(20px) rotate(-3deg); 
+                opacity: 0.25;
+            }
         }
 
         /* Page Sections */
@@ -457,6 +469,14 @@
             box-shadow: 0 8px 25px rgba(212, 175, 55, 0.5);
         }
 
+        .payment-options-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
         /* Forms */
         .form-container {
             max-width: 600px;
@@ -606,17 +626,21 @@
             color: var(--white);
         }
 
-        .sermon-upload {
-            background: rgba(255,255,255,0.1);
-            padding: 2rem;
-            border-radius: 10px;
-            margin-top: 2rem;
-            border: 2px dashed var(--gold);
-        }
-
         audio {
             width: 100%;
             margin: 1rem 0;
+        }
+
+        .sermon-info {
+            margin-top: 1rem;
+            padding: 1.5rem;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+        }
+
+        .sermon-info h4 {
+            color: var(--gold);
+            margin-bottom: 0.5rem;
         }
 
         /* Calendar */
@@ -675,6 +699,11 @@
             transition: all 0.3s ease;
             font-weight: 500;
             color: var(--dark);
+            min-height: 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
 
         .calendar-day:hover {
@@ -697,6 +726,12 @@
             border-color: #6d0605;
         }
 
+        .calendar-day .event-indicator {
+            font-size: 0.7rem;
+            margin-top: 0.25rem;
+            color: var(--gold-light);
+        }
+
         .event-card {
             background: linear-gradient(135deg, var(--primary-red), #6d0605);
             color: var(--white);
@@ -710,6 +745,26 @@
             font-size: 2rem;
             color: var(--gold);
             margin-bottom: 1rem;
+        }
+
+        .event-details-modal {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            margin-top: 1rem;
+            color: var(--dark);
+        }
+
+        .event-details-modal h4 {
+            color: var(--primary-red);
+            margin-bottom: 1rem;
+        }
+
+        .event-item {
+            padding: 1rem;
+            border-left: 3px solid var(--gold);
+            margin-bottom: 1rem;
+            background: rgba(212, 175, 55, 0.1);
         }
 
         /* Footer */
@@ -828,6 +883,16 @@
             .cards-grid {
                 grid-template-columns: 1fr;
             }
+
+            .calendar-grid {
+                gap: 0.5rem;
+            }
+
+            .calendar-day {
+                padding: 0.5rem;
+                min-height: 50px;
+                font-size: 0.9rem;
+            }
         }
     </style>
 </head>
@@ -867,12 +932,11 @@
         <div class="hero-background"></div>
         <div class="hero-overlay"></div>
         
-        <!-- Floating Crosses -->
-        <div class="floating-cross cross-1">✟</div>
-        <div class="floating-cross cross-2">✟</div>
-        <div class="floating-cross cross-3">✟</div>
-        <div class="floating-cross cross-4">✟</div>
-        <div class="floating-cross cross-5">✟</div>
+        <!-- Decorative Crosses -->
+        <div class="decorative-cross cross-1">†</div>
+        <div class="decorative-cross cross-2">†</div>
+        <div class="decorative-cross cross-3">†</div>
+        <div class="decorative-cross cross-4">†</div>
         
         <div class="hero-content">
             <h1 class="hero-title">WALKING IN HIS-WAY</h1>
@@ -918,25 +982,25 @@
             <div class="sermon-player">
                 <h3 style="font-family: 'Playfair Display', serif; color: var(--gold); font-size: 2rem; margin-bottom: 1.5rem;">Latest Sermon</h3>
                 <audio controls id="sermonAudio">
-                    <source src="" type="audio/mpeg">
+                    <source src="sermons/latest-sermon.mp3" type="audio/mpeg">
                     Your browser does not support the audio element.
                 </audio>
                 
-                <div class="sermon-upload">
-                    <h4 style="color: var(--gold); margin-bottom: 1rem;">Upload New Sermon</h4>
-                    <input type="file" id="sermonFile" accept="audio/*" style="color: white; margin-bottom: 1rem;">
-                    <p style="font-size: 0.9rem; opacity: 0.8;">Supported formats: MP3, WAV, AAC</p>
+                <div class="sermon-info">
+                    <h4 id="sermonTitle">Welcome Message</h4>
+                    <p id="sermonDescription">Experience powerful teaching from God's Word</p>
+                    <p style="font-size: 0.9rem; opacity: 0.8; margin-top: 0.5rem;" id="sermonDate">Date: January 2026</p>
                 </div>
             </div>
 
             <div class="cards-grid" style="margin-top: 3rem;">
                 <div class="card">
                     <h3>Weekly Services</h3>
-                    <p>Join us every Sunday for powerful worship experiences and Spirit-filled teaching that will transform your life. Our services are designed to create an atmosphere where you can encounter God's presence, receive biblical instruction, and connect with a community of believers who are passionate about growing in their faith and serving God's kingdom.</p>
+                    <p>Join us every Sunday for powerful worship experiences and Spirit-filled teaching that will transform your life. We are led and guided by the Holy Spirit as you encounter God's presence, receive biblical instruction, and connect with a community of believers who are passionate about growing in their faith and serving God's kingdom.</p>
                 </div>
                 <div class="card">
                     <h3>Bible Studies</h3>
-                    <p>Dive deeper into God's Word through our comprehensive Bible study programs. Explore the richness of Scripture through interactive discussions, practical applications, and Spirit-led insights. Our studies are designed to help you develop a solid biblical foundation, understand theological principles, and apply God's truth to every area of your life with wisdom and discernment.</p>
+                    <p>Dive deeper into God's Word through our comprehensive Bible study programs. Explore the richness of Scripture through interactive discussions, practical applications, and Spirit-led insights. Our studies are designed to help you develop a solid biblical foundation, understand Kingdom principles, and apply God's truth to every area of your life with wisdom and discernment.</p>
                 </div>
                 <div class="card">
                     <h3>Special Messages</h3>
@@ -964,12 +1028,12 @@
                     <button class="card-btn" onclick="openModal('menMinistry')">Learn More</button>
                 </div>
                 <div class="card">
-                    <h3>Children's Ministry - Jubilee</h3>
+                    <h3>Children's Ministry - Jubilee (Ages 0-12)</h3>
                     <p>Creating a joyful, safe, and engaging environment where children encounter God's love and learn biblical truths. Through age-appropriate worship, interactive lessons, and creative activities, we lay a foundation of faith that will sustain children throughout their lives. Our dedicated team nurtures each child's spiritual growth, celebrates their unique gifts, and helps them develop a personal relationship with Jesus Christ filled with wonder, joy, and jubilation.</p>
                     <button class="card-btn" onclick="openModal('childrenMinistry')">Learn More</button>
                 </div>
                 <div class="card">
-                    <h3>Young Adults - Aflame In Motion</h3>
+                    <h3>Young Adults - Aflame In Motion (Ages 18-35)</h3>
                     <p>Igniting passionate, purpose-driven young adults who are on fire for God and making a difference in the world. We provide relevant teaching, authentic community, and practical opportunities to live out your faith boldly. Our ministry empowers young adults to navigate life's challenges with biblical wisdom, pursue their God-given dreams with excellence, and be a generation that moves in the power of the Holy Spirit, impacting culture and advancing God's kingdom.</p>
                     <button class="card-btn" onclick="openModal('youngAdults')">Learn More</button>
                 </div>
@@ -1056,6 +1120,7 @@
                 <div class="calendar-grid" id="calendarGrid">
                     <!-- Calendar will be populated by JavaScript -->
                 </div>
+                <div id="selectedEventDetails" style="margin-top: 2rem;"></div>
             </div>
 
             <div class="event-card">
@@ -1088,7 +1153,7 @@
                 </div>
                 <div class="card">
                     <h3>Building Fund</h3>
-                    <p>Help us create spaces where lives are changed and God's presence dwells. Our building fund supports facility improvements, new construction projects, technology upgrades, and infrastructure development that enable us to serve our community more effectively. Your investment creates welcoming environments for worship, conducive spaces for discipleship, modern facilities for children and youth, and accessible venues where people from all walks of life can encounter Jesus and experience the transforming power of community.</p>
+                    <p>Help us create spaces where lives are changed and God's presence dwells. Our building fund supports facility improvements, new construction projects, infrastructure development that enable us to serve our community more effectively. Your investment creates welcoming environments for worship, conducive spaces for discipleship, modern facilities for children and youth, and accessible venues where people from all walks of life can encounter Jesus and experience the transforming power of community.</p>
                     <a href="https://donorbox.org/partner-with-walkinginhis-way-ministries-2-2" target="_blank" class="card-btn">Contribute to Building</a>
                 </div>
             </div>
@@ -1110,22 +1175,25 @@
                 <div class="payment-card">
                     <h3>Secure Online Giving</h3>
                     <p style="margin: 1.5rem 0; line-height: 1.8;">Make one-time gifts or set up recurring contributions through our secure online platform. Multiple payment options available including credit cards, debit cards, and PayPal. Your online giving is safe, efficient, and helps us continue our mission of spreading the Gospel worldwide.</p>
-                    <a href="https://donorbox.org/partner-with-walkinginhis-way-ministries-2-2" target="_blank" class="payment-btn">Give Now</a>
+                    <div class="payment-options-group">
+                        <a href="https://square.link/u/YyaZ8GPL" target="_blank" class="payment-btn">Give via Square</a>
+                        <a href="https://www.paypal.com/ncp/payment/T3LDB3F7MRQYS" target="_blank" class="payment-btn">Give via PayPal</a>
+                    </div>
                 </div>
             </div>
 
             <div class="cards-grid" style="margin-top: 3rem;">
                 <div class="card">
                     <h3>Tithes & Offerings</h3>
-                    <p>Honor God with your tithes and offerings as an act of worship and obedience. Tithing is a biblical principle that demonstrates our trust in God's provision and our commitment to supporting His work. Your faithful giving sustains ministry operations, enables us to serve our community, supports our pastoral staff, funds outreach initiatives, and creates opportunities for spiritual growth. When you give, you're investing in God's kingdom and participating in the harvest of souls.</p>
+                    <p>Honor God with your tithes and offerings as an act of worship and obedience. Tithing is a biblical principle that demonstrates our trust in God's provision and our commitment to supporting His work. Your faithful giving sustains ministry operations, enables us to serve our community, supports our pastoral staff, and creates opportunities for spiritual growth. When you give, you're investing in God's kingdom and participating in the harvest of souls.</p>
                 </div>
                 <div class="card">
                     <h3>Special Projects</h3>
-                    <p>Contribute to specific ministry initiatives and special projects that advance the Gospel in strategic ways. These focused campaigns support missions trips, community outreach programs, facility improvements, technology upgrades, youth camps, conferences, benevolence funds, and more. Your designated giving allows you to invest in particular areas of ministry that align with your passion and vision, knowing exactly how your contribution is making a kingdom impact and changing lives for eternity.</p>
+                    <p>Contribute to specific ministry initiatives and special projects that advance the Gospel in strategic ways. These focused campaigns support missions trips, community outreach programs, facility improvements, houses for orphans, literacy programs, youth camps, conferences, benevolence funds, and more. Your designated giving allows you to invest in particular areas of ministry that align with your passion and vision, knowing exactly how your contribution is making a kingdom impact and changing lives for eternity.</p>
                 </div>
                 <div class="card">
                     <h3>Living Legacy</h3>
-                    <p>Our God is a living God, and we believe in seeing His goodness in the land of the living! Partner with us to create a living legacy that transforms lives today. Your giving feeds and houses orphans in the US, Kenya, and Zimbabwe. We innovate and empower youth with skills and hope for their future. We impact single mothers and fathers with resources, support, and spiritual guidance. We restore families torn apart by poverty, addiction, and hardship. Your investment creates living testimonies of God's goodness - children who are fed, families reunited, youth discovering their purpose, and communities transformed by the power of the Gospel right now, in the land of the living.</p>
+                    <p>Our God is a living God, and we believe in seeing His goodness in the land of the living! Partner with us to create a living legacy that transforms lives today. Your giving feeds and houses orphans in the US, Kenya, and Zimbabwe. We innovate and empower youth with skills and hope for their future. We impact single mothers and fathers with resources, support, and spiritual guidance. We restore families and communities through the redemptive power of the Gospel. Your investment creates living testimonies of God's goodness - children who are fed, families reunited, youth discovering their purpose, and communities transformed by the power of the Gospel right now, in the land of the living.</p>
                 </div>
             </div>
         </div>
@@ -1292,7 +1360,7 @@
     <div id="childrenMinistry" class="modal">
         <div class="modal-content">
             <button class="modal-close" onclick="closeModal('childrenMinistry')">×</button>
-            <h2>Children's Ministry - Jubilee</h2>
+            <h2>Children's Ministry - Jubilee (Ages 0-12)</h2>
             <p style="margin-bottom: 2rem; line-height: 1.8;">Help your children develop a strong foundation of faith in a fun, safe, and engaging environment. Our Jubilee ministry offers age-appropriate worship, biblical lessons, and activities that make learning about Jesus exciting and memorable. We'd love to partner with you in raising the next generation of believers!</p>
             
             <form onsubmit="submitForm(event, 'childrenMinistry')">
@@ -1324,7 +1392,7 @@
     <div id="youngAdults" class="modal">
         <div class="modal-content">
             <button class="modal-close" onclick="closeModal('youngAdults')">×</button>
-            <h2>Young Adults - Aflame In Motion</h2>
+            <h2>Young Adults - Aflame In Motion (Ages 18-35)</h2>
             <p style="margin-bottom: 2rem; line-height: 1.8;">Connect with other young adults who are passionate about Jesus and making a difference! Aflame In Motion provides a dynamic community where you can grow in your faith, build authentic friendships, and discover how God wants to use you to impact your generation. Join us for worship nights, Bible studies, service projects, and social events.</p>
             
             <form onsubmit="submitForm(event, 'youngAdults')">
@@ -1466,10 +1534,10 @@
                 <p>We implement appropriate security measures to protect your personal information from unauthorized access, alteration, or disclosure. All payment processing is handled through secure, encrypted third-party platforms (Square and PayPal) that comply with industry standards.</p>
                 
                 <h3 style="color: var(--primary-red); margin-top: 1.5rem;">Your Rights</h3>
-                <p>You have the right to access, update, or delete your personal information at any time. You may also opt out of communications by contacting us at <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="d3a4b2bfb8babdb4babdbbbaa0a4b2aa93b4beb2babffdb0bcbe">[email&#160;protected]</a>. We retain your information only as long as necessary to fulfill the purposes outlined in this policy.</p>
+                <p>You have the right to access, update, or delete your personal information at any time. You may also opt out of communications by contacting us at <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="23746a6b74644f4c41424f63534e0d4e46">[email&#160;protected]</a>. We retain your information only as long as necessary to fulfill the purposes outlined in this policy.</p>
                 
                 <h3 style="color: var(--primary-red); margin-top: 1.5rem;">Contact Us</h3>
-                <p>If you have questions about our privacy practices, please contact us at <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b0c7d1dcdbd9ded7d9ded8d9c3c7d1c9f0d7ddd1d9dc9ed3dfdd">[email&#160;protected]</a>.</p>
+                <p>If you have questions about our privacy practices, please contact us at <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f8afb1b0afbf94979a9994b88895d6959d">[email&#160;protected]</a>.</p>
             </div>
         </div>
     </div>
@@ -1498,7 +1566,7 @@
                 <p>We reserve the right to modify these Terms of Service at any time. Continued use of our services following any changes constitutes acceptance of the new terms.</p>
                 
                 <h3 style="color: var(--primary-red); margin-top: 1.5rem;">Contact Information</h3>
-                <p>For questions regarding these terms, please contact us at <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="1f687e7374767178767177766c687e665f78727e7673317c7072">[email&#160;protected]</a>.</p>
+                <p>For questions regarding these terms, please contact us at <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="23746a6b74644f4c41424f63534e0d4e46">[email&#160;protected]</a>.</p>
             </div>
         </div>
     </div>
@@ -1533,7 +1601,71 @@
         </div>
     </footer>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    <script>
+        // Ensure DOM is loaded before initializing
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile Menu Toggle
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+
+            if (hamburger && navLinks) {
+                hamburger.addEventListener('click', () => {
+                    hamburger.classList.toggle('active');
+                    navLinks.classList.toggle('active');
+                });
+
+                document.querySelectorAll('.nav-links a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        hamburger.classList.remove('active');
+                        navLinks.classList.remove('active');
+                    });
+                });
+            }
+        });
+
+        // Events Data Storage (Backend simulation)
+        const eventsData = {
+            2026: {
+                0: {}, // January
+                1: {  // February
+                    14: [{
+                        title: "Valentine's Day Service",
+                        time: "7:00 PM",
+                        description: "Special service celebrating God's love",
+                        location: "Main Sanctuary"
+                    }]
+                },
+                2: {  // March
+                    15: [{
+                        title: "Annual Conference 2026 - Day 1",
+                        time: "6:00 PM - 9:00 PM",
+                        description: "Powerful worship and anointed preaching",
+                        location: "Main Sanctuary"
+                    }],
+                    16: [{
+                        title: "Annual Conference 2026 - Day 2",
+                        time: "6:00 PM - 9:00 PM",
+                        description: "Life-transforming encounters with God",
+                        location: "Main Sanctuary"
+                    }],
+                    17: [{
+                        title: "Annual Conference 2026 - Day 3",
+                        time: "6:00 PM - 9:00 PM",
+                        description: "Prophetic impartation and kingdom advancement",
+                        location: "Main Sanctuary"
+                    }]
+                },
+                3: {  // April
+                    20: [{
+                        title: "Easter Sunday Celebration",
+                        time: "9:00 AM & 11:00 AM",
+                        description: "Celebrating the resurrection of our Lord",
+                        location: "Main Sanctuary"
+                    }]
+                }
+            }
+        };
+
         // Page Navigation
         function showPage(pageId) {
             document.querySelectorAll('.page-section').forEach(section => {
@@ -1542,22 +1674,6 @@
             document.getElementById(pageId).classList.add('active');
             window.scrollTo(0, 0);
         }
-
-        // Mobile Menu Toggle
-        const hamburger = document.querySelector('.hamburger');
-        const navLinks = document.querySelector('.nav-links');
-
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
-            navLinks.classList.toggle('active');
-        });
-
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                hamburger.classList.remove('active');
-                navLinks.classList.remove('active');
-            });
-        });
 
         // Modal Functions
         function openModal(modalId) {
@@ -1591,7 +1707,7 @@
                 emailBody += `${key}: ${value}\n`;
             }
             
-            const mailtoLink = `mailto:walkinginhisway@gmail.com?subject=${encodeURIComponent(formId + ' Submission')}&body=${encodeURIComponent(emailBody)}`;
+            const mailtoLink = `mailto:WIHWGlobal@pm.me?subject=${encodeURIComponent(formId + ' Submission')}&body=${encodeURIComponent(emailBody)}`;
             window.location.href = mailtoLink;
             
             alert('Thank you! Your submission will open in your email client. Please send the email to complete your submission.');
@@ -1603,17 +1719,6 @@
                 closeModal(modal.id);
             }
         }
-
-        // Sermon Upload Handler
-        document.getElementById('sermonFile')?.addEventListener('change', function(e) {
-            const file = e.target.files[0];
-            if (file) {
-                const url = URL.createObjectURL(file);
-                const audio = document.getElementById('sermonAudio');
-                audio.src = url;
-                audio.load();
-            }
-        });
 
         // Calendar
         let currentDate = new Date(2026, 0, 1); // January 2026
@@ -1654,26 +1759,65 @@
             for (let day = 1; day <= daysInMonth; day++) {
                 const dayDiv = document.createElement('div');
                 dayDiv.className = 'calendar-day';
-                dayDiv.textContent = day;
                 
-                // Mark special event days (example: 15-17)
-                if (month === 2 && (day >= 15 && day <= 17)) {
+                const dayNumber = document.createElement('div');
+                dayNumber.textContent = day;
+                dayDiv.appendChild(dayNumber);
+                
+                // Check for events on this day
+                const hasEvents = eventsData[year] && eventsData[year][month] && eventsData[year][month][day];
+                
+                if (hasEvents) {
                     dayDiv.classList.add('has-event');
-                    dayDiv.title = 'Annual Conference 2026';
+                    const indicator = document.createElement('div');
+                    indicator.className = 'event-indicator';
+                    indicator.textContent = '• Event';
+                    dayDiv.appendChild(indicator);
+                    
+                    dayDiv.onclick = () => showEventDetails(year, month, day);
                 }
                 
                 grid.appendChild(dayDiv);
             }
         }
 
+        function showEventDetails(year, month, day) {
+            const events = eventsData[year][month][day];
+            const detailsContainer = document.getElementById('selectedEventDetails');
+            
+            if (events && events.length > 0) {
+                const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
+                    'July', 'August', 'September', 'October', 'November', 'December'];
+                
+                let html = `<div class="event-details-modal">
+                    <h4>Events on ${monthNames[month]} ${day}, ${year}</h4>`;
+                
+                events.forEach(event => {
+                    html += `
+                        <div class="event-item">
+                            <h5 style="color: var(--primary-red); margin-bottom: 0.5rem;">${event.title}</h5>
+                            <p style="margin: 0.25rem 0;"><strong>Time:</strong> ${event.time}</p>
+                            <p style="margin: 0.25rem 0;"><strong>Location:</strong> ${event.location}</p>
+                            <p style="margin: 0.5rem 0;">${event.description}</p>
+                        </div>
+                    `;
+                });
+                
+                html += '</div>';
+                detailsContainer.innerHTML = html;
+            }
+        }
+
         function previousMonth() {
             currentDate.setMonth(currentDate.getMonth() - 1);
             generateCalendar();
+            document.getElementById('selectedEventDetails').innerHTML = '';
         }
 
         function nextMonth() {
             currentDate.setMonth(currentDate.getMonth() + 1);
             generateCalendar();
+            document.getElementById('selectedEventDetails').innerHTML = '';
         }
 
         // Initialize calendar
@@ -1710,18 +1854,6 @@
             card.style.transform = 'translateY(30px)';
             card.style.transition = 'all 0.6s ease';
             observer.observe(card);
-        });
-
-        // Sermon file upload handler
-        document.getElementById('sermonFile')?.addEventListener('change', function(e) {
-            const file = e.target.files[0];
-            if (file) {
-                const url = URL.createObjectURL(file);
-                const audio = document.getElementById('sermonAudio');
-                audio.src = url;
-                audio.load();
-                alert('Sermon uploaded successfully! You can now play it.');
-            }
         });
     </script>
 </body>
