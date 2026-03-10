@@ -1,0 +1,1467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pathways – The Family Table | Walking in His-Way Global</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --crimson:      #9B1B1B;
+  --crimson-dark: #6B0F0F;
+  --crimson-deep: #4A0A0A;
+  --gold:         #B5892A;
+  --gold-light:   #D4A843;
+  --gold-pale:    #F5E6C0;
+  --cream:        #FAF6EE;
+  --warm-white:   #FFFDF9;
+  --charcoal:     #2C2018;
+  --brown-mid:    #5C3D1E;
+  --brown-light:  #8B6343;
+  --border-gold:  rgba(181,137,42,0.22);
+  --border-light: rgba(181,137,42,0.12);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Lato',sans-serif;background:var(--warm-white);color:var(--charcoal);overflow-x:hidden;}
+
+/* NAV */
+nav{position:fixed;top:0;width:100%;z-index:200;padding:0 56px;height:78px;display:flex;align-items:center;justify-content:space-between;background:rgba(255,253,249,0.97);backdrop-filter:blur(16px);border-bottom:1px solid var(--border-gold);transition:box-shadow .35s,height .35s;}
+nav.scrolled{height:64px;box-shadow:0 4px 28px rgba(155,27,27,0.09);}
+.nav-logo{display:flex;align-items:center;gap:14px;text-decoration:none;}
+.nav-logo-img{height:50px;width:auto;object-fit:contain;transition:height .35s;}
+nav.scrolled .nav-logo-img{height:40px;}
+.nav-logo-text{display:flex;flex-direction:column;gap:1px;}
+.nav-logo-name{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--crimson);line-height:1.1;}
+.nav-logo-tagline{font-family:'Cormorant Garamond',serif;font-size:0.76rem;font-style:italic;color:var(--gold);line-height:1;}
+.nav-logo-parent{font-size:0.61rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--brown-light);margin-top:2px;}
+.nav-links{display:flex;align-items:center;gap:30px;list-style:none;}
+.nav-links a{font-size:0.74rem;letter-spacing:.13em;text-transform:uppercase;font-weight:700;color:var(--charcoal);text-decoration:none;position:relative;transition:color .25s;}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1.5px;background:var(--crimson);transition:width .3s cubic-bezier(.16,1,.3,1);}
+.nav-links a:hover{color:var(--crimson);}
+.nav-links a:hover::after{width:100%;}
+.nav-btn{background:var(--crimson)!important;color:#fff!important;padding:9px 20px;border-radius:2px;font-size:.73rem!important;box-shadow:0 2px 12px rgba(155,27,27,.25);}
+.nav-btn::after{display:none!important;}
+.nav-btn:hover{background:var(--crimson-dark)!important;transform:translateY(-1px);}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px;}
+.hamburger span{display:block;width:24px;height:2px;background:var(--charcoal);border-radius:2px;transition:all .3s;}
+.mobile-nav{display:none;position:fixed;top:78px;left:0;right:0;z-index:190;background:var(--warm-white);border-bottom:1px solid var(--border-gold);padding:20px 32px 28px;flex-direction:column;gap:16px;box-shadow:0 8px 32px rgba(44,32,24,.1);}
+.mobile-nav.open{display:flex;}
+.mobile-nav a{font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--charcoal);text-decoration:none;padding:10px 0;border-bottom:1px solid var(--border-light);transition:color .2s;}
+.mobile-nav a:hover{color:var(--crimson);}
+.mobile-nav a.m-cta{background:var(--crimson);color:#fff!important;padding:12px 24px;text-align:center;margin-top:4px;border:none;}
+
+/* HERO */
+.hero{min-height:100vh;display:grid;place-items:center;position:relative;overflow:hidden;background:var(--cream);padding:140px 56px 100px;}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 85% 15%,rgba(181,137,42,.07) 0%,transparent 65%),radial-gradient(ellipse 60% 70% at 5% 85%,rgba(155,27,27,.05) 0%,transparent 60%);}
+.hero-line-l{position:absolute;left:0;top:0;bottom:0;width:5px;background:linear-gradient(180deg,transparent,var(--crimson) 30%,var(--gold) 70%,transparent);opacity:.3;}
+.hero-line-r{position:absolute;right:0;top:0;bottom:0;width:5px;background:linear-gradient(180deg,transparent,var(--gold) 30%,var(--crimson) 70%,transparent);opacity:.3;}
+.hero-inner{position:relative;z-index:2;max-width:860px;text-align:center;}
+.hero-ministry{font-size:.64rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--brown-light);margin-bottom:26px;animation:fadeUp 1s .1s both;}
+.hero-ministry span{color:var(--crimson);}
+.hero-logo-wrap{width:150px;height:150px;margin:0 auto 28px;display:flex;align-items:center;justify-content:center;animation:fadeUp 1s .05s both;}
+.hero-logo-img{width:150px;height:150px;object-fit:contain;filter:drop-shadow(0 12px 32px rgba(155,27,27,.18));}
+.hero-logo-fallback{font-family:'Playfair Display',serif;font-size:5rem;font-weight:900;color:var(--crimson);line-height:1;}
+.divider{display:flex;align-items:center;gap:14px;justify-content:center;margin-bottom:26px;animation:fadeUp 1s .2s both;}
+.divider-line{width:56px;height:1px;background:var(--gold);opacity:.5;}
+.divider-diamond{width:6px;height:6px;background:var(--gold);transform:rotate(45deg);}
+.hero-title{font-family:'Playfair Display',serif;font-size:clamp(2.8rem,6.5vw,5rem);font-weight:900;line-height:1.06;color:var(--charcoal);margin-bottom:10px;animation:fadeUp 1s .25s both;}
+.hero-title em{font-style:italic;color:var(--crimson);display:block;}
+.hero-tagline{font-family:'Cormorant Garamond',serif;font-size:clamp(1.2rem,2.2vw,1.65rem);font-style:italic;font-weight:300;color:var(--gold);margin-bottom:26px;animation:fadeUp 1s .35s both;}
+.hero-desc{font-size:1rem;line-height:1.82;color:var(--brown-mid);max-width:620px;margin:0 auto 48px;font-weight:300;animation:fadeUp 1s .45s both;}
+.hero-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;animation:fadeUp 1s .55s both;}
+.hero-stats{display:flex;justify-content:center;margin-top:68px;padding-top:44px;border-top:1px solid var(--border-gold);animation:fadeUp 1s .7s both;}
+.stat-item{padding:0 40px;text-align:center;border-right:1px solid var(--border-gold);}
+.stat-item:last-child{border-right:none;}
+.stat-num{font-family:'Playfair Display',serif;font-size:2rem;font-weight:900;color:var(--crimson);line-height:1;display:block;margin-bottom:6px;}
+.stat-label{font-size:.67rem;letter-spacing:.16em;text-transform:uppercase;color:var(--brown-light);font-weight:700;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:none;}}
+
+/* BUTTONS */
+.btn-primary{background:var(--crimson);color:#fff;padding:15px 36px;border-radius:2px;font-family:'Lato',sans-serif;font-size:.77rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;text-decoration:none;border:none;cursor:pointer;display:inline-block;transition:background .25s,transform .2s,box-shadow .25s;box-shadow:0 4px 24px rgba(155,27,27,.25);}
+.btn-primary:hover{background:var(--crimson-dark);transform:translateY(-2px);box-shadow:0 10px 32px rgba(155,27,27,.32);}
+.btn-outline{background:transparent;color:var(--crimson);padding:14px 36px;border-radius:2px;font-family:'Lato',sans-serif;font-size:.77rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;text-decoration:none;border:1.5px solid var(--crimson);cursor:pointer;display:inline-block;transition:all .25s;}
+.btn-outline:hover{background:var(--crimson);color:#fff;transform:translateY(-2px);}
+.btn-gold{background:var(--gold);color:var(--charcoal);padding:14px 36px;border-radius:2px;font-family:'Lato',sans-serif;font-size:.77rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;text-decoration:none;border:none;cursor:pointer;display:inline-block;transition:background .25s,transform .2s,box-shadow .25s;box-shadow:0 4px 20px rgba(181,137,42,.25);}
+.btn-gold:hover{background:var(--gold-light);transform:translateY(-2px);}
+
+/* SECTIONS */
+section{padding:100px 56px;}
+.eyebrow{display:flex;align-items:center;gap:12px;font-size:.67rem;letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:var(--gold);margin-bottom:16px;}
+.eyebrow::before,.eyebrow::after{content:'';display:block;width:32px;height:1px;background:var(--gold);}
+.eyebrow.left::before{display:none;}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(1.9rem,3.8vw,3rem);font-weight:900;line-height:1.1;color:var(--charcoal);}
+.section-title em{font-style:italic;color:var(--crimson);}
+.section-lead{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-style:italic;font-weight:300;color:var(--brown-mid);line-height:1.65;margin-top:12px;}
+
+/* WHO WE SERVE */
+.serve{background:var(--charcoal);position:relative;overflow:hidden;}
+.serve::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--crimson),var(--gold),var(--crimson));}
+.serve-bg{position:absolute;bottom:-60px;right:-30px;font-family:'Playfair Display',serif;font-size:22vw;font-weight:900;font-style:italic;color:rgba(255,255,255,.022);line-height:1;pointer-events:none;user-select:none;}
+.serve .eyebrow{color:var(--gold-light);}
+.serve .eyebrow::before,.serve .eyebrow::after{background:var(--gold-light);}
+.serve .section-title{color:#fff;}
+.serve .section-lead{color:rgba(255,255,255,.5);}
+.serve-header{text-align:center;margin-bottom:60px;}
+.serve-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1px;max-width:1180px;margin:0 auto;border:1px solid rgba(255,255,255,.06);}
+.serve-card{background:rgba(255,255,255,.035);padding:52px 36px 44px;text-align:center;position:relative;overflow:hidden;cursor:default;transition:background .35s,transform .3s;}
+.serve-card:hover{background:rgba(155,27,27,.22);transform:translateY(-4px);}
+.serve-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--crimson),var(--gold));opacity:0;transition:opacity .35s;}
+.serve-card:hover::after{opacity:1;}
+.serve-icon{width:68px;height:68px;border-radius:50%;border:1px solid rgba(181,137,42,.35);display:flex;align-items:center;justify-content:center;margin:0 auto 24px;transition:border-color .3s,background .3s;}
+.serve-card:hover .serve-icon{border-color:var(--gold);background:rgba(181,137,42,.12);}
+.serve-icon svg{width:28px;height:28px;stroke:var(--gold-light);fill:none;stroke-width:1.5;}
+.serve-card-title{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:#fff;margin-bottom:12px;}
+.serve-card-desc{font-size:.87rem;color:rgba(255,255,255,.5);line-height:1.7;}
+
+/* SERVICES */
+.services{background:var(--cream);}
+.services-inner{display:grid;grid-template-columns:1fr 1fr;gap:88px;max-width:1180px;margin:0 auto;align-items:center;}
+.scard-stack{position:relative;height:460px;}
+.scard{position:absolute;border-radius:4px;overflow:hidden;box-shadow:0 24px 64px rgba(44,32,24,.2);transition:transform .45s cubic-bezier(.16,1,.3,1);}
+.scard-main{width:295px;height:330px;background:linear-gradient(150deg,var(--crimson-dark) 0%,var(--crimson) 100%);top:36px;left:10px;padding:44px 36px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;transform:rotate(-2.5deg);}
+.scard-main:hover{transform:rotate(0deg) scale(1.02);}
+.scard-icon{width:52px;height:52px;border-radius:50%;border:1px solid rgba(255,255,255,.25);display:flex;align-items:center;justify-content:center;margin:0 auto 18px;}
+.scard-icon svg{width:24px;height:24px;stroke:rgba(255,255,255,.9);fill:none;stroke-width:1.5;}
+.scard-main-title{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;color:#fff;margin-bottom:10px;}
+.scard-main-desc{font-size:.84rem;color:rgba(255,255,255,.72);line-height:1.65;}
+.scard-accent{width:235px;height:250px;background:linear-gradient(150deg,var(--gold) 0%,var(--gold-light) 100%);bottom:16px;right:0;padding:32px 28px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;transform:rotate(2.5deg);}
+.scard-accent:hover{transform:rotate(0deg) scale(1.02);}
+.scard-accent .scard-icon{border-color:rgba(44,32,24,.2);}
+.scard-accent .scard-icon svg{stroke:var(--charcoal);}
+.scard-accent-title{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;color:var(--charcoal);margin-bottom:8px;}
+.scard-accent-desc{font-size:.82rem;color:rgba(44,32,24,.7);line-height:1.6;}
+.service-list{margin-top:36px;display:flex;flex-direction:column;gap:18px;}
+.service-item{display:flex;gap:18px;align-items:flex-start;padding:22px 24px;background:#fff;border-left:3px solid var(--crimson);box-shadow:0 2px 16px rgba(44,32,24,.05);transition:transform .25s,box-shadow .25s;}
+.service-item:hover{transform:translateX(5px);box-shadow:0 6px 28px rgba(155,27,27,.1);}
+.si-icon{width:44px;height:44px;flex-shrink:0;background:var(--gold-pale);border-radius:50%;display:flex;align-items:center;justify-content:center;}
+.si-icon svg{width:20px;height:20px;stroke:var(--gold);fill:none;stroke-width:1.8;}
+.si-title{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--charcoal);margin-bottom:5px;}
+.si-desc{font-size:.85rem;color:var(--brown-light);line-height:1.65;}
+
+/* VISION */
+.vision{background:linear-gradient(140deg,var(--crimson-deep) 0%,#5A1010 60%,var(--crimson-dark) 100%);position:relative;overflow:hidden;padding:100px 56px;}
+.vision::before{content:'';position:absolute;inset:0;opacity:.025;background-image:repeating-linear-gradient(0deg,transparent,transparent 40px,rgba(255,255,255,.4) 40px,rgba(255,255,255,.4) 41px),repeating-linear-gradient(90deg,transparent,transparent 40px,rgba(255,255,255,.4) 40px,rgba(255,255,255,.4) 41px);}
+.vision .eyebrow{color:var(--gold-light);justify-content:center;}
+.vision .eyebrow::before,.vision .eyebrow::after{background:var(--gold-light);}
+.vision .section-title{color:#fff;}
+.vision .section-lead{color:rgba(255,255,255,.55);}
+.vision-header{text-align:center;margin-bottom:76px;position:relative;z-index:1;}
+.vision-timeline{display:grid;grid-template-columns:repeat(3,1fr);position:relative;max-width:1000px;margin:0 auto;z-index:1;}
+.vision-timeline::before{content:'';position:absolute;top:38px;left:calc(16.66% + 20px);right:calc(16.66% + 20px);height:1px;background:linear-gradient(90deg,rgba(181,137,42,.2),var(--gold),rgba(181,137,42,.2));}
+.vision-step{padding:0 20px;text-align:center;position:relative;cursor:default;}
+.vision-dot{width:76px;height:76px;border-radius:50%;background:rgba(255,255,255,.06);border:1.5px solid rgba(181,137,42,.4);display:flex;align-items:center;justify-content:center;margin:0 auto 28px;position:relative;z-index:2;transition:background .35s,border-color .35s,transform .35s,box-shadow .35s;}
+.vision-dot svg{width:28px;height:28px;stroke:rgba(181,137,42,.8);fill:none;stroke-width:1.5;transition:stroke .35s;}
+.vision-step:hover .vision-dot,.vision-step.active .vision-dot{background:var(--gold);border-color:var(--gold-light);transform:scale(1.08);box-shadow:0 0 0 10px rgba(181,137,42,.14);}
+.vision-step:hover .vision-dot svg,.vision-step.active .vision-dot svg{stroke:var(--charcoal);}
+.vision-step-status{font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--gold-light);margin-bottom:8px;}
+.vision-step-title{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;color:#fff;margin-bottom:10px;}
+.vision-step-desc{font-size:.84rem;color:rgba(255,255,255,.48);line-height:1.7;}
+
+/* MISSION STRIP */
+.mission-strip{background:var(--gold-pale);padding:88px 56px;text-align:center;position:relative;overflow:hidden;}
+.mission-strip::before{content:'\201C';position:absolute;top:-60px;left:40px;font-family:'Playfair Display',serif;font-size:22rem;font-weight:900;line-height:1;color:rgba(181,137,42,.09);pointer-events:none;}
+.mission-quote{font-family:'Cormorant Garamond',serif;font-size:clamp(1.4rem,2.8vw,2.2rem);font-style:italic;font-weight:300;color:var(--charcoal);line-height:1.5;max-width:800px;margin:0 auto 26px;position:relative;z-index:1;}
+.mission-quote strong{font-weight:600;color:var(--crimson);font-style:normal;}
+.mission-attr{font-size:.71rem;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:var(--gold);position:relative;z-index:1;}
+
+/* IMPACT */
+.impact{background:var(--warm-white);}
+.impact-inner{max-width:1180px;margin:0 auto;}
+.impact-header{text-align:center;margin-bottom:60px;}
+.impact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;}
+.impact-card{padding:40px 32px;border:1px solid var(--border-gold);text-align:center;position:relative;overflow:hidden;transition:transform .3s,box-shadow .3s,border-color .3s;background:#fff;}
+.impact-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--crimson),var(--gold));transform:scaleX(0);transform-origin:left;transition:transform .4s cubic-bezier(.16,1,.3,1);}
+.impact-card:hover{transform:translateY(-6px);box-shadow:0 18px 52px rgba(155,27,27,.09);border-color:rgba(181,137,42,.38);}
+.impact-card:hover::before{transform:scaleX(1);}
+.ic-icon{width:64px;height:64px;border-radius:50%;background:rgba(155,27,27,.07);display:flex;align-items:center;justify-content:center;margin:0 auto 22px;}
+.ic-icon svg{width:26px;height:26px;stroke:var(--crimson);fill:none;stroke-width:1.5;}
+.ic-title{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--charcoal);margin-bottom:12px;}
+.ic-desc{font-size:.87rem;color:var(--brown-light);line-height:1.75;}
+
+/* GET INVOLVED */
+.involved{background:var(--cream);}
+.involved-inner{display:grid;grid-template-columns:1fr 1fr;gap:88px;max-width:1180px;margin:0 auto;align-items:start;}
+.involved-text{font-size:.95rem;line-height:1.82;color:var(--brown-mid);margin:22px 0 36px;font-weight:300;}
+.ways-list{display:flex;flex-direction:column;gap:13px;margin-bottom:38px;}
+.way-item{display:flex;align-items:center;gap:13px;font-size:.88rem;font-weight:700;color:var(--charcoal);}
+.way-dot{width:7px;height:7px;border-radius:50%;background:var(--crimson);flex-shrink:0;}
+.involved-ctas{display:flex;flex-wrap:wrap;gap:11px;}
+.involved-form{background:#fff;border-radius:3px;padding:48px 44px;box-shadow:0 8px 48px rgba(44,32,24,.08);border:1px solid var(--border-gold);}
+.form-head-title{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:var(--charcoal);margin-bottom:4px;}
+.form-head-sub{font-size:.86rem;color:var(--brown-light);margin-bottom:28px;}
+.fg{margin-bottom:17px;}
+.flabel{display:block;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--charcoal);margin-bottom:7px;}
+.frq{color:var(--crimson);}
+.finput,.fselect,.ftextarea{width:100%;padding:12px 16px;border:1.5px solid rgba(181,137,42,.28);background:var(--cream);color:var(--charcoal);font-family:'Lato',sans-serif;font-size:.9rem;outline:none;transition:border-color .25s,box-shadow .25s;border-radius:2px;}
+.finput:focus,.fselect:focus,.ftextarea:focus{border-color:var(--crimson);box-shadow:0 0 0 3px rgba(155,27,27,.07);}
+.ftextarea{height:106px;resize:vertical;}
+.fselect{cursor:pointer;}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:13px;}
+.ferr{font-size:.74rem;color:var(--crimson);margin-top:5px;display:none;}
+.fg.err .ferr{display:block;}
+.fg.err .finput,.fg.err .fselect,.fg.err .ftextarea{border-color:var(--crimson);}
+.fbtn{width:100%;padding:15px;background:var(--crimson);color:#fff;border:none;font-family:'Lato',sans-serif;font-size:.77rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;transition:background .25s,transform .2s,box-shadow .25s;box-shadow:0 4px 20px rgba(155,27,27,.22);border-radius:2px;margin-top:8px;}
+.fbtn:hover{background:var(--crimson-dark);transform:translateY(-2px);}
+
+/* FOOTER */
+footer{background:var(--charcoal);padding:72px 56px 0;color:rgba(255,255,255,.5);}
+.footer-inner{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:2.2fr 1fr 1fr 1fr;gap:52px;padding-bottom:52px;border-bottom:1px solid rgba(255,255,255,.07);}
+.footer-brand-logo{display:flex;align-items:flex-start;gap:16px;margin-bottom:20px;}
+.footer-logo-img{height:52px;width:auto;object-fit:contain;filter:brightness(0) invert(1);opacity:.88;flex-shrink:0;}
+.footer-brand-name{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:#fff;line-height:1.2;}
+.footer-brand-tagline{font-family:'Cormorant Garamond',serif;font-size:.82rem;font-style:italic;color:var(--gold-light);display:block;margin-top:2px;}
+.footer-brand-parent{font-size:.61rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.38);display:block;margin-top:5px;}
+.footer-desc{font-size:.85rem;line-height:1.75;max-width:280px;margin-bottom:18px;}
+.footer-affil{font-size:.71rem;font-weight:700;letter-spacing:.07em;color:rgba(255,255,255,.28);border-top:1px solid rgba(255,255,255,.07);padding-top:15px;}
+.footer-affil span{color:var(--gold-light);}
+.fcol-title{font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--gold-light);margin-bottom:20px;}
+.flinks{list-style:none;display:flex;flex-direction:column;gap:11px;}
+.flinks a,.flinks button{color:rgba(255,255,255,.48);text-decoration:none;font-size:.85rem;transition:color .25s;background:none;border:none;cursor:pointer;padding:0;font-family:'Lato',sans-serif;text-align:left;}
+.flinks a:hover,.flinks button:hover{color:var(--gold-light);}
+.footer-bottom{max-width:1180px;margin:0 auto;padding:24px 0 32px;display:flex;justify-content:space-between;align-items:center;font-size:.75rem;flex-wrap:wrap;gap:10px;}
+.footer-legal{display:flex;gap:24px;align-items:center;}
+.footer-legal button{background:none;border:none;cursor:pointer;color:rgba(255,255,255,.45);font-size:.75rem;font-family:'Lato',sans-serif;transition:color .25s;padding:0;}
+.footer-legal button:hover{color:var(--gold-light);}
+.fsep{color:rgba(255,255,255,.2);}
+
+/* MODALS */
+.modal-overlay{position:fixed;inset:0;z-index:500;background:rgba(44,32,24,.72);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;padding:24px;opacity:0;transition:opacity .3s;}
+.modal-overlay.open{display:flex;opacity:1;}
+.modal{background:var(--warm-white);max-width:680px;width:100%;max-height:86vh;display:flex;flex-direction:column;border-radius:3px;overflow:hidden;box-shadow:0 32px 80px rgba(44,32,24,.35);transform:translateY(24px);transition:transform .35s cubic-bezier(.16,1,.3,1);}
+.modal-overlay.open .modal{transform:none;}
+.modal-header{background:var(--charcoal);padding:28px 36px 22px;display:flex;align-items:flex-start;justify-content:space-between;flex-shrink:0;}
+.modal-title{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:700;color:#fff;margin-bottom:2px;}
+.modal-subtitle{font-size:.77rem;color:rgba(255,255,255,.42);letter-spacing:.05em;}
+.modal-close{background:rgba(255,255,255,.08);border:none;cursor:pointer;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-left:20px;transition:background .25s;}
+.modal-close:hover{background:rgba(155,27,27,.5);}
+.modal-close svg{width:16px;height:16px;stroke:#fff;fill:none;stroke-width:2;}
+.modal-body{padding:34px 36px;overflow-y:auto;flex:1;}
+.modal-body h3{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;color:var(--charcoal);margin:26px 0 9px;}
+.modal-body h3:first-child{margin-top:0;}
+.modal-body p{font-size:.88rem;line-height:1.8;color:var(--brown-mid);margin-bottom:11px;}
+.modal-body ul{margin:0 0 14px 18px;font-size:.88rem;line-height:1.85;color:var(--brown-mid);}
+.modal-body li{margin-bottom:3px;}
+.modal-effective{display:inline-block;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--gold);background:var(--gold-pale);padding:5px 14px;margin-bottom:22px;}
+.modal-footer{padding:18px 36px 26px;flex-shrink:0;border-top:1px solid var(--border-gold);display:flex;justify-content:flex-end;}
+.mfbtn{background:var(--crimson);color:#fff;border:none;cursor:pointer;padding:11px 32px;border-radius:2px;font-family:'Lato',sans-serif;font-size:.75rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;transition:background .25s,transform .2s;}
+.mfbtn:hover{background:var(--crimson-dark);transform:translateY(-1px);}
+/* modal form elements reuse .fg .flabel etc */
+.vol-cards{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin:18px 0;}
+.vol-card{padding:18px;border:1.5px solid var(--border-gold);cursor:pointer;transition:border-color .25s,background .25s;border-radius:2px;}
+.vol-card:hover,.vol-card.sel{border-color:var(--crimson);background:rgba(155,27,27,.04);}
+.vol-card-title{font-family:'Playfair Display',serif;font-size:.94rem;font-weight:700;color:var(--charcoal);margin-bottom:5px;}
+.vol-card-desc{font-size:.79rem;color:var(--brown-light);line-height:1.55;}
+.don-amts{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin:14px 0;}
+.don-btn{padding:12px 8px;border:1.5px solid var(--border-gold);background:none;cursor:pointer;border-radius:2px;font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--charcoal);transition:all .25s;}
+.don-btn:hover,.don-btn.sel{border-color:var(--crimson);background:rgba(155,27,27,.06);color:var(--crimson);}
+.confirm-step{text-align:center;padding:20px 0;}
+.confirm-icon{width:72px;height:72px;border-radius:50%;background:rgba(155,27,27,.1);margin:0 auto 22px;display:flex;align-items:center;justify-content:center;}
+.confirm-icon svg{width:32px;height:32px;stroke:var(--crimson);fill:none;stroke-width:1.8;}
+.confirm-title{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:var(--charcoal);margin-bottom:13px;}
+.confirm-text{font-size:.9rem;color:var(--brown-mid);line-height:1.75;max-width:420px;margin:0 auto;}
+
+/* TOAST */
+.toast{position:fixed;bottom:36px;right:36px;z-index:600;background:var(--charcoal);color:#fff;padding:15px 28px;border-radius:3px;font-size:.85rem;font-weight:700;letter-spacing:.04em;border-left:3px solid var(--gold);box-shadow:0 8px 32px rgba(0,0,0,.28);transform:translateY(80px);opacity:0;transition:all .4s cubic-bezier(.16,1,.3,1);max-width:320px;}
+.toast.show{transform:none;opacity:1;}
+
+/* SCROLL REVEAL */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .75s cubic-bezier(.16,1,.3,1),transform .75s cubic-bezier(.16,1,.3,1);}
+.reveal.visible{opacity:1;transform:none;}
+.d1{transition-delay:.1s;} .d2{transition-delay:.2s;} .d3{transition-delay:.3s;} .d4{transition-delay:.4s;}
+
+/* GIFT MODAL */
+.gift-impact-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:20px 0 24px;}
+.gift-impact-item{padding:18px;border:1px solid var(--border-gold);background:var(--cream);border-radius:2px;transition:border-color .25s,background .25s;}
+.gift-impact-item:hover{border-color:var(--gold);background:var(--gold-pale);}
+.gift-impact-amt{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:900;color:var(--crimson);margin-bottom:6px;}
+.gift-impact-desc{font-size:.8rem;color:var(--brown-mid);line-height:1.55;}
+.gift-designate{margin-bottom:20px;}
+.gift-paypal-note{display:flex;gap:10px;align-items:flex-start;background:var(--gold-pale);border:1px solid rgba(181,137,42,.3);padding:14px 16px;border-radius:2px;font-size:.78rem;color:var(--brown-mid);line-height:1.6;}
+@media(max-width:560px){.gift-impact-grid{grid-template-columns:1fr;}}
+
+/* FOUNDER VISION BLOCK */
+.vision-founder-block{background:linear-gradient(135deg,var(--crimson-deep),var(--crimson-dark));border-radius:4px;padding:32px 36px;text-align:center;margin-bottom:28px;position:relative;overflow:hidden;}
+.vision-founder-block::before{content:'';position:absolute;inset:0;opacity:.04;background-image:repeating-linear-gradient(45deg,rgba(255,255,255,.5) 0,rgba(255,255,255,.5) 1px,transparent 0,transparent 50%);background-size:8px 8px;}
+.vision-founder-cross{width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;margin:0 auto 18px;position:relative;z-index:1;}
+.vision-founder-cross svg{width:22px;height:22px;stroke:var(--gold-light);}
+.vision-founder-quote{font-family:'Cormorant Garamond',serif;font-size:1.55rem;font-style:italic;font-weight:300;color:#fff;line-height:1.45;margin-bottom:12px;position:relative;z-index:1;}
+.vision-founder-attr{font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;font-weight:700;color:rgba(255,255,255,.45);position:relative;z-index:1;}
+
+/* VOLUNTEER MULTI-STEP */
+.vol-steps{display:flex;align-items:center;margin-bottom:24px;padding-bottom:22px;border-bottom:1px solid var(--border-light);}
+.vol-step-dot{display:flex;flex-direction:column;align-items:center;gap:5px;flex-shrink:0;}
+.vol-step-dot span{width:30px;height:30px;border-radius:50%;background:rgba(44,32,24,.07);border:1.5px solid rgba(44,32,24,.14);display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;color:var(--brown-light);transition:all .3s;}
+.vol-step-dot.active span{background:var(--crimson);border-color:var(--crimson);color:#fff;}
+.vol-step-dot.done span{background:rgba(155,27,27,.1);border-color:var(--crimson);color:var(--crimson);}
+.vol-step-label{font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--brown-light);white-space:nowrap;}
+.vol-step-dot.active .vol-step-label{color:var(--crimson);}
+.vol-step-line{flex:1;height:1px;background:rgba(44,32,24,.1);margin:0 6px;margin-bottom:18px;}
+.vol-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:0 0 14px;}
+.vol-card-icon{width:34px;height:34px;border-radius:50%;background:rgba(181,137,42,.09);display:flex;align-items:center;justify-content:center;margin-bottom:9px;transition:background .25s;}
+.vol-card-icon svg{width:17px;height:17px;stroke:var(--gold);fill:none;stroke-width:1.5;transition:stroke .25s;}
+.vol-card:hover .vol-card-icon,.vol-card.sel .vol-card-icon{background:rgba(155,27,27,.1);}
+.vol-card:hover .vol-card-icon svg,.vol-card.sel .vol-card-icon svg{stroke:var(--crimson);}
+.vol-check-group{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:8px;}
+.vol-check-item{display:flex;align-items:center;gap:8px;font-size:.83rem;color:var(--charcoal);padding:9px 12px;border:1.5px solid var(--border-gold);border-radius:2px;cursor:pointer;transition:border-color .2s,background .2s;user-select:none;}
+.vol-check-item:hover{border-color:rgba(181,137,42,.5);background:var(--gold-pale);}
+.vol-check-item input[type="checkbox"]{accent-color:var(--crimson);width:14px;height:14px;flex-shrink:0;cursor:pointer;}
+
+@media(max-width:1024px){.services-inner,.involved-inner{gap:52px;}.footer-inner{grid-template-columns:1fr 1fr;gap:40px;}}
+@media(max-width:860px){nav{padding:0 24px;}.nav-links{display:none;}.hamburger{display:flex;}section{padding:72px 24px;}.hero{padding:110px 24px 72px;}.hero-stats{flex-wrap:wrap;}.stat-item{padding:12px 24px;border-right:none;border-bottom:1px solid var(--border-gold);width:50%;}.stat-item:nth-child(even){border-left:1px solid var(--border-gold);}.services-inner{grid-template-columns:1fr;}.services-visual{display:none;}.vision-timeline{grid-template-columns:1fr;}.vision-timeline::before{display:none;}.impact-grid{grid-template-columns:1fr;}.involved-inner{grid-template-columns:1fr;}.footer-inner{grid-template-columns:1fr 1fr;}.footer-bottom{flex-direction:column;align-items:flex-start;}.don-amts{grid-template-columns:repeat(2,1fr);}.vol-cards{grid-template-columns:1fr 1fr;}.frow{grid-template-columns:1fr;}.vision,.mission-strip{padding:72px 24px;}.vol-check-group{grid-template-columns:1fr;}}
+@media(max-width:560px){.footer-inner{grid-template-columns:1fr;}.modal-header{padding:22px;}.modal-body{padding:22px;}.modal-footer{padding:14px 22px 22px;}.involved-form{padding:32px 22px;}.vol-cards{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav id="mainNav">
+  <a href="#home" class="nav-logo">
+    <img src="Pathways-The_Family_Table_Component.png"
+         onerror="this.style.display='none'"
+         alt="Pathways – The Family Table"
+         class="nav-logo-img">
+    <div class="nav-logo-text">
+      <span class="nav-logo-name">Pathways</span>
+      <span class="nav-logo-tagline">The Family Table</span>
+      <span class="nav-logo-parent">Walking in His-Way Global</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#serve">Who We Serve</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#vision">Our Vision</a></li>
+    <li><a href="#involved">Get Involved</a></li>
+    <li><a href="#" class="nav-btn" onclick="openModal('requestModal');return false;">Request Assistance</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="mobile-nav" id="mobileNav">
+  <a href="#serve">Who We Serve</a>
+  <a href="#services">Services</a>
+  <a href="#vision">Our Vision</a>
+  <a href="#involved">Get Involved</a>
+  <a href="#" class="m-cta" onclick="openModal('requestModal');return false;">Request Assistance</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-line-l"></div>
+  <div class="hero-line-r"></div>
+  <div class="hero-inner">
+    <div class="hero-ministry">A Ministry of <span>Walking in His-Way Global</span></div>
+    <div class="hero-logo-wrap">
+      <img src="Pathways-The_Family_Table_Component.png"
+           onerror="this.parentElement.innerHTML='<div class=\'hero-logo-fallback\'>P</div>'"
+           alt="Pathways – The Family Table logo"
+           class="hero-logo-img">
+    </div>
+    <div class="divider"><div class="divider-line"></div><div class="divider-diamond"></div><div class="divider-line"></div></div>
+    <h1 class="hero-title">Nourishing Lives,<em>Building Community</em></h1>
+    <p class="hero-tagline">The Family Table — Where Every Seat Matters</p>
+    <p class="hero-desc">Pathways is an in-house resource center dedicated to serving families, children, and individuals in need — providing essential support, food security, and life-enhancing resources to uplift every member of our community.</p>
+    <div class="hero-actions">
+      <button class="btn-primary" onclick="openModal('requestModal')">Request Assistance</button>
+      <button class="btn-outline" onclick="openModal('volunteerModal')">Volunteer With Us</button>
+      <button class="btn-gold" onclick="openModal('giftModal')">Give a Gift</button>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item"><span class="stat-num">4+</span><div class="stat-label">Populations Served</div></div>
+      <div class="stat-item"><span class="stat-num">2</span><div class="stat-label">Core Programs</div></div>
+      <div class="stat-item"><span class="stat-num">1</span><div class="stat-label">Community Kitchen</div></div>
+      <div class="stat-item"><span class="stat-num">Faith</span><div class="stat-label">Rooted Mission</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- WHO WE SERVE -->
+<section class="serve" id="serve">
+  <div class="serve-bg">Family</div>
+  <div class="serve-header">
+    <div class="eyebrow">Our Community</div>
+    <h2 class="section-title">Who We <em>Serve</em></h2>
+    <p class="section-lead">Every person who walks through our doors is welcomed with dignity, compassion, and grace.</p>
+  </div>
+  <div class="serve-grid reveal">
+    <div class="serve-card">
+      <div class="serve-icon">
+        <svg viewBox="0 0 24 24"><path d="M17 20v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 20v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      </div>
+      <div class="serve-card-title">Families &amp; Children</div>
+      <div class="serve-card-desc">Ensuring every child and family has access to nutritious food, essential supplies, and the support network needed to thrive and grow together.</div>
+    </div>
+    <div class="serve-card">
+      <div class="serve-icon">
+        <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      </div>
+      <div class="serve-card-title">Seniors</div>
+      <div class="serve-card-desc">Providing our elders with dignified care, nourishment, and the resources needed to live with comfort, security, and peace of mind.</div>
+    </div>
+    <div class="serve-card">
+      <div class="serve-icon">
+        <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      </div>
+      <div class="serve-card-title">Single Mothers</div>
+      <div class="serve-card-desc">Standing alongside single mothers with practical support — food, hygiene essentials, and a caring community that is always in their corner.</div>
+    </div>
+    <div class="serve-card">
+      <div class="serve-icon">
+        <svg viewBox="0 0 24 24"><line x1="12" y1="2" x2="12" y2="22"/><line x1="2" y1="9" x2="22" y2="9"/></svg>
+      </div>
+      <div class="serve-card-title">Faith-Based Outreach</div>
+      <div class="serve-card-desc">Rooted in faith, we partner with local churches and faith communities to extend hope, love, and service far beyond our walls.</div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="services-inner">
+    <div class="services-visual reveal">
+      <div class="scard-stack">
+        <div class="scard scard-main">
+          <div class="scard-icon"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+          <div class="scard-main-title">Food Pantry</div>
+          <div class="scard-main-desc">Nutritious non-perishable food items, fresh produce, and pantry staples — available to every family facing food insecurity.</div>
+        </div>
+        <div class="scard scard-accent">
+          <div class="scard-icon"><svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div>
+          <div class="scard-accent-title">Care Packages</div>
+          <div class="scard-accent-desc">Customized kits with toiletries, hygiene products, and personal essentials — assembled with care and love.</div>
+        </div>
+      </div>
+    </div>
+    <div class="services-content">
+      <div class="eyebrow left">What We Provide</div>
+      <h2 class="section-title">Essential Services <em>For Every Need</em></h2>
+      <p class="section-lead">Our resource center offers hands-on, practical support to meet physical, emotional, and spiritual needs.</p>
+      <div class="service-list">
+        <div class="service-item reveal d1">
+          <div class="si-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+          <div><div class="si-title">Fresh Produce &amp; Pantry Staples</div><div class="si-desc">Regular distributions of fresh vegetables, fruits, and shelf-stable foods to nourish families throughout the week.</div></div>
+        </div>
+        <div class="service-item reveal d2">
+          <div class="si-icon"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+          <div><div class="si-title">Hygiene &amp; Personal Care</div><div class="si-desc">Toiletries, hygiene products, and essential personal care items bundled into thoughtfully assembled care packages.</div></div>
+        </div>
+        <div class="service-item reveal d3">
+          <div class="si-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+          <div><div class="si-title">Wraparound Community Resources</div><div class="si-desc">Connections to life-enhancing resources that empower individuals and families toward lasting stability and growth.</div></div>
+        </div>
+        <div class="service-item reveal d4">
+          <div class="si-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="2" x2="12" y2="22"/><line x1="2" y1="9" x2="22" y2="9"/></svg></div>
+          <div><div class="si-title">Spiritual &amp; Emotional Support</div><div class="si-desc">A caring, faith-rooted community that addresses the whole person — mind, body, and spirit — with dignity and compassion.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VISION -->
+<section class="vision" id="vision">
+  <div class="vision-header reveal">
+    <div class="eyebrow">Our Roadmap</div>
+    <h2 class="section-title">Building a Community <em>of Abundance</em></h2>
+    <p class="section-lead">Our vision extends beyond today — we are building lasting infrastructure for food security and community empowerment.</p>
+  </div>
+  <div class="vision-timeline">
+    <div class="vision-step active reveal d1">
+      <div class="vision-dot"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+      <div class="vision-step-status">Active Now</div>
+      <div class="vision-step-title">Food Pantry &amp; Care Packages</div>
+      <div class="vision-step-desc">Actively distributing food, fresh produce, and care essentials to families in need every week.</div>
+    </div>
+    <div class="vision-step reveal d2">
+      <div class="vision-dot"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+      <div class="vision-step-status">In Development</div>
+      <div class="vision-step-title">Community Kitchen</div>
+      <div class="vision-step-desc">Building a fully operational kitchen to prepare hot meals, host cooking education, and train community members in culinary skills.</div>
+    </div>
+    <div class="vision-step reveal d3">
+      <div class="vision-dot"><svg viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg></div>
+      <div class="vision-step-status">Coming Soon</div>
+      <div class="vision-step-title">Community Market</div>
+      <div class="vision-step-desc">A community-owned market providing affordable, accessible groceries and fresh produce to eliminate local food deserts for good.</div>
+    </div>
+  </div>
+</section>
+
+<!-- MISSION QUOTE -->
+<div class="mission-strip">
+  <p class="mission-quote reveal">"By equipping individuals with basic necessities and essential resources, we create <strong>a pathway to hope, stability, and growth</strong> — for every family, every generation."</p>
+  <div class="mission-attr reveal d1">— The Pathways Mission &nbsp;|&nbsp; Walking in His-Way Global</div>
+</div>
+
+<!-- IMPACT -->
+<section class="impact" id="impact">
+  <div class="impact-inner">
+    <div class="impact-header">
+      <div class="eyebrow">Why It Matters</div>
+      <h2 class="section-title">The <em>Impact</em> We Create Together</h2>
+      <p class="section-lead">Food security is the foundation upon which everything else is built.</p>
+    </div>
+    <div class="impact-grid">
+      <div class="impact-card reveal">
+        <div class="ic-icon"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+        <div class="ic-title">Stability for Families</div>
+        <div class="ic-desc">When a family's basic needs are met, parents can focus on work, children can focus on school, and the entire family unit grows stronger together.</div>
+      </div>
+      <div class="impact-card reveal d2">
+        <div class="ic-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <div class="ic-title">Community Roots</div>
+        <div class="ic-desc">We are building more than a food pantry — we are cultivating roots that connect neighbors, bridge generations, and strengthen community life.</div>
+      </div>
+      <div class="impact-card reveal d3">
+        <div class="ic-icon"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+        <div class="ic-title">Dignity &amp; Hope</div>
+        <div class="ic-desc">Every interaction at Pathways is rooted in dignity. We serve because we believe every person deserves to be seen, valued, and uplifted.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GET INVOLVED -->
+<section class="involved" id="involved">
+  <div class="involved-inner">
+    <div class="involved-content">
+      <div class="eyebrow left">Join Us</div>
+      <h2 class="section-title">Be Part of <em>the Table</em></h2>
+      <p class="involved-text">Whether you need support or want to give it — there is a seat for you at The Family Table. Together we can nourish more families, build stronger community, and create lasting change rooted in faith and love.</p>
+      <div class="ways-list">
+        <div class="way-item reveal d1"><div class="way-dot"></div>Receive food pantry and care package assistance</div>
+        <div class="way-item reveal d2"><div class="way-dot"></div>Volunteer your time at the resource center</div>
+        <div class="way-item reveal d3"><div class="way-dot"></div>Donate food, hygiene items, or financial support</div>
+        <div class="way-item reveal d4"><div class="way-dot"></div>Partner with us through your church or organization</div>
+        <div class="way-item reveal"><div class="way-dot"></div>Support the Community Kitchen &amp; Market vision</div>
+      </div>
+      <div class="involved-ctas">
+        <button class="btn-primary" onclick="openModal('requestModal')">Request Assistance</button>
+        <button class="btn-outline" onclick="openModal('volunteerModal')">Volunteer</button>
+        <button class="btn-gold" onclick="openModal('giftModal')">Give a Gift</button>
+        <button class="btn-outline" onclick="openModal('partnerModal')">Partner With Us</button>
+      </div>
+    </div>
+    <div class="involved-form reveal">
+      <div class="form-head-title">Connect With Pathways</div>
+      <div class="form-head-sub">We would love to hear from you. Fill out the form and our team will be in touch.</div>
+      <div id="contactForm">
+        <div class="frow">
+          <div class="fg" id="cfg-fn"><label class="flabel">First Name <span class="frq">*</span></label><input type="text" class="finput" id="cf-fn" placeholder="Jane"><div class="ferr">Required.</div></div>
+          <div class="fg" id="cfg-ln"><label class="flabel">Last Name <span class="frq">*</span></label><input type="text" class="finput" id="cf-ln" placeholder="Doe"><div class="ferr">Required.</div></div>
+        </div>
+        <div class="fg" id="cfg-em"><label class="flabel">Email Address <span class="frq">*</span></label><input type="email" class="finput" id="cf-em" placeholder="jane@example.com"><div class="ferr">Valid email required.</div></div>
+        <div class="fg"><label class="flabel">Phone (Optional)</label><input type="tel" class="finput" id="cf-ph" placeholder="(555) 000-0000"></div>
+        <div class="fg" id="cfg-rs"><label class="flabel">How Can We Help? <span class="frq">*</span></label><select class="fselect" id="cf-rs"><option value="">Select a reason...</option><option value="pantry">Food pantry assistance</option><option value="care">Request a care package</option><option value="volunteer">I want to volunteer</option><option value="donate">Donate or partner</option><option value="church">Church / organization</option><option value="general">General inquiry</option></select><div class="ferr">Please select a reason.</div></div>
+        <div class="fg" id="cfg-ms"><label class="flabel">Message <span class="frq">*</span></label><textarea class="ftextarea" id="cf-ms" placeholder="Tell us a little about yourself or how you would like to connect..."></textarea><div class="ferr">Please include a message.</div></div>
+        <button class="fbtn" onclick="submitContact()">Send Message &rarr;</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand-logo">
+        <img src="Pathways-The_Family_Table_Component.png" onerror="this.style.display='none'" alt="Pathways" class="footer-logo-img">
+        <div>
+          <div class="footer-brand-name">Pathways</div>
+          <span class="footer-brand-tagline">The Family Table</span>
+          <span class="footer-brand-parent">Walking in His-Way Global</span>
+        </div>
+      </div>
+      <p class="footer-desc">An in-house resource center dedicated to serving families, children, and individuals — providing essential support and life-enhancing resources to create pathways to hope, stability, and growth.</p>
+      <div class="footer-affil">Pathways – The Family Table is a program of <span>Walking in His-Way Global</span></div>
+    </div>
+    <div>
+      <div class="fcol-title">Navigate</div>
+      <ul class="flinks">
+        <li><button onclick="openModal('whoWeServeModal')">Who We Serve</button></li>
+        <li><button onclick="openModal('ourServicesModal')">Our Services</button></li>
+        <li><button onclick="openModal('ourVisionModal')">Our Vision</button></li>
+        <li><button onclick="openModal('getInvolvedModal')">Get Involved</button></li>
+        <li><button onclick="openModal('ourImpactModal')">Our Impact</button></li>
+      </ul>
+    </div>
+    <div>
+      <div class="fcol-title">Programs</div>
+      <ul class="flinks">
+        <li><button onclick="openModal('foodPantryModal')">Food Pantry</button></li>
+        <li><button onclick="openModal('carePackagesModal')">Care Packages</button></li>
+        <li><button onclick="openModal('communityKitchenModal')">Community Kitchen</button></li>
+        <li><button onclick="openModal('communityMarketModal')">Community Market</button></li>
+        <li><button onclick="openModal('faithOutreachModal')">Faith Outreach</button></li>
+      </ul>
+    </div>
+    <div>
+      <div class="fcol-title">Take Action</div>
+      <ul class="flinks">
+        <li><button onclick="openModal('requestModal')">Request Assistance</button></li>
+        <li><button onclick="openModal('volunteerModal')">Become a Volunteer</button></li>
+        <li><button onclick="openModal('giftModal')">Give a Gift</button></li>
+        <li><button onclick="openModal('partnerModal')">Partner With Us</button></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Pathways – The Family Table &nbsp;|&nbsp; A Program of Walking in His-Way Global. All rights reserved.</span>
+    <div class="footer-legal">
+      <button onclick="openModal('privacyModal')">Privacy Policy</button>
+      <span class="fsep">|</span>
+      <button onclick="openModal('termsModal')">Terms of Use</button>
+    </div>
+  </div>
+</footer>
+
+<!-- ===================== MODALS ===================== -->
+
+<!-- REQUEST ASSISTANCE -->
+<div class="modal-overlay" id="requestModal" onclick="overlayClick(event,'requestModal')">
+  <div class="modal">
+    <div class="modal-header">
+      <div><div class="modal-title">Request Assistance</div><div class="modal-subtitle">Pathways – The Family Table | Walking in His-Way Global</div></div>
+      <button class="modal-close" onclick="closeModal('requestModal')"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    </div>
+    <div class="modal-body" id="req-body">
+      <p>We are here to help. Please complete the form below and a member of our team will follow up promptly. All information is kept strictly confidential.</p>
+      <div id="req-form">
+        <div class="frow">
+          <div class="fg" id="rfg-fn"><label class="flabel">First Name <span class="frq">*</span></label><input class="finput" id="r-fn" type="text" placeholder="Jane"><div class="ferr">Required.</div></div>
+          <div class="fg" id="rfg-ln"><label class="flabel">Last Name <span class="frq">*</span></label><input class="finput" id="r-ln" type="text" placeholder="Doe"><div class="ferr">Required.</div></div>
+        </div>
+        <div class="fg" id="rfg-em"><label class="flabel">Email Address <span class="frq">*</span></label><input class="finput" id="r-em" type="email" placeholder="jane@example.com"><div class="ferr">Valid email required.</div></div>
+        <div class="fg"><label class="flabel">Phone (Optional)</label><input class="finput" id="r-ph" type="tel" placeholder="(555) 000-0000"></div>
+        <div class="fg"><label class="flabel">Household Members</label><select class="fselect" id="r-hh"><option value="">Select...</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6+</option></select></div>
+        <div class="fg" id="rfg-nd"><label class="flabel">Type of Assistance Needed <span class="frq">*</span></label><select class="fselect" id="r-nd"><option value="">Select...</option><option value="food">Food Pantry</option><option value="care">Care Package</option><option value="both">Both Food Pantry &amp; Care Package</option><option value="other">Other Assistance</option></select><div class="ferr">Please select a type of assistance.</div></div>
+        <div class="fg"><label class="flabel">Additional Information</label><textarea class="ftextarea" id="r-nt" placeholder="Any additional context that may help us serve you better..."></textarea></div>
+      </div>
+      <div id="req-confirm" style="display:none">
+        <div class="confirm-step"><div class="confirm-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div class="confirm-title">Request Received</div><p class="confirm-text">Thank you for reaching out. A member of the Pathways team will contact you within 1–2 business days. You are not alone — we are here.</p></div>
+      </div>
+    </div>
+    <div class="modal-footer" id="req-footer">
+      <button class="mfbtn" onclick="submitRequest()">Submit Request &rarr;</button>
+    </div>
+  </div>
+</div>
+
+<!-- VOLUNTEER -->
+<div class="modal-overlay" id="volunteerModal" onclick="overlayClick(event,'volunteerModal')">
+  <div class="modal" style="max-width:720px;">
+    <div class="modal-header">
+      <div><div class="modal-title">Volunteer With Us</div><div class="modal-subtitle">Pathways – The Family Table | Walking in His-Way Global</div></div>
+      <button class="modal-close" onclick="closeModal('volunteerModal')"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    </div>
+    <div class="modal-body" id="vol-body">
+
+      <!-- Step indicator -->
+      <div class="vol-steps" id="vol-step-indicator">
+        <div class="vol-step-dot active" id="vsd-1"><span>1</span><div class="vol-step-label">Role</div></div>
+        <div class="vol-step-line"></div>
+        <div class="vol-step-dot" id="vsd-2"><span>2</span><div class="vol-step-label">About You</div></div>
+        <div class="vol-step-line"></div>
+        <div class="vol-step-dot" id="vsd-3"><span>3</span><div class="vol-step-label">Availability</div></div>
+        <div class="vol-step-line"></div>
+        <div class="vol-step-dot" id="vsd-4"><span>4</span><div class="vol-step-label">Experience</div></div>
+      </div>
+
+      <!-- STEP 1: Role Selection -->
+      <div id="vol-step-1">
+        <p style="margin-bottom:18px;">Our volunteers are the heartbeat of everything we do. Every hour given is a gift that multiplies — feeding families, restoring dignity, and building community. Choose the area where you feel called to serve:</p>
+        <div class="vol-cards" id="vol-role-cards">
+          <div class="vol-card" onclick="pickVolCard(this,'Food Pantry Distribution')">
+            <div class="vol-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+            <div class="vol-card-title">Food Pantry Distribution</div>
+            <div class="vol-card-desc">Sort, pack, and distribute food items to families during weekly distribution events. Physical activity involved.</div>
+          </div>
+          <div class="vol-card" onclick="pickVolCard(this,'Care Package Assembly')">
+            <div class="vol-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div>
+            <div class="vol-card-title">Care Package Assembly</div>
+            <div class="vol-card-desc">Thoughtfully assemble hygiene and personal care kits for individuals and families in need.</div>
+          </div>
+          <div class="vol-card" onclick="pickVolCard(this,'Community Kitchen')">
+            <div class="vol-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+            <div class="vol-card-title">Community Kitchen</div>
+            <div class="vol-card-desc">Support meal preparation, cooking, serving, and kitchen operations as we build out this program.</div>
+          </div>
+          <div class="vol-card" onclick="pickVolCard(this,'Community Outreach')">
+            <div class="vol-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+            <div class="vol-card-title">Community Outreach</div>
+            <div class="vol-card-desc">Connect with partner churches and organizations, represent Pathways, and bring resources to those who need them.</div>
+          </div>
+          <div class="vol-card" onclick="pickVolCard(this,'Administration &amp; Communications')">
+            <div class="vol-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+            <div class="vol-card-title">Administration &amp; Communications</div>
+            <div class="vol-card-desc">Support operations, data entry, social media, event coordination, and administrative functions.</div>
+          </div>
+          <div class="vol-card" onclick="pickVolCard(this,'Prayer &amp; Spiritual Support')">
+            <div class="vol-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="12" y1="2" x2="12" y2="22"/><line x1="2" y1="9" x2="22" y2="9"/></svg></div>
+            <div class="vol-card-title">Prayer &amp; Spiritual Support</div>
+            <div class="vol-card-desc">Pray for families, staff, and programs. Offer encouragement and spiritual presence to those we serve.</div>
+          </div>
+        </div>
+        <div class="fg" id="vfg-role-err" style="margin-top:4px;display:none;"><div class="ferr" style="display:block;">Please select a volunteer role to continue.</div></div>
+      </div>
+
+      <!-- STEP 2: Personal Information -->
+      <div id="vol-step-2" style="display:none;">
+        <p style="margin-bottom:20px;">Tell us a little about yourself so we can connect you with the right opportunities and our volunteer coordinator.</p>
+        <div class="frow">
+          <div class="fg" id="vfg-fn"><label class="flabel">First Name <span class="frq">*</span></label><input class="finput" id="v-fn" type="text" placeholder="Jane"><div class="ferr">Required.</div></div>
+          <div class="fg" id="vfg-ln"><label class="flabel">Last Name <span class="frq">*</span></label><input class="finput" id="v-ln" type="text" placeholder="Doe"><div class="ferr">Required.</div></div>
+        </div>
+        <div class="fg" id="vfg-em"><label class="flabel">Email Address <span class="frq">*</span></label><input class="finput" id="v-em" type="email" placeholder="jane@example.com"><div class="ferr">Valid email required.</div></div>
+        <div class="frow">
+          <div class="fg"><label class="flabel">Phone Number <span class="frq">*</span></label><input class="finput" id="v-ph" type="tel" placeholder="(555) 000-0000"></div>
+          <div class="fg" id="vfg-ph"><label class="flabel">Preferred Contact Method</label><select class="fselect" id="v-contact-pref"><option value="">Select...</option><option>Email</option><option>Phone Call</option><option>Text Message</option></select><div class="ferr">Required.</div></div>
+        </div>
+        <div class="frow">
+          <div class="fg"><label class="flabel">City / Area</label><input class="finput" id="v-city" type="text" placeholder="Your city or neighborhood"></div>
+          <div class="fg"><label class="flabel">Age Range</label><select class="fselect" id="v-age"><option value="">Select...</option><option>18–24</option><option>25–34</option><option>35–44</option><option>45–54</option><option>55–64</option><option>65+</option></select></div>
+        </div>
+        <div class="fg"><label class="flabel">Are you affiliated with a church or faith community?</label><select class="fselect" id="v-church"><option value="">Select...</option><option value="yes-partner">Yes — and my church is a Pathways partner</option><option value="yes-other">Yes — but not a Pathways partner church</option><option value="no">No current church affiliation</option><option value="prefer">Prefer not to say</option></select></div>
+        <div class="fg" id="vfg-church-name" style="display:none;"><label class="flabel">Church / Organization Name</label><input class="finput" id="v-church-name" type="text" placeholder="Name of your church or organization"></div>
+      </div>
+
+      <!-- STEP 3: Availability -->
+      <div id="vol-step-3" style="display:none;">
+        <p style="margin-bottom:20px;">Help us find the right opportunities for your schedule. Select all that apply:</p>
+        <div class="fg"><label class="flabel">Days Available <span class="frq">*</span></label>
+          <div class="vol-check-group" id="vfg-days">
+            <label class="vol-check-item"><input type="checkbox" value="Monday"> Monday</label>
+            <label class="vol-check-item"><input type="checkbox" value="Tuesday"> Tuesday</label>
+            <label class="vol-check-item"><input type="checkbox" value="Wednesday"> Wednesday</label>
+            <label class="vol-check-item"><input type="checkbox" value="Thursday"> Thursday</label>
+            <label class="vol-check-item"><input type="checkbox" value="Friday"> Friday</label>
+            <label class="vol-check-item"><input type="checkbox" value="Saturday"> Saturday</label>
+            <label class="vol-check-item"><input type="checkbox" value="Sunday"> Sunday</label>
+          </div>
+          <div class="ferr" id="days-err">Please select at least one day.</div>
+        </div>
+        <div class="fg"><label class="flabel">Preferred Time of Day</label>
+          <div class="vol-check-group">
+            <label class="vol-check-item"><input type="checkbox" id="v-time-morning" value="Morning (8am–12pm)"> Morning (8am–12pm)</label>
+            <label class="vol-check-item"><input type="checkbox" id="v-time-afternoon" value="Afternoon (12pm–5pm)"> Afternoon (12pm–5pm)</label>
+            <label class="vol-check-item"><input type="checkbox" id="v-time-evening" value="Evening (5pm–8pm)"> Evening (5pm–8pm)</label>
+          </div>
+        </div>
+        <div class="frow">
+          <div class="fg"><label class="flabel">Commitment Level</label><select class="fselect" id="v-commit"><option value="">Select...</option><option>Weekly — regular ongoing commitment</option><option>Bi-weekly — every other week</option><option>Monthly — once a month</option><option>Event-based — as needed / special events</option><option>Seasonal — available certain times of year</option></select></div>
+          <div class="fg"><label class="flabel">Hours per Month Available</label><select class="fselect" id="v-hours"><option value="">Select...</option><option>1–4 hours</option><option>5–10 hours</option><option>11–20 hours</option><option>20+ hours</option></select></div>
+        </div>
+        <div class="fg"><label class="flabel">Start Date</label><select class="fselect" id="v-start"><option value="">When can you start?</option><option>Immediately — I am ready now</option><option>Within the next 2 weeks</option><option>Within the next month</option><option>In 1–3 months</option><option>Flexible / Not sure yet</option></select></div>
+        <div class="fg"><label class="flabel">Group Volunteering?</label><select class="fselect" id="v-group"><option value="">Select...</option><option value="individual">Just me — individual volunteer</option><option value="family">My family (2–5 people)</option><option value="small-group">Small group (6–15 people)</option><option value="large-group">Large group / church team (15+)</option></select></div>
+      </div>
+
+      <!-- STEP 4: Experience & Motivation -->
+      <div id="vol-step-4" style="display:none;">
+        <p style="margin-bottom:20px;">Help us understand your background and heart for service — this helps us place you in the role where you will thrive most.</p>
+        <div class="fg"><label class="flabel">Previous Volunteer Experience</label><select class="fselect" id="v-exp"><option value="">Select...</option><option>This is my first time volunteering</option><option>Some experience — a few past opportunities</option><option>Regular volunteer — ongoing experience</option><option>Extensive experience — long-term or leadership roles</option></select></div>
+        <div class="fg"><label class="flabel">Relevant Skills or Background</label>
+          <div class="vol-check-group">
+            <label class="vol-check-item"><input type="checkbox" value="Food Handling / Safety"> Food Handling / Food Safety</label>
+            <label class="vol-check-item"><input type="checkbox" value="Cooking / Culinary"> Cooking / Culinary Skills</label>
+            <label class="vol-check-item"><input type="checkbox" value="Childcare / Youth Work"> Childcare / Youth Work</label>
+            <label class="vol-check-item"><input type="checkbox" value="Social Services / Case Work"> Social Services / Case Work</label>
+            <label class="vol-check-item"><input type="checkbox" value="Administration / Office"> Administration / Office Skills</label>
+            <label class="vol-check-item"><input type="checkbox" value="Marketing / Social Media"> Marketing / Social Media</label>
+            <label class="vol-check-item"><input type="checkbox" value="Bilingual / Language Skills"> Bilingual / Language Skills</label>
+            <label class="vol-check-item"><input type="checkbox" value="Construction / Skilled Trades"> Construction / Skilled Trades</label>
+            <label class="vol-check-item"><input type="checkbox" value="Transportation / Driving"> Transportation / Driving</label>
+            <label class="vol-check-item"><input type="checkbox" value="Prayer / Pastoral Care"> Prayer / Pastoral Care</label>
+          </div>
+        </div>
+        <div class="fg"><label class="flabel">Languages Spoken (if multilingual)</label><input class="finput" id="v-lang" type="text" placeholder="e.g. English, Spanish, French..."></div>
+        <div class="fg"><label class="flabel">Why do you want to volunteer with Pathways? <span class="frq">*</span></label><textarea class="ftextarea" id="v-why" placeholder="Share your heart for service and what drew you to Pathways – The Family Table..."></textarea><div class="ferr" id="why-err">Please share a brief motivation.</div></div>
+        <div class="fg"><label class="flabel">Is there anything else we should know?</label><textarea class="ftextarea" id="v-other" placeholder="Any questions, special circumstances, accommodations needed, or additional context..." style="height:80px;"></textarea></div>
+        <div class="fg"><label class="flabel" style="display:flex;gap:10px;align-items:flex-start;cursor:pointer;font-weight:400;text-transform:none;letter-spacing:0;font-size:.86rem;"><input type="checkbox" id="v-agree" style="margin-top:3px;flex-shrink:0;"> I understand that volunteer placement is subject to the availability of Pathways programs and confirmation by our volunteer coordinator. I commit to serving with respect, dignity, and the values of Walking in His-Way Global.</label></div>
+      </div>
+
+      <!-- Confirmation -->
+      <div id="vol-confirm" style="display:none;">
+        <div class="confirm-step">
+          <div class="confirm-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div class="confirm-title">Welcome to the Family!</div>
+          <p class="confirm-text">Thank you for your heart to serve. You are now part of the Pathways – The Family Table volunteer community. Our volunteer coordinator will reach out within 2–3 business days with your next steps, orientation information, and upcoming opportunities. We are so glad you are here.</p>
+        </div>
+      </div>
+
+    </div>
+    <div class="modal-footer" id="vol-footer" style="justify-content:space-between;align-items:center;">
+      <button class="mfbtn" id="vol-back-btn" style="background:transparent;color:var(--charcoal);border:1.5px solid rgba(44,32,24,.2);box-shadow:none;display:none;" onclick="volPrevStep()">&#8592; Back</button>
+      <div style="display:flex;align-items:center;gap:6px;font-size:.72rem;color:var(--brown-light);" id="vol-step-counter">Step 1 of 4</div>
+      <button class="mfbtn" id="vol-next-btn" onclick="volNextStep()">Continue &rarr;</button>
+    </div>
+  </div>
+</div>
+
+<!-- GIVE A GIFT (PayPal) -->
+<div class="modal-overlay" id="giftModal" onclick="overlayClick(event,'giftModal')">
+  <div class="modal">
+    <div class="modal-header">
+      <div><div class="modal-title">Give a Gift</div><div class="modal-subtitle">Pathways – The Family Table | Walking in His-Way Global</div></div>
+      <button class="modal-close" onclick="closeModal('giftModal')"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    </div>
+    <div class="modal-body">
+      <p>Your gift directly nourishes families, restores dignity, and fuels the growth of our community programs. Every dollar given is an act of love — and it goes straight to work in our community.</p>
+      <div class="gift-impact-grid">
+        <div class="gift-impact-item"><div class="gift-impact-amt">$25</div><div class="gift-impact-desc">Provides a full week of groceries for a family of four</div></div>
+        <div class="gift-impact-item"><div class="gift-impact-amt">$50</div><div class="gift-impact-desc">Supplies a complete hygiene care package for two families</div></div>
+        <div class="gift-impact-item"><div class="gift-impact-amt">$100</div><div class="gift-impact-desc">Stocks the pantry shelf for one month of community distributions</div></div>
+        <div class="gift-impact-item"><div class="gift-impact-amt">$250</div><div class="gift-impact-desc">Funds community kitchen equipment and meal preparation for a month</div></div>
+      </div>
+      <div class="gift-designate">
+        <div class="fg"><label class="flabel">Designate Your Gift To</label>
+        <select class="fselect" id="g-desig">
+          <option value="general">Where Needed Most</option>
+          <option value="food">Food Pantry Program</option>
+          <option value="care">Care Packages</option>
+          <option value="kitchen">Community Kitchen Build-Out</option>
+          <option value="market">Community Market Vision</option>
+        </select></div>
+      </div>
+      <div class="gift-paypal-note">
+        <svg viewBox="0 0 24 24" style="width:18px;height:18px;stroke:var(--gold);fill:none;stroke-width:1.8;flex-shrink:0;margin-top:2px;"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        <span>You will be securely redirected to PayPal to complete your gift. Pathways – The Family Table is a program of Walking in His-Way Global. Gifts are non-refundable.</span>
+      </div>
+    </div>
+    <div class="modal-footer" style="justify-content:space-between;align-items:center;">
+      <span style="font-size:.72rem;color:var(--brown-light);">Secure payment via PayPal</span>
+      <a href="https://www.paypal.com/ncp/payment/RM7VAKX94EBB4" target="_blank" rel="noopener" class="mfbtn" style="text-decoration:none;display:inline-flex;align-items:center;gap:8px;" onclick="toast('Redirecting to secure PayPal giving page...')">
+        <svg viewBox="0 0 24 24" style="width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        Give Now via PayPal &rarr;
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ══ NAVIGATE MODALS ══ -->
+
+<!-- WHO WE SERVE -->
+<div class="modal-overlay" id="whoWeServeModal" onclick="overlayClick(event,'whoWeServeModal')">
+  <div class="modal">
+    <div class="modal-header">
+      <div><div class="modal-title">Who We Serve</div><div class="modal-subtitle">Pathways – The Family Table | Walking in His-Way Global</div></div>
+      <button class="modal-close" onclick="closeModal('whoWeServeModal')"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    </div>
+    <div class="modal-body">
+      <p>Pathways – The Family Table exists to serve every person in our community who is facing hardship, food insecurity, or a need for essential resources. We open our doors without judgment, without prerequisites, and without barriers.</p>
+      <h3>Families &amp; Children</h3>
+      <p>We stand alongside families navigating financial hardship, job loss, or transitions that place daily necessities out of reach. From nutritious food to hygiene essentials, we ensure children never go without the basics they need to be healthy, present, and thriving. When a family's foundational needs are met, every member has the capacity to grow.</p>
+      <h3>Seniors</h3>
+      <p>Our elders have given so much to their communities — they deserve to receive with dignity. We provide seniors with access to pantry staples, fresh produce, personal care items, and a network of care that sees and values them. No senior in our community should worry about where their next meal will come from.</p>
+      <h3>Single Mothers</h3>
+      <p>Single mothers carry extraordinary weight. Pathways offers practical, tangible support — food, care packages, and community connection — so that they do not carry that weight alone. We honor their strength while lightening their load.</p>
+      <h3>Faith-Based Outreach</h3>
+      <p>Rooted in the mission of Walking in His-Way Global, Pathways extends its reach through partnerships with local churches, ministries, and faith communities. Together, we multiply our capacity to serve, bringing resources and hope to neighborhoods and households that need it most.</p>
+      <h3>Our Commitment</h3>
+      <p>We serve every person with dignity, confidentiality, and genuine care. No documentation barriers. No shame. Just a community committed to ensuring that every person — regardless of circumstance — has access to the basics of a stable and nourished life.</p>
+    </div>
+    <div class="modal-footer" style="justify-content:space-between;">
+      <button class="mfbtn" style="background:transparent;color:var(--crimson);border:1.5px solid var(--crimson);box-shadow:none;" onclick="closeModal('whoWeServeModal');setTimeout(()=>openModal('requestModal'),200)">Request Assistance &rarr;</button>
+      <button class="mfbtn" onclick="closeModal('whoWeServeModal')">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- OUR SERVICES -->
+<div class="modal-overlay" id="ourServicesModal" onclick="overlayClick(event,'ourServicesModal')">
+  <div class="modal">
+    <div class="modal-header">
+      <div><div class="modal-title">Our Services</div><div class="modal-subtitle">Pathways – The Family Table | Walking in His-Way Global</div></div>
+      <button class="modal-close" onclick="closeModal('ourServicesModal')"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    </div>
+    <div class="modal-body">
+      <p>At Pathways – The Family Table, our services are built around one principle: that every person deserves access to the resources that make a dignified, stable life possible. We provide hands-on, practical support that addresses physical, emotional, and spiritual needs.</p>
+      <h3>Food Pantry</h3>
+      <p>Our food pantry offers regular distributions of nutritious, non-perishable food items alongside fresh produce when available. We stock staples that form the foundation of healthy meals — grains, proteins, vegetables, canned goods, and household basics. Families may visit on a consistent schedule and receive what they need to keep their household fed and nourished.</p>
+      <h3>Care Packages</h3>
+      <p>Our care packages are thoughtfully assembled kits containing toiletries, hygiene products, and personal care essentials. Each package is curated to meet the real, everyday needs of individuals and families — from toothpaste and soap to feminine care and household supplies. No one should have to choose between food and hygiene.</p>
+      <h3>Wraparound Community Resources</h3>
+      <p>Beyond our direct programs, Pathways serves as a bridge to a broader network of community resources. We connect families to housing support, employment assistance, health services, and educational opportunities — helping them move from a moment of crisis toward long-term stability and growth.</p>
+      <h3>Spiritual &amp; Emotional Support</h3>
+      <p>As a faith-rooted organization under Walking in His-Way Global, we believe that serving the whole person means attending to heart and spirit alongside material needs. Prayer, encouragement, and compassionate presence are always available to those who seek them.</p>
+      <h3>How to Access Services</h3>
+      <p>To receive services from Pathways – The Family Table, simply reach out through our assistance request form or contact us directly. There is no lengthy application process. We ask only that you come as you are — and we will meet you there.</p>
+    </div>
+    <div class="modal-footer" style="justify-content:space-between;">
+      <button class="mfbtn" style="background:transparent;color:var(--crimson);border:1.5px solid var(--crimson);box-shadow:none;" onclick="closeModal('ourServicesModal');setTimeout(()=>openModal('requestModal'),200)">Request Services &rarr;</button>
+      <button class="mfbtn" onclick="closeModal('ourServicesModal')">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- OUR VISION -->
+<div class="modal-overlay" id="ourVisionModal" onclick="overlayClick(event,'ourVisionModal')">
+  <div class="modal">
+    <div class="modal-header">
+      <div><div class="modal-title">Our Vision</div><div class="modal-subtitle">Pathways – The Family Table | Walking in His-Way Global</div></div>
+      <button class="modal-close" onclick="closeModal('ourVisionModal')"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    </div>
+    <div class="modal-body">
+
+      <!-- Founder faith statement block -->
+      <div class="vision-founder-block">
+        <div class="vision-founder-cross">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="12" y1="2" x2="12" y2="22"/><line x1="2" y1="9" x2="22" y2="9"/></svg>
+        </div>
+        <blockquote class="vision-founder-quote">
+          "Anything that is God-led is victory guaranteed."
+        </blockquote>
+        <p class="vision-founder-attr">— The Founding Vision of Pathways – The Family Table</p>
+      </div>
+
+      <h3>Rooted in Christ, Called to Community</h3>
+      <p>Pathways – The Family Table did not begin with a business plan — it began with a calling. Our founder is deeply rooted in her faith in Jesus Christ, and that faith is the unshakeable foundation upon which every program, every partnership, and every plate of food rests. She carries the unwavering conviction that when God directs a work, its success is not a matter of if — only when. That certainty is woven into every decision made at Pathways.</p>
+
+      <h3>A Vision to Create Communities of Care</h3>
+      <p>The founder's heart beats for transformation. Everywhere she goes, community forms — not by accident, but because she is intentional about seeing people, investing in people, and drawing out the gifts that others overlook. She does not simply serve a neighborhood; she believes in the people within it. Her vision is to build what she calls <em>Communities of Care</em> — places and networks where people are truly known, genuinely supported, and empowered to become the fullness of who they were created to be.</p>
+
+      <h3>Investing in People, Not Just Programs</h3>
+      <p>To our founder, a food pantry is never just a food pantry. It is a place of encounter. It is an opportunity to look someone in the eye, honor their dignity, and plant a seed of hope that outlasts any single meal or care package. She believes deeply that transformation begins the moment a person feels seen and valued — and that is exactly the atmosphere she has built into the DNA of Pathways. Programs are the vehicle; people are the destination.</p>
+
+      <h3>Today — Food Pantry &amp; Care Packages</h3>
+      <p>We are actively serving families through our food pantry and care package programs. Each week, households receive fresh produce, pantry staples, and hygiene essentials. This is our present commitment — showing up consistently, with care and without judgment, for every person who walks through our doors.</p>
+
+      <h3>In Development — Community Kitchen</h3>
+      <p>We are building a fully operational community kitchen — a space to prepare hot meals, host cooking education, and train community members in culinary skills. It will be a gathering place where the act of cooking together becomes an act of community-building, as our founder has always intended.</p>
+
+      <h3>Coming Soon — Community Market</h3>
+      <p>The Community Market is the capstone of this vision: a community-owned, affordable grocery market that permanently addresses food access in our neighborhood. It is a declaration that the community the founder has invested in is worthy of lasting infrastructure — not just emergency relief.</p>
+
+      <h3>The Promise That Sustains It</h3>
+      <p>Every challenge encountered in building Pathways has been met with the same quiet confidence: <em>this is God-led, and God-led work does not fail.</em> That is not naivety — it is the fruit of a faith tested and proven through years of showing up, building, losing, and building again. It is the source of our resilience, and the reason we keep the doors open, keep the shelves stocked, and keep investing in every person who comes our way.</p>
+
+    </div>
+    <div class="modal-footer" style="justify-content:space-between;">
+      <button class="mfbtn" style="background:transparent;color:var(--crimson);border:1.5px solid var(--crimson);box-shadow:none;" onclick="closeModal('ourVisionModal');setTimeout(()=>openModal('giftModal'),200)">Support the Vision &rarr;</button>
+      <button class="mfbtn" onclick="closeModal('ourVisionModal')">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- GET INVOLVED -->
+<div class="modal-overlay" id="getInvolvedModal" onclick="overlayClick(event,'getInvolvedModal')">
+  <div class="modal">
+    <div class="modal-header">
+      <div><div class="modal-title">Get Involved</div><div class="modal-subtitle">Pathways – The Family Table | Walking in His-Way Global</div></div>
+      <button class="modal-close" onclick="closeModal('getInvolvedModal')"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    </div>
+    <div class="modal-body">
+      <p>There is a place for everyone at The Family Table. Whether you are seeking support, looking to give back, or seeking a faith-aligned community to serve alongside — we welcome you. Here is how you can be part of the Pathways story:</p>
+      <h3>Request Assistance</h3>
+      <p>If you or your family are facing food insecurity or in need of essential supplies, please reach out. Our assistance request process is simple, confidential, and judgment-free. We are here to help — no barriers, no stigma.</p>
+      <h3>Volunteer</h3>
+      <p>Our volunteers are the heartbeat of Pathways. From sorting and packing food pantry items to assembling care packages, supporting our community kitchen, or helping with outreach and administration — there is meaningful work for every skill level and availability. Your time is a gift that multiplies everything we do.</p>
+      <h3>Give a Gift</h3>
+      <p>Financial gifts directly fund our food pantry, care packages, community kitchen development, and operational needs. Every gift — no matter the size — translates directly into meals, hygiene supplies, and hope delivered to families in our community. Giving is processed securely through PayPal.</p>
+      <h3>Partner With Us</h3>
+      <p>We are actively seeking partnerships with churches, faith communities, businesses, civic organizations, and nonprofits who share our vision. Partner with us through food drives, financial sponsorship, volunteer mobilization, or collaborative outreach programs.</p>
+      <h3>Donate In-Kind</h3>
+      <p>Non-perishable food items, hygiene products, toiletries, and personal care essentials are always needed and gratefully received. Reach out to coordinate an in-kind donation or organize a drive through your church or organization.</p>
+    </div>
+    <div class="modal-footer" style="gap:10px;flex-wrap:wrap;">
+      <button class="mfbtn" style="background:transparent;color:var(--crimson);border:1.5px solid var(--crimson);box-shadow:none;flex:1;" onclick="closeModal('getInvolvedModal');setTimeout(()=>openModal('volunteerModal'),200)">Volunteer</button>
+      <button class="mfbtn" style="background:var(--gold);color:var(--charcoal);box-shadow:none;flex:1;" onclick="closeModal('getInvolvedModal');setTimeout(()=>openModal('giftModal'),200)">Give a Gift</button>
+      <button class="mfbtn" style="flex:1;" onclick="closeModal('getInvolvedModal');setTimeout(()=>openModal('requestModal'),200)">Get Help</button>
+    </div>
+  </div>
+</div>
+
+<!-- OUR IMPACT -->
+<div class="modal-overlay" id="ourImpactModal" onclick="overlayClick(event,'ourImpactModal')">
+  <div class="modal">
+    <div class="modal-header">
+      <div><div class="modal-title">Our Impact</div><div class="modal-subtitle">Pathways – The Family Table | Walking in His-Way Global</div></div>
+      <button class="modal-close" onclick="closeModal('ourImpactModal')"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    </div>
+    <div class="modal-body">
+      <p>Every resource distributed through Pathways – The Family Table creates a ripple effect that extends far beyond the immediate moment. We measure our impact not just in pounds of food or packages assembled — but in the stability, dignity, and hope restored to every family we serve.</p>
+      <h3>Stability for Families</h3>
+      <p>When a family's foundational needs are consistently met, the entire household dynamic shifts. Parents can remain focused on employment and forward progress. Children can attend school fed, rested, and ready to learn. The chronic stress of food insecurity — which affects cognitive function, physical health, and emotional well-being — begins to lift. Pathways is in the business of removing that weight.</p>
+      <h3>Dignity Restored</h3>
+      <p>We believe deeply that the manner in which care is given matters as much as the care itself. Every person who comes to Pathways is met with warmth, respect, and genuine compassion. Our volunteers and staff are trained to serve in a way that affirms the worth and dignity of every individual — never transactional, always relational.</p>
+      <h3>Community Strengthened</h3>
+      <p>Pathways is not just a resource center — it is a gathering place where community is built. Neighbors meet neighbors. Volunteers find purpose. Families who once received go on to give back. This cycle of mutual support is the foundation of a truly resilient community, and it is being cultivated every time someone walks through our doors.</p>
+      <h3>Generational Change</h3>
+      <p>Under the vision of Walking in His-Way Global, Pathways is committed to the long arc of change. Through our community kitchen and future market, we are building the infrastructure of food sovereignty — so that future generations inherit a community where abundance is accessible to all, not just the privileged few.</p>
+      <h3>You Are Part of the Impact</h3>
+      <p>Every gift, every volunteer hour, every partnership directly contributes to this impact. The story of Pathways – The Family Table is written by everyone who chooses to be part of it — and we invite you to add your chapter.</p>
+    </div>
+    <div class="modal-footer" style="justify-content:space-between;">
+      <button class="mfbtn" style="background:var(--gold);color:var(--charcoal);box-shadow:none;" onclick="closeModal('ourImpactModal');setTimeout(()=>openModal('giftModal'),200)">Give a Gift &rarr;</button>
+      <button class="mfbtn" onclick="closeModal('ourImpactModal')">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ PROGRAMS MODALS ══ -->
+
+<!-- FOOD PANTRY -->
+<div class="modal-overlay" id="foodPantryModal" onclick="overlayClick(event,'foodPantryModal')">
+  <div class="modal">
+    <div class="modal-header">
+      <div><div class="modal-title">Food Pantry</div><div class="modal-subtitle">Pathways – The Family Table | Walking in His-Way Global</div></div>
+      <button class="modal-close" onclick="closeModal('foodPantryModal')"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    </div>
+    <div class="modal-body">
+      <p>The Pathways Food Pantry is the cornerstone of our food security mission. We believe that no family in our community should face hunger — and through our pantry, we work every week to make that belief a reality.</p>
+      <h3>What We Provide</h3>
+      <p>Our pantry stocks a wide variety of nutritious, non-perishable food items alongside fresh produce when available through donations and community partnerships. Families can expect to receive:</p>
+      <ul>
+        <li>Canned proteins — beans, tuna, chicken, and lentils</li>
+        <li>Grains — rice, pasta, oats, and bread</li>
+        <li>Canned and jarred vegetables and fruits</li>
+        <li>Soups, stews, and ready-to-prepare meal items</li>
+        <li>Cooking oils, sauces, and seasonings</li>
+        <li>Fresh produce when available through partnerships</li>
+        <li>Baby food and formula for households with infants</li>
+      </ul>
+      <h3>How to Access the Food Pantry</h3>
+      <p>Accessing the Pathways Food Pantry is simple. Submit a request through our assistance form or visit us in person. There is no extensive application, no income verification required, and no barriers to receiving care. We ask only that families come forward so we can serve them.</p>
+      <h3>Distribution Schedule</h3>
+      <p>Our food pantry operates on a regular distribution schedule. Please reach out through the assistance request form to receive current hours and distribution dates, as schedules may vary seasonally.</p>
+      <h3>How You Can Help</h3>
+      <p>The Food Pantry is sustained by the generosity of our community. You can support it by donating non-perishable food items, organizing a food drive, volunteering to sort and distribute, or making a financial gift designated to the Food Pantry Program.</p>
+    </div>
+    <div class="modal-footer" style="justify-content:space-between;">
+      <button class="mfbtn" style="background:transparent;color:var(--crimson);border:1.5px solid var(--crimson);box-shadow:none;" onclick="closeModal('foodPantryModal');setTimeout(()=>openModal('requestModal'),200)">Request Food Assistance &rarr;</button>
+      <button class="mfbtn" onclick="closeModal('foodPantryModal')">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- CARE PACKAGES -->
+<div class="modal-overlay" id="carePackagesModal" onclick="overlayClick(event,'carePackagesModal')">
+  <div class="modal">
+    <div class="modal-header">
+      <div><div class="modal-title">Care Packages</div><div class="modal-subtitle">Pathways – The Family Table | Walking in His-Way Global</div></div>
+      <button class="modal-close" onclick="closeModal('carePackagesModal')"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    </div>
+    <div class="modal-body">
+      <p>The Pathways Care Package program addresses a critical gap in community support: the essential personal care and hygiene items that food assistance programs don't cover — but that every person absolutely needs to live with health and dignity.</p>
+      <h3>What Is Included</h3>
+      <p>Each care package is thoughtfully assembled to meet the real everyday needs of individuals and families. Standard packages typically include:</p>
+      <ul>
+        <li>Toothbrush, toothpaste, and floss</li>
+        <li>Bar soap, body wash, and hand soap</li>
+        <li>Shampoo and conditioner</li>
+        <li>Deodorant and personal hygiene items</li>
+        <li>Feminine hygiene products</li>
+        <li>Razors and shaving supplies</li>
+        <li>Lotion, lip balm, and skin care basics</li>
+        <li>Laundry detergent and household cleaning supplies</li>
+        <li>Paper products — toilet paper, tissues, and paper towels</li>
+      </ul>
+      <h3>Customized to Your Needs</h3>
+      <p>Care packages can be customized based on household size, the ages of family members, and specific needs. When you submit a request, please let us know about your household so we can ensure your package is tailored appropriately — including supplies for infants, children, seniors, or individuals with specific health considerations.</p>
+      <h3>How to Request a Care Package</h3>
+      <p>Requesting a care package is as simple as completing our assistance form. A member of our team will coordinate pickup, delivery, or distribution based on your circumstances and our current schedule.</p>
+      <h3>Support This Program</h3>
+      <p>You can support our care package program by donating hygiene products and household items, volunteering to assemble packages, or making a financial gift designated to the Care Package program.</p>
+    </div>
+    <div class="modal-footer" style="justify-content:space-between;">
+      <button class="mfbtn" style="background:transparent;color:var(--crimson);border:1.5px solid var(--crimson);box-shadow:none;" onclick="closeModal('carePackagesModal');setTimeout(()=>openModal('requestModal'),200)">Request a Care Package &rarr;</button>
+      <button class="mfbtn" onclick="closeModal('carePackagesModal')">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- COMMUNITY KITCHEN -->
+<div class="modal-overlay" id="communityKitchenModal" onclick="overlayClick(event,'communityKitchenModal')">
+  <div class="modal">
+    <div class="modal-header">
+      <div><div class="modal-title">Community Kitchen</div><div class="modal-subtitle">Pathways – The Family Table | Walking in His-Way Global</div></div>
+      <button class="modal-close" onclick="closeModal('communityKitchenModal')"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    </div>
+    <div class="modal-body">
+      <p>The Pathways Community Kitchen is currently in active development — and it represents one of the most exciting chapters in our story. It is not just a place to cook meals; it is a space where community, dignity, and nourishment come together under one roof.</p>
+      <h3>What the Community Kitchen Will Offer</h3>
+      <p>Once fully operational, the Pathways Community Kitchen will provide:</p>
+      <ul>
+        <li>Regular hot meal preparation and service for community members in need</li>
+        <li>Cooking education classes for families — budgeting, nutrition, and meal planning</li>
+        <li>Culinary skills training for community members seeking employment pathways</li>
+        <li>A shared commercial kitchen space for small food entrepreneurs and community programs</li>
+        <li>Holiday and special event meal services for seniors and isolated individuals</li>
+        <li>Integration with the Pathways Food Pantry to reduce food waste and maximize impact</li>
+      </ul>
+      <h3>Why It Matters</h3>
+      <p>A community kitchen transforms the act of feeding people from a transaction into a relationship. When neighbors gather, cook, and eat together — connections form, skills transfer, and the isolation of poverty begins to break down. The Pathways Community Kitchen is designed to be both a resource and a destination.</p>
+      <h3>Current Status</h3>
+      <p>We are currently in the build-out phase of our community kitchen. Our team is securing equipment, establishing health and safety compliance, and recruiting culinary volunteers and partners. We anticipate a phased opening in the coming months.</p>
+      <h3>How to Support the Kitchen</h3>
+      <p>You can support the Community Kitchen build-out by making a financial gift designated to this program, donating commercial kitchen equipment, volunteering construction or renovation skills, or partnering with us as an organizational sponsor.</p>
+    </div>
+    <div class="modal-footer" style="justify-content:space-between;">
+      <button class="mfbtn" style="background:var(--gold);color:var(--charcoal);box-shadow:none;" onclick="closeModal('communityKitchenModal');setTimeout(()=>openModal('giftModal'),200)">Support the Kitchen &rarr;</button>
+      <button class="mfbtn" onclick="closeModal('communityKitchenModal')">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- COMMUNITY MARKET -->
+<div class="modal-overlay" id="communityMarketModal" onclick="overlayClick(event,'communityMarketModal')">
+  <div class="modal">
+    <div class="modal-header">
+      <div><div class="modal-title">Community Market</div><div class="modal-subtitle">Pathways – The Family Table | Walking in His-Way Global</div></div>
+      <button class="modal-close" onclick="closeModal('communityMarketModal')"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    </div>
+    <div class="modal-body">
+      <p>The Pathways Community Market is our boldest vision — a community-owned, affordable grocery market that ensures every family has access to fresh, nutritious food at prices they can afford. It is how we permanently address the root causes of food insecurity in our neighborhood.</p>
+      <h3>The Problem We Are Solving</h3>
+      <p>Many of the families we serve live in or near food deserts — geographic areas without reliable access to affordable, healthy groceries. This is not simply a matter of income; it is a matter of infrastructure. Without a nearby market offering healthy options at accessible prices, the cycle of poor nutrition and financial strain perpetuates itself. The Community Market is our answer to that cycle.</p>
+      <h3>What the Community Market Will Be</h3>
+      <ul>
+        <li>An affordable, community-accessible grocery market with fresh produce, proteins, and pantry staples</li>
+        <li>A dignified shopping experience designed with the community, not just for the community</li>
+        <li>A source of local employment and economic opportunity for community members</li>
+        <li>An anchor institution that stabilizes the neighborhood and attracts complementary services</li>
+        <li>Integrated with the Pathways Food Pantry and Community Kitchen ecosystem</li>
+      </ul>
+      <h3>Community Ownership Model</h3>
+      <p>True to the values of Walking in His-Way Global, the Community Market will be built on a model of community stewardship. Community members will have a voice in its operations, its product offerings, and its ongoing development — ensuring it always serves the people it was created for.</p>
+      <h3>How to Be Part of This Vision</h3>
+      <p>The Community Market is a long-term vision that requires community investment. You can be part of making it a reality through financial gifts designated to this initiative, strategic partnerships, land or facility contributions, or by spreading the word and building community support.</p>
+    </div>
+    <div class="modal-footer" style="justify-content:space-between;">
+      <button class="mfbtn" style="background:var(--gold);color:var(--charcoal);box-shadow:none;" onclick="closeModal('communityMarketModal');setTimeout(()=>openModal('giftModal'),200)">Invest in the Market &rarr;</button>
+      <button class="mfbtn" onclick="closeModal('communityMarketModal')">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- FAITH OUTREACH -->
+<div class="modal-overlay" id="faithOutreachModal" onclick="overlayClick(event,'faithOutreachModal')">
+  <div class="modal">
+    <div class="modal-header">
+      <div><div class="modal-title">Faith-Based Outreach</div><div class="modal-subtitle">Pathways – The Family Table | Walking in His-Way Global</div></div>
+      <button class="modal-close" onclick="closeModal('faithOutreachModal')"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    </div>
+    <div class="modal-body">
+      <p>Pathways – The Family Table is a ministry expression of Walking in His-Way Global. Our work is inseparable from our faith — and faith is the lens through which we see every person we serve: as deeply valued, worthy of care, and made in the image of God.</p>
+      <h3>Our Faith Foundation</h3>
+      <p>We believe that serving the poor and marginalized is not optional for people of faith — it is at the very heart of what it means to walk in the ways of God. Pathways was born from this conviction, and it shapes everything from how we greet a guest at the pantry to how we build long-term programs for community transformation.</p>
+      <h3>Church &amp; Ministry Partnerships</h3>
+      <p>We actively partner with local churches, congregations, and faith-based ministries to extend the reach of our programs. Partner churches can:</p>
+      <ul>
+        <li>Host food drives and collection points for pantry donations</li>
+        <li>Mobilize congregation members as volunteers for Pathways programs</li>
+        <li>Co-sponsor care package distributions in their neighborhoods</li>
+        <li>Provide facilities for outreach events and community gatherings</li>
+        <li>Offer financial support through tithes, offerings, or designated mission budgets</li>
+        <li>Refer and accompany congregants who need assistance</li>
+      </ul>
+      <h3>Spiritual Care</h3>
+      <p>For individuals who desire it, Pathways offers prayer, encouragement, and connection to spiritual community alongside our material services. We will never require anyone to engage with faith content to receive services — but for those who are seeking, we are here to walk alongside them.</p>
+      <h3>Become a Faith Partner</h3>
+      <p>If your church, ministry, or faith community would like to partner formally with Pathways – The Family Table, we invite you to reach out through our partnership inquiry form. We believe that when the body of Christ moves together, no need in a community goes unmet.</p>
+    </div>
+    <div class="modal-footer" style="justify-content:space-between;">
+      <button class="mfbtn" style="background:transparent;color:var(--crimson);border:1.5px solid var(--crimson);box-shadow:none;" onclick="closeModal('faithOutreachModal');setTimeout(()=>openModal('partnerModal'),200)">Become a Faith Partner &rarr;</button>
+      <button class="mfbtn" onclick="closeModal('faithOutreachModal')">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- PARTNER -->
+<div class="modal-overlay" id="partnerModal" onclick="overlayClick(event,'partnerModal')">
+  <div class="modal">
+    <div class="modal-header">
+      <div><div class="modal-title">Partner With Pathways</div><div class="modal-subtitle">Churches, Organizations &amp; Community Leaders</div></div>
+      <button class="modal-close" onclick="closeModal('partnerModal')"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    </div>
+    <div class="modal-body">
+      <p>We believe the greatest impact happens when communities unite. We welcome partnerships with churches, nonprofits, businesses, and civic organizations who share our vision of serving families with dignity and love.</p>
+      <div id="par-form">
+        <div class="fg" id="pfg-org"><label class="flabel">Organization / Church Name <span class="frq">*</span></label><input class="finput" id="p-org" type="text" placeholder="First Community Church"><div class="ferr">Required.</div></div>
+        <div class="frow">
+          <div class="fg" id="pfg-ct"><label class="flabel">Contact Name <span class="frq">*</span></label><input class="finput" id="p-ct" type="text" placeholder="Pastor / Director Name"><div class="ferr">Required.</div></div>
+          <div class="fg"><label class="flabel">Your Role</label><input class="finput" id="p-role" type="text" placeholder="e.g. Pastor, Director"></div>
+        </div>
+        <div class="fg" id="pfg-em"><label class="flabel">Email Address <span class="frq">*</span></label><input class="finput" id="p-em" type="email" placeholder="contact@org.com"><div class="ferr">Valid email required.</div></div>
+        <div class="fg"><label class="flabel">Phone Number</label><input class="finput" id="p-ph" type="tel" placeholder="(555) 000-0000"></div>
+        <div class="fg"><label class="flabel">How Would You Like to Partner?</label><select class="fselect" id="p-type"><option value="">Select partnership type...</option><option>Host a Food Drive</option><option>Financial Partnership / Sponsorship</option><option>Volunteer Mobilization</option><option>Outreach Collaboration</option><option>Community Kitchen Support</option><option>Other</option></select></div>
+        <div class="fg"><label class="flabel">Tell Us More</label><textarea class="ftextarea" id="p-nt" placeholder="Share your vision for partnership and how we might work together..."></textarea></div>
+      </div>
+      <div id="par-confirm" style="display:none">
+        <div class="confirm-step"><div class="confirm-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div class="confirm-title">Inquiry Received</div><p class="confirm-text">We are excited about the possibility of serving alongside your organization. Our leadership team will reach out within 3–5 business days. Together we can do more.</p></div>
+      </div>
+    </div>
+    <div class="modal-footer" id="par-footer">
+      <button class="mfbtn" onclick="submitPartner()">Submit Inquiry &rarr;</button>
+    </div>
+  </div>
+</div>
+
+<!-- PRIVACY POLICY -->
+<div class="modal-overlay" id="privacyModal" onclick="overlayClick(event,'privacyModal')">
+  <div class="modal">
+    <div class="modal-header">
+      <div><div class="modal-title">Privacy Policy</div><div class="modal-subtitle">Pathways – The Family Table | Walking in His-Way Global</div></div>
+      <button class="modal-close" onclick="closeModal('privacyModal')"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    </div>
+    <div class="modal-body">
+      <span class="modal-effective">Effective Date: January 1, 2026</span>
+      <h3>1. Introduction</h3>
+      <p>Pathways – The Family Table, a program of Walking in His-Way Global ("we," "us," or "our"), is committed to protecting the privacy and dignity of every individual we serve. This Privacy Policy explains how we collect, use, and safeguard your personal information.</p>
+      <h3>2. Information We Collect</h3>
+      <p>When you interact with our programs or submit forms, we may collect:</p>
+      <ul><li>Personal identification information (name, email, phone)</li><li>Household and family information when requesting assistance</li><li>Volunteer availability and interest areas</li><li>Donation preferences and contact details</li><li>Partnership and organizational information</li><li>Messages and communications you send to us</li></ul>
+      <h3>3. How We Use Your Information</h3>
+      <p>Information is used solely to fulfill the purposes for which it was submitted, including coordinating service delivery, communicating with volunteers, processing donation inquiries, facilitating partnership discussions, and improving our programs.</p>
+      <h3>4. Confidentiality of Assistance Recipients</h3>
+      <p>All information provided by individuals and families seeking assistance is treated with the highest confidentiality. Personal details are never shared, sold, or disclosed to third parties outside of Walking in His-Way Global without explicit written consent, except as required by law.</p>
+      <h3>5. Data Sharing</h3>
+      <p>We do not sell, trade, or rent personal information. We may share information with trusted service providers who assist our operations, subject to confidentiality agreements.</p>
+      <h3>6. Data Retention</h3>
+      <p>We retain personal information only as long as necessary to fulfill the stated purpose or as required by law.</p>
+      <h3>7. Your Rights</h3>
+      <p>You have the right to access, correct, or request deletion of your personal information at any time. Contact us through our Connect form or through Walking in His-Way Global leadership.</p>
+      <h3>8. Security</h3>
+      <p>We implement reasonable administrative, technical, and physical safeguards to protect your information from unauthorized access or disclosure.</p>
+      <h3>9. Children's Privacy</h3>
+      <p>We do not knowingly collect personal information from children under 13 without verifiable parental consent. Information about minor household members in assistance requests is treated with strict confidentiality.</p>
+      <h3>10. Changes to This Policy</h3>
+      <p>We reserve the right to update this Privacy Policy at any time. Material changes will be reflected with an updated effective date.</p>
+      <h3>11. Contact</h3>
+      <p>Questions? Please contact Pathways – The Family Table through the Connect form on this page or reach out to Walking in His-Way Global directly.</p>
+    </div>
+    <div class="modal-footer"><button class="mfbtn" onclick="closeModal('privacyModal')">I Understand &rarr;</button></div>
+  </div>
+</div>
+
+<!-- TERMS OF USE -->
+<div class="modal-overlay" id="termsModal" onclick="overlayClick(event,'termsModal')">
+  <div class="modal">
+    <div class="modal-header">
+      <div><div class="modal-title">Terms of Use</div><div class="modal-subtitle">Pathways – The Family Table | Walking in His-Way Global</div></div>
+      <button class="modal-close" onclick="closeModal('termsModal')"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    </div>
+    <div class="modal-body">
+      <span class="modal-effective">Effective Date: January 1, 2026</span>
+      <h3>1. Acceptance of Terms</h3>
+      <p>By accessing and using this website and the program resources provided by Pathways – The Family Table, a program of Walking in His-Way Global ("the Organization"), you agree to be bound by these Terms of Use.</p>
+      <h3>2. About Pathways – The Family Table</h3>
+      <p>Pathways – The Family Table is a community resource program operated under Walking in His-Way Global, a faith-based organization dedicated to serving families, children, seniors, and individuals in need through food security initiatives, care resources, and community development.</p>
+      <h3>3. Program Eligibility &amp; Services</h3>
+      <p>Access to Pathways programs — including the Food Pantry, Care Packages, Community Kitchen, and Community Market — is subject to program guidelines. Eligibility and availability may vary based on community need and resource capacity. The Organization reserves the right to adjust service offerings at any time.</p>
+      <h3>4. Accuracy of Information</h3>
+      <p>We strive to keep all information current and accurate. Program details and availability are subject to change without notice. Submitting a request form does not guarantee service delivery and is subject to program capacity.</p>
+      <h3>5. Volunteer Participation</h3>
+      <p>Volunteers serve in accordance with the Organization's volunteer policies and are expected to represent the mission and values of Pathways and Walking in His-Way Global with respect, dignity, and integrity.</p>
+      <h3>6. Donations</h3>
+      <p>Financial donations are processed through Walking in His-Way Global. Designation requests are honored to the best of the Organization's ability. All gifts are non-refundable. Receipts are provided for tax purposes as applicable.</p>
+      <h3>7. Partnership Agreements</h3>
+      <p>Formal partnership arrangements require a written agreement executed by authorized representatives of Walking in His-Way Global. Submission of a partnership inquiry form does not constitute a binding agreement.</p>
+      <h3>8. Intellectual Property</h3>
+      <p>All content on this website — including logos, text, graphics, and design — is the property of Pathways – The Family Table and Walking in His-Way Global. Unauthorized reproduction or use without prior written permission is prohibited.</p>
+      <h3>9. Limitation of Liability</h3>
+      <p>To the fullest extent permitted by law, Walking in His-Way Global and Pathways – The Family Table are not liable for any indirect or consequential damages arising from use of this site or participation in our programs.</p>
+      <h3>10. Governing Values</h3>
+      <p>Pathways operates under the mission of Walking in His-Way Global to serve every person with the love, compassion, and dignity that reflects our faith. These Terms are intended to be consistent with and subordinate to those values.</p>
+      <h3>11. Changes to These Terms</h3>
+      <p>We reserve the right to modify these Terms at any time. Continued use of this site constitutes acceptance of the revised terms.</p>
+      <h3>12. Contact</h3>
+      <p>Questions regarding these Terms may be directed to Pathways – The Family Table via the Connect form or through Walking in His-Way Global leadership.</p>
+    </div>
+    <div class="modal-footer"><button class="mfbtn" onclick="closeModal('termsModal')">I Understand &rarr;</button></div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+/* NAV */
+const nav=document.getElementById('mainNav'),hbg=document.getElementById('hamburger'),mob=document.getElementById('mobileNav');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>40));
+hbg.addEventListener('click',()=>{const o=mob.classList.toggle('open');hbg.setAttribute('aria-expanded',o);});
+mob.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>mob.classList.remove('open')));
+
+/* SMOOTH SCROLL */
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const h=a.getAttribute('href');if(h==='#')return;
+    e.preventDefault();mob.classList.remove('open');
+    const t=document.querySelector(h);if(t)t.scrollIntoView({behavior:'smooth',block:'start'});
+  });
+});
+
+/* SCROLL REVEAL */
+const ro=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');ro.unobserve(e.target);}}),{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
+
+/* VISION HOVER */
+const vsteps=document.querySelectorAll('.vision-step');
+vsteps.forEach(s=>{
+  s.addEventListener('mouseenter',()=>{vsteps.forEach(x=>x.classList.remove('active'));s.classList.add('active');});
+  s.addEventListener('mouseleave',()=>{vsteps.forEach(x=>x.classList.remove('active'));vsteps[0].classList.add('active');});
+});
+
+/* MODAL SYSTEM */
+function openModal(id){
+  const o=document.getElementById(id);if(!o)return;
+  // Reset volunteer modal state on fresh open
+  if(id==='volunteerModal'&&_volStep!==1){
+    _volStep=1; _volArea='';
+    for(let i=1;i<=4;i++){const s=document.getElementById('vol-step-'+i);if(s)s.style.display=i===1?'block':'none';}
+    document.getElementById('vol-confirm').style.display='none';
+    document.getElementById('vol-step-indicator').style.display='flex';
+    document.getElementById('vol-footer').innerHTML=`<button class="mfbtn" id="vol-back-btn" style="background:transparent;color:var(--charcoal);border:1.5px solid rgba(44,32,24,.2);box-shadow:none;display:none;" onclick="volPrevStep()">&#8592; Back</button><div style="display:flex;align-items:center;gap:6px;font-size:.72rem;color:var(--brown-light);" id="vol-step-counter">Step 1 of 4</div><button class="mfbtn" id="vol-next-btn" onclick="volNextStep()">Continue &rarr;</button>`;
+    document.querySelectorAll('.vol-card').forEach(c=>c.classList.remove('sel'));
+    volUpdateStepUI(1);
+  }
+  o.style.display='flex';document.body.style.overflow='hidden';
+  requestAnimationFrame(()=>o.classList.add('open'));
+}
+function closeModal(id){
+  const o=document.getElementById(id);if(!o)return;
+  o.classList.remove('open');
+  setTimeout(()=>{o.style.display='none';document.body.style.overflow='';},320);
+}
+function overlayClick(e,id){if(e.target===document.getElementById(id))closeModal(id);}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')document.querySelectorAll('.modal-overlay.open').forEach(o=>closeModal(o.id));});
+
+/* TOAST */
+function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('show'),4800);}
+
+/* VALIDATION */
+function isEmail(v){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);}
+function setErr(id,on){const g=document.getElementById(id);if(g)g.classList.toggle('err',on);}
+function clearErrs(ids){ids.forEach(id=>setErr(id,false));}
+
+/* CONTACT FORM */
+function submitContact(){
+  const fn=document.getElementById('cf-fn').value.trim(),ln=document.getElementById('cf-ln').value.trim(),
+    em=document.getElementById('cf-em').value.trim(),rs=document.getElementById('cf-rs').value,ms=document.getElementById('cf-ms').value.trim();
+  clearErrs(['cfg-fn','cfg-ln','cfg-em','cfg-rs','cfg-ms']);
+  let ok=true;
+  if(!fn){setErr('cfg-fn',true);ok=false;}
+  if(!ln){setErr('cfg-ln',true);ok=false;}
+  if(!isEmail(em)){setErr('cfg-em',true);ok=false;}
+  if(!rs){setErr('cfg-rs',true);ok=false;}
+  if(!ms){setErr('cfg-ms',true);ok=false;}
+  if(!ok)return;
+  document.getElementById('contactForm').innerHTML=`<div class="confirm-step" style="padding:40px 0"><div class="confirm-icon"><svg viewBox="0 0 24 24" style="width:32px;height:32px;stroke:#9B1B1B;fill:none;stroke-width:1.8"><polyline points="20 6 9 17 4 12"/></svg></div><div class="confirm-title">Message Sent</div><p class="confirm-text">Thank you, ${fn}. We have received your message and will be in touch within 1–2 business days.</p></div>`;
+  toast('Message received — we will be in touch soon.');
+}
+
+/* REQUEST */
+function submitRequest(){
+  const fn=document.getElementById('r-fn').value.trim(),ln=document.getElementById('r-ln').value.trim(),
+    em=document.getElementById('r-em').value.trim(),nd=document.getElementById('r-nd').value;
+  clearErrs(['rfg-fn','rfg-ln','rfg-em','rfg-nd']);
+  let ok=true;
+  if(!fn){setErr('rfg-fn',true);ok=false;}
+  if(!ln){setErr('rfg-ln',true);ok=false;}
+  if(!isEmail(em)){setErr('rfg-em',true);ok=false;}
+  if(!nd){setErr('rfg-nd',true);ok=false;}
+  if(!ok)return;
+  document.getElementById('req-form').style.display='none';
+  document.getElementById('req-confirm').style.display='block';
+  document.getElementById('req-footer').innerHTML=`<button class="mfbtn" onclick="closeModal('requestModal')">Close</button>`;
+  toast('Assistance request received. We will follow up shortly.');
+}
+
+/* VOLUNTEER MULTI-STEP */
+let _volArea='', _volStep=1;
+
+function pickVolCard(el,area){
+  document.querySelectorAll('.vol-card').forEach(c=>c.classList.remove('sel'));
+  el.classList.add('sel'); _volArea=area;
+  document.getElementById('vfg-role-err').style.display='none';
+}
+
+function volUpdateStepUI(step){
+  for(let i=1;i<=4;i++){
+    const d=document.getElementById('vsd-'+i);
+    d.classList.remove('active','done');
+    if(i<step)d.classList.add('done');
+    else if(i===step)d.classList.add('active');
+  }
+  document.getElementById('vol-step-counter').textContent='Step '+step+' of 4';
+  const backBtn=document.getElementById('vol-back-btn');
+  const nextBtn=document.getElementById('vol-next-btn');
+  backBtn.style.display=step>1?'block':'none';
+  nextBtn.textContent=step===4?'Submit Application →':'Continue →';
+}
+
+function volNextStep(){
+  if(_volStep===1){
+    if(!_volArea){document.getElementById('vfg-role-err').style.display='block';return;}
+    document.getElementById('vol-step-1').style.display='none';
+    document.getElementById('vol-step-2').style.display='block';
+    _volStep=2; volUpdateStepUI(2);
+    // show church name field based on selection wiring
+    document.getElementById('v-church').addEventListener('change',function(){
+      const show=this.value==='yes-partner'||this.value==='yes-other';
+      document.getElementById('vfg-church-name').style.display=show?'block':'none';
+    });
+    return;
+  }
+  if(_volStep===2){
+    const fn=document.getElementById('v-fn').value.trim(),
+          ln=document.getElementById('v-ln').value.trim(),
+          em=document.getElementById('v-em').value.trim(),
+          ph=document.getElementById('v-ph').value.trim();
+    clearErrs(['vfg-fn','vfg-ln','vfg-em']);
+    let ok=true;
+    if(!fn){setErr('vfg-fn',true);ok=false;}
+    if(!ln){setErr('vfg-ln',true);ok=false;}
+    if(!isEmail(em)){setErr('vfg-em',true);ok=false;}
+    if(!ok)return;
+    document.getElementById('vol-step-2').style.display='none';
+    document.getElementById('vol-step-3').style.display='block';
+    _volStep=3; volUpdateStepUI(3); return;
+  }
+  if(_volStep===3){
+    const days=[...document.querySelectorAll('#vfg-days input[type="checkbox"]:checked')];
+    if(days.length===0){document.getElementById('days-err').style.display='block';return;}
+    document.getElementById('days-err').style.display='none';
+    document.getElementById('vol-step-3').style.display='none';
+    document.getElementById('vol-step-4').style.display='block';
+    _volStep=4; volUpdateStepUI(4); return;
+  }
+  if(_volStep===4){
+    const why=document.getElementById('v-why').value.trim();
+    document.getElementById('why-err').style.display='none';
+    if(!why){document.getElementById('why-err').style.display='block';return;}
+    // Submit
+    document.getElementById('vol-step-indicator').style.display='none';
+    document.getElementById('vol-step-4').style.display='none';
+    document.getElementById('vol-confirm').style.display='block';
+    document.getElementById('vol-footer').innerHTML=`<button class="mfbtn" onclick="closeModal('volunteerModal')">Close</button>`;
+    toast('Welcome to the Pathways family! We will be in touch soon.');
+  }
+}
+
+function volPrevStep(){
+  if(_volStep===2){document.getElementById('vol-step-2').style.display='none';document.getElementById('vol-step-1').style.display='block';_volStep=1;volUpdateStepUI(1);}
+  else if(_volStep===3){document.getElementById('vol-step-3').style.display='none';document.getElementById('vol-step-2').style.display='block';_volStep=2;volUpdateStepUI(2);}
+  else if(_volStep===4){document.getElementById('vol-step-4').style.display='none';document.getElementById('vol-step-3').style.display='block';_volStep=3;volUpdateStepUI(3);}
+}
+
+function submitVolunteer(){volNextStep();} // legacy alias
+
+/* PARTNER */
+function submitPartner(){
+  const org=document.getElementById('p-org').value.trim(),ct=document.getElementById('p-ct').value.trim(),em=document.getElementById('p-em').value.trim();
+  clearErrs(['pfg-org','pfg-ct','pfg-em']);
+  let ok=true;
+  if(!org){setErr('pfg-org',true);ok=false;}
+  if(!ct){setErr('pfg-ct',true);ok=false;}
+  if(!isEmail(em)){setErr('pfg-em',true);ok=false;}
+  if(!ok)return;
+  document.getElementById('par-form').style.display='none';
+  document.getElementById('par-confirm').style.display='block';
+  document.getElementById('par-footer').innerHTML=`<button class="mfbtn" onclick="closeModal('partnerModal')">Close</button>`;
+  toast('Partnership inquiry received. Our team will be in touch.');
+}
+</script>
+</body>
+</html>
