@@ -1328,17 +1328,64 @@ function overlayClick(e,id){if(e.target===document.getElementById(id))closeModal
 document.addEventListener('keydown',e=>{if(e.key==='Escape')document.querySelectorAll('.modal-overlay.open').forEach(o=>closeModal(o.id));});
 
 /* TOAST */
-function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('show'),4800);}
+function toast(msg,type){
+  const t=document.getElementById('toast');
+  t.textContent=msg;
+  t.style.borderLeftColor=type==='error'?'#9B1B1B':'var(--gold)';
+  t.classList.add('show');
+  clearTimeout(t._t);
+  t._t=setTimeout(()=>t.classList.remove('show'),5200);
+}
 
 /* VALIDATION */
 function isEmail(v){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);}
 function setErr(id,on){const g=document.getElementById(id);if(g)g.classList.toggle('err',on);}
 function clearErrs(ids){ids.forEach(id=>setErr(id,false));}
 
-/* CONTACT FORM */
+/* ─────────────────────────────────────────────────────────
+   FORMSUBMIT EMAIL HELPER
+   All submissions POST to FormSubmit → forwarded to WIHWGlobal@pm.me
+───────────────────────────────────────────────────────── */
+const RECIPIENT = 'WIHWGlobal@pm.me';
+
+function btnLoading(btn, loading){
+  if(loading){
+    btn.disabled=true;
+    btn._orig=btn.textContent;
+    btn.textContent='Sending...';
+    btn.style.opacity='.7';
+  } else {
+    btn.disabled=false;
+    btn.textContent=btn._orig||btn.textContent;
+    btn.style.opacity='1';
+  }
+}
+
+async function sendEmail(subject, data, onSuccess, onError){
+  const payload = Object.assign({ _subject: subject, _template: 'table', _captcha: 'false' }, data);
+  try {
+    const res = await fetch(`https://formsubmit.co/ajax/${RECIPIENT}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    const json = await res.json();
+    if(json.success === 'true' || json.success === true){ onSuccess(); }
+    else { onError('Submission failed. Please try again or email us directly at WIHWGlobal@pm.me'); }
+  } catch(err){
+    onError('Network error. Please check your connection or email us at WIHWGlobal@pm.me');
+  }
+}
+
+/* ─── CONTACT FORM (main page) ─── */
 function submitContact(){
-  const fn=document.getElementById('cf-fn').value.trim(),ln=document.getElementById('cf-ln').value.trim(),
-    em=document.getElementById('cf-em').value.trim(),rs=document.getElementById('cf-rs').value,ms=document.getElementById('cf-ms').value.trim();
+  const fn=document.getElementById('cf-fn').value.trim(),
+        ln=document.getElementById('cf-ln').value.trim(),
+        em=document.getElementById('cf-em').value.trim(),
+        ph=document.getElementById('cf-ph').value.trim(),
+        rs=document.getElementById('cf-rs').value,
+        ms=document.getElementById('cf-ms').value.trim();
+
   clearErrs(['cfg-fn','cfg-ln','cfg-em','cfg-rs','cfg-ms']);
   let ok=true;
   if(!fn){setErr('cfg-fn',true);ok=false;}
@@ -1347,14 +1394,37 @@ function submitContact(){
   if(!rs){setErr('cfg-rs',true);ok=false;}
   if(!ms){setErr('cfg-ms',true);ok=false;}
   if(!ok)return;
-  document.getElementById('contactForm').innerHTML=`<div class="confirm-step" style="padding:40px 0"><div class="confirm-icon"><svg viewBox="0 0 24 24" style="width:32px;height:32px;stroke:#9B1B1B;fill:none;stroke-width:1.8"><polyline points="20 6 9 17 4 12"/></svg></div><div class="confirm-title">Message Sent</div><p class="confirm-text">Thank you, ${fn}. We have received your message and will be in touch within 1–2 business days.</p></div>`;
-  toast('Message received — we will be in touch soon.');
+
+  const btn=document.querySelector('#contactForm .fbtn');
+  btnLoading(btn,true);
+
+  sendEmail(
+    `[Pathways] General Inquiry — ${fn} ${ln}`,
+    { 'Form Type':'General Contact', 'First Name':fn, 'Last Name':ln,
+      'Email':em, 'Phone':ph||'Not provided', 'Reason':rs, 'Message':ms },
+    ()=>{
+      document.getElementById('contactForm').innerHTML=`
+        <div class="confirm-step" style="padding:40px 0">
+          <div class="confirm-icon"><svg viewBox="0 0 24 24" style="width:32px;height:32px;stroke:#9B1B1B;fill:none;stroke-width:1.8"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div class="confirm-title">Message Sent</div>
+          <p class="confirm-text">Thank you, ${fn}. Your message has been sent to our team at Walking in His-Way Global. We will be in touch within 1–2 business days.</p>
+        </div>`;
+      toast('Message delivered to WIHWGlobal@pm.me');
+    },
+    (err)=>{ btnLoading(btn,false); toast(err,'error'); }
+  );
 }
 
-/* REQUEST */
+/* ─── REQUEST ASSISTANCE ─── */
 function submitRequest(){
-  const fn=document.getElementById('r-fn').value.trim(),ln=document.getElementById('r-ln').value.trim(),
-    em=document.getElementById('r-em').value.trim(),nd=document.getElementById('r-nd').value;
+  const fn=document.getElementById('r-fn').value.trim(),
+        ln=document.getElementById('r-ln').value.trim(),
+        em=document.getElementById('r-em').value.trim(),
+        ph=document.getElementById('r-ph').value.trim(),
+        hh=document.getElementById('r-hh').value,
+        nd=document.getElementById('r-nd').value,
+        nt=document.getElementById('r-nt').value.trim();
+
   clearErrs(['rfg-fn','rfg-ln','rfg-em','rfg-nd']);
   let ok=true;
   if(!fn){setErr('rfg-fn',true);ok=false;}
@@ -1362,13 +1432,27 @@ function submitRequest(){
   if(!isEmail(em)){setErr('rfg-em',true);ok=false;}
   if(!nd){setErr('rfg-nd',true);ok=false;}
   if(!ok)return;
-  document.getElementById('req-form').style.display='none';
-  document.getElementById('req-confirm').style.display='block';
-  document.getElementById('req-footer').innerHTML=`<button class="mfbtn" onclick="closeModal('requestModal')">Close</button>`;
-  toast('Assistance request received. We will follow up shortly.');
+
+  const btn=document.querySelector('#req-footer .mfbtn');
+  btnLoading(btn,true);
+
+  sendEmail(
+    `[Pathways] Assistance Request — ${fn} ${ln}`,
+    { 'Form Type':'Assistance Request', 'First Name':fn, 'Last Name':ln,
+      'Email':em, 'Phone':ph||'Not provided',
+      'Household Members':hh||'Not specified',
+      'Assistance Needed':nd, 'Additional Notes':nt||'None' },
+    ()=>{
+      document.getElementById('req-form').style.display='none';
+      document.getElementById('req-confirm').style.display='block';
+      document.getElementById('req-footer').innerHTML=`<button class="mfbtn" onclick="closeModal('requestModal')">Close</button>`;
+      toast('Request sent to WIHWGlobal@pm.me — we will follow up shortly.');
+    },
+    (err)=>{ btnLoading(btn,false); toast(err,'error'); }
+  );
 }
 
-/* VOLUNTEER MULTI-STEP */
+/* ─── VOLUNTEER MULTI-STEP ─── */
 let _volArea='', _volStep=1;
 
 function pickVolCard(el,area){
@@ -1397,7 +1481,6 @@ function volNextStep(){
     document.getElementById('vol-step-1').style.display='none';
     document.getElementById('vol-step-2').style.display='block';
     _volStep=2; volUpdateStepUI(2);
-    // show church name field based on selection wiring
     document.getElementById('v-church').addEventListener('change',function(){
       const show=this.value==='yes-partner'||this.value==='yes-other';
       document.getElementById('vfg-church-name').style.display=show?'block':'none';
@@ -1407,8 +1490,7 @@ function volNextStep(){
   if(_volStep===2){
     const fn=document.getElementById('v-fn').value.trim(),
           ln=document.getElementById('v-ln').value.trim(),
-          em=document.getElementById('v-em').value.trim(),
-          ph=document.getElementById('v-ph').value.trim();
+          em=document.getElementById('v-em').value.trim();
     clearErrs(['vfg-fn','vfg-ln','vfg-em']);
     let ok=true;
     if(!fn){setErr('vfg-fn',true);ok=false;}
@@ -1431,12 +1513,69 @@ function volNextStep(){
     const why=document.getElementById('v-why').value.trim();
     document.getElementById('why-err').style.display='none';
     if(!why){document.getElementById('why-err').style.display='block';return;}
-    // Submit
-    document.getElementById('vol-step-indicator').style.display='none';
-    document.getElementById('vol-step-4').style.display='none';
-    document.getElementById('vol-confirm').style.display='block';
-    document.getElementById('vol-footer').innerHTML=`<button class="mfbtn" onclick="closeModal('volunteerModal')">Close</button>`;
-    toast('Welcome to the Pathways family! We will be in touch soon.');
+
+    const nextBtn=document.getElementById('vol-next-btn');
+    btnLoading(nextBtn,true);
+
+    // Collect all data across all 4 steps
+    const fn=document.getElementById('v-fn').value.trim(),
+          ln=document.getElementById('v-ln').value.trim(),
+          em=document.getElementById('v-em').value.trim(),
+          ph=document.getElementById('v-ph').value.trim(),
+          contactPref=document.getElementById('v-contact-pref').value,
+          city=document.getElementById('v-city').value.trim(),
+          age=document.getElementById('v-age').value,
+          church=document.getElementById('v-church').value,
+          churchName=document.getElementById('v-church-name').value.trim(),
+          days=[...document.querySelectorAll('#vfg-days input:checked')].map(x=>x.value).join(', '),
+          times=[...[document.getElementById('v-time-morning'),document.getElementById('v-time-afternoon'),document.getElementById('v-time-evening')]].filter(x=>x&&x.checked).map(x=>x.value).join(', '),
+          commit=document.getElementById('v-commit').value,
+          hours=document.getElementById('v-hours').value,
+          start=document.getElementById('v-start').value,
+          group=document.getElementById('v-group').value,
+          exp=document.getElementById('v-exp').value,
+          skills=[...document.querySelectorAll('#vol-step-4 .vol-check-group input:checked')].map(x=>x.value).join(', '),
+          lang=document.getElementById('v-lang').value.trim(),
+          other=document.getElementById('v-other').value.trim();
+
+    sendEmail(
+      `[Pathways] Volunteer Application — ${fn} ${ln} (${_volArea})`,
+      {
+        'Form Type':'Volunteer Application',
+        '-- ROLE --':'',
+        'Volunteer Role':_volArea,
+        '-- PERSONAL INFO --':'',
+        'Full Name':`${fn} ${ln}`,
+        'Email':em,
+        'Phone':ph||'Not provided',
+        'Preferred Contact':contactPref||'Not specified',
+        'City / Area':city||'Not provided',
+        'Age Range':age||'Not specified',
+        'Church Affiliation':church||'Not specified',
+        'Church / Org Name':churchName||'N/A',
+        '-- AVAILABILITY --':'',
+        'Days Available':days||'Not specified',
+        'Preferred Times':times||'Not specified',
+        'Commitment Level':commit||'Not specified',
+        'Hours Per Month':hours||'Not specified',
+        'Start Date':start||'Not specified',
+        'Group Volunteering':group||'Not specified',
+        '-- EXPERIENCE --':'',
+        'Prior Experience':exp||'Not specified',
+        'Relevant Skills':skills||'None listed',
+        'Languages Spoken':lang||'English',
+        'Motivation / Why Pathways':why,
+        'Additional Notes':other||'None'
+      },
+      ()=>{
+        document.getElementById('vol-step-indicator').style.display='none';
+        document.getElementById('vol-step-4').style.display='none';
+        document.getElementById('vol-confirm').style.display='block';
+        document.getElementById('vol-footer').innerHTML=`<button class="mfbtn" onclick="closeModal('volunteerModal')">Close</button>`;
+        toast('Application sent to WIHWGlobal@pm.me — welcome to the family!');
+      },
+      (err)=>{ btnLoading(nextBtn,false); toast(err,'error'); }
+    );
   }
 }
 
@@ -1446,21 +1585,43 @@ function volPrevStep(){
   else if(_volStep===4){document.getElementById('vol-step-4').style.display='none';document.getElementById('vol-step-3').style.display='block';_volStep=3;volUpdateStepUI(3);}
 }
 
-function submitVolunteer(){volNextStep();} // legacy alias
+function submitVolunteer(){volNextStep();}
 
-/* PARTNER */
+/* ─── PARTNER ─── */
 function submitPartner(){
-  const org=document.getElementById('p-org').value.trim(),ct=document.getElementById('p-ct').value.trim(),em=document.getElementById('p-em').value.trim();
+  const org=document.getElementById('p-org').value.trim(),
+        ct=document.getElementById('p-ct').value.trim(),
+        role=document.getElementById('p-role').value.trim(),
+        em=document.getElementById('p-em').value.trim(),
+        ph=document.getElementById('p-ph').value.trim(),
+        ptype=document.getElementById('p-type').value,
+        nt=document.getElementById('p-nt').value.trim();
+
   clearErrs(['pfg-org','pfg-ct','pfg-em']);
   let ok=true;
   if(!org){setErr('pfg-org',true);ok=false;}
   if(!ct){setErr('pfg-ct',true);ok=false;}
   if(!isEmail(em)){setErr('pfg-em',true);ok=false;}
   if(!ok)return;
-  document.getElementById('par-form').style.display='none';
-  document.getElementById('par-confirm').style.display='block';
-  document.getElementById('par-footer').innerHTML=`<button class="mfbtn" onclick="closeModal('partnerModal')">Close</button>`;
-  toast('Partnership inquiry received. Our team will be in touch.');
+
+  const btn=document.querySelector('#par-footer .mfbtn');
+  btnLoading(btn,true);
+
+  sendEmail(
+    `[Pathways] Partnership Inquiry — ${org}`,
+    { 'Form Type':'Partnership Inquiry', 'Organization':org,
+      'Contact Name':ct, 'Role / Title':role||'Not specified',
+      'Email':em, 'Phone':ph||'Not provided',
+      'Partnership Type':ptype||'Not specified',
+      'Message':nt||'None' },
+    ()=>{
+      document.getElementById('par-form').style.display='none';
+      document.getElementById('par-confirm').style.display='block';
+      document.getElementById('par-footer').innerHTML=`<button class="mfbtn" onclick="closeModal('partnerModal')">Close</button>`;
+      toast('Inquiry sent to WIHWGlobal@pm.me — we will be in touch.');
+    },
+    (err)=>{ btnLoading(btn,false); toast(err,'error'); }
+  );
 }
 </script>
 </body>
