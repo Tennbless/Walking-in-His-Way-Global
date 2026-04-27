@@ -169,11 +169,11 @@
 
         /* ── SERMON PLAYER ───────────────────────────────────────────── */
         .sermon-player {
-            background: linear-gradient(135deg, rgba(26,26,26,0.95), rgba(109,6,5,0.95));
+            background: linear-gradient(135deg, rgba(20,20,20,0.97), rgba(100,5,5,0.97));
             padding: 2.5rem; border-radius: 18px; margin: 2rem 0;
             color: var(--white);
             border: 1px solid rgba(212,175,55,0.3);
-            box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.5);
         }
         .sermon-player-header {
             display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap;
@@ -182,130 +182,194 @@
             font-family: 'Playfair Display', serif; color: var(--gold);
             font-size: clamp(1.4rem, 3vw, 2rem); flex: 1;
         }
-        /* NEW badge inside sermon section */
         .sermon-new-pill {
-            background: var(--gold);
-            color: var(--primary-red);
-            font-size: 0.7rem; font-weight: 800;
-            letter-spacing: 1.5px; text-transform: uppercase;
-            padding: 4px 12px; border-radius: 20px;
-            animation: navBadgePulse 2s ease-in-out infinite;
-            white-space: nowrap;
+            background: var(--gold); color: var(--primary-red);
+            font-size: 0.7rem; font-weight: 800; letter-spacing: 1.5px;
+            text-transform: uppercase; padding: 4px 12px; border-radius: 20px;
+            animation: navBadgePulse 2s ease-in-out infinite; white-space: nowrap;
         }
-
         .sermon-title-block {
-            background: rgba(212,175,55,0.12);
-            border-left: 4px solid var(--gold);
-            border-radius: 0 10px 10px 0;
-            padding: 1rem 1.5rem;
-            margin-bottom: 1.5rem;
+            background: rgba(212,175,55,0.1); border-left: 4px solid var(--gold);
+            border-radius: 0 10px 10px 0; padding: 1rem 1.5rem; margin-bottom: 1.5rem;
         }
         .sermon-title-block .sermon-name {
             font-family: 'Playfair Display', serif;
             font-size: clamp(1.2rem, 2.5vw, 1.8rem);
             color: var(--white); font-weight: 600; margin-bottom: 0.4rem;
         }
-        .sermon-title-block .sermon-speaker {
-            font-size: 1rem; color: var(--gold-light); font-weight: 400;
-        }
+        .sermon-title-block .sermon-speaker { font-size: 1rem; color: var(--gold-light); }
         .sermon-title-block .sermon-date-tag {
             display: inline-block; margin-top: 0.5rem;
             background: rgba(212,175,55,0.2); color: var(--gold);
-            font-size: 0.8rem; padding: 3px 10px; border-radius: 12px;
-            letter-spacing: 1px;
+            font-size: 0.8rem; padding: 3px 10px; border-radius: 12px; letter-spacing: 1px;
         }
-
-        .audio-wrapper {
-            background: rgba(0,0,0,0.35);
-            border-radius: 12px;
-            padding: 1.2rem 1.5rem;
-            margin-bottom: 1rem;
-        }
-        audio { width: 100%; accent-color: var(--gold); }
-
-        .sermon-duration-bar {
-            display: flex; justify-content: space-between;
-            font-size: 0.78rem; color: rgba(244,231,122,0.7);
-            margin-top: 0.5rem; padding: 0 0.2rem;
-        }
-        .sermon-info { margin-top: 1rem; padding: 1.2rem 1.5rem; background: rgba(255,255,255,0.07); border-radius: 10px; }
+        .sermon-info { margin-top: 1rem; padding: 1.2rem 1.5rem; background: rgba(255,255,255,0.06); border-radius: 10px; }
         .sermon-info h4 { color: var(--gold); margin-bottom: 0.5rem; font-size: 1rem; }
-        .sermon-info p { font-size: 0.95rem; line-height: 1.7; color: rgba(255,255,255,0.8); }
+        .sermon-info p  { font-size: 0.95rem; line-height: 1.7; color: rgba(255,255,255,0.8); }
 
-        /* ── External Play Button ───────────────────────────────────── */
-        .external-play-block {
-            background: rgba(0,0,0,0.3);
-            border-radius: 14px;
-            padding: 1.8rem 1.5rem 1.4rem;
+        /* ── CUSTOM AUDIO PLAYER ─────────────────────────────────────── */
+        .cp-outer {
+            background: rgba(0,0,0,0.45);
+            border: 1px solid rgba(212,175,55,0.2);
+            border-radius: 16px;
+            padding: 1.6rem 1.8rem 1.4rem;
             margin-bottom: 1rem;
-            text-align: center;
         }
-        /* Animated waveform bars */
-        .waveform-visual {
+
+        /* Waveform animation */
+        .cp-wave {
             display: flex; align-items: center; justify-content: center;
-            gap: 4px; height: 36px; margin-bottom: 1.4rem;
+            gap: 3px; height: 32px; margin-bottom: 1.4rem;
         }
-        .waveform-visual span {
-            display: inline-block;
-            width: 4px; border-radius: 3px;
-            background: var(--gold);
-            opacity: 0.7;
-            animation: waveBar 1.2s ease-in-out infinite;
+        .cp-wave span {
+            display: inline-block; width: 3px; border-radius: 3px;
+            background: var(--gold); opacity: 0.5;
+            transition: opacity 0.3s;
         }
-        .waveform-visual span:nth-child(1)  { height: 14px; animation-delay: 0.0s; }
-        .waveform-visual span:nth-child(2)  { height: 22px; animation-delay: 0.1s; }
-        .waveform-visual span:nth-child(3)  { height: 30px; animation-delay: 0.2s; }
-        .waveform-visual span:nth-child(4)  { height: 20px; animation-delay: 0.3s; }
-        .waveform-visual span:nth-child(5)  { height: 28px; animation-delay: 0.15s; }
-        .waveform-visual span:nth-child(6)  { height: 34px; animation-delay: 0.25s; }
-        .waveform-visual span:nth-child(7)  { height: 18px; animation-delay: 0.35s; }
-        .waveform-visual span:nth-child(8)  { height: 36px; animation-delay: 0.05s; }
-        .waveform-visual span:nth-child(9)  { height: 24px; animation-delay: 0.4s; }
-        .waveform-visual span:nth-child(10) { height: 16px; animation-delay: 0.2s; }
-        .waveform-visual span:nth-child(11) { height: 32px; animation-delay: 0.3s; }
-        .waveform-visual span:nth-child(12) { height: 20px; animation-delay: 0.1s; }
-        .waveform-visual span:nth-child(13) { height: 26px; animation-delay: 0.45s; }
-        .waveform-visual span:nth-child(14) { height: 18px; animation-delay: 0.05s; }
-        .waveform-visual span:nth-child(15) { height: 12px; animation-delay: 0.35s; }
-        @keyframes waveBar {
-            0%,100% { transform: scaleY(0.4); opacity: 0.5; }
-            50%      { transform: scaleY(1);   opacity: 1;   }
+        .cp-wave.playing span { animation: cpWave 1.1s ease-in-out infinite; }
+        .cp-wave span:nth-child(1)  { height:10px; animation-delay:0.0s; }
+        .cp-wave span:nth-child(2)  { height:18px; animation-delay:0.08s; }
+        .cp-wave span:nth-child(3)  { height:26px; animation-delay:0.16s; }
+        .cp-wave span:nth-child(4)  { height:14px; animation-delay:0.24s; }
+        .cp-wave span:nth-child(5)  { height:30px; animation-delay:0.06s; }
+        .cp-wave span:nth-child(6)  { height:20px; animation-delay:0.14s; }
+        .cp-wave span:nth-child(7)  { height:32px; animation-delay:0.22s; }
+        .cp-wave span:nth-child(8)  { height:16px; animation-delay:0.04s; }
+        .cp-wave span:nth-child(9)  { height:28px; animation-delay:0.18s; }
+        .cp-wave span:nth-child(10) { height:12px; animation-delay:0.28s; }
+        .cp-wave span:nth-child(11) { height:24px; animation-delay:0.10s; }
+        .cp-wave span:nth-child(12) { height:18px; animation-delay:0.20s; }
+        .cp-wave span:nth-child(13) { height:30px; animation-delay:0.02s; }
+        .cp-wave span:nth-child(14) { height:16px; animation-delay:0.26s; }
+        .cp-wave span:nth-child(15) { height:22px; animation-delay:0.12s; }
+        .cp-wave span:nth-child(16) { height:28px; animation-delay:0.30s; }
+        .cp-wave span:nth-child(17) { height:14px; animation-delay:0.08s; }
+        .cp-wave span:nth-child(18) { height:20px; animation-delay:0.22s; }
+        .cp-wave span:nth-child(19) { height:10px; animation-delay:0.16s; }
+        .cp-wave span:nth-child(20) { height:26px; animation-delay:0.05s; }
+        @keyframes cpWave {
+            0%,100% { transform:scaleY(0.3); opacity:0.4; }
+            50%      { transform:scaleY(1);   opacity:1;   }
         }
-        .play-external-btn {
-            display: inline-flex; align-items: center; gap: 1rem;
-            background: var(--gold);
-            color: var(--primary-red);
-            text-decoration: none;
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 6px 30px rgba(212,175,55,0.5);
+
+        /* Progress bar */
+        .cp-progress-row {
+            display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1.2rem;
         }
-        .play-external-btn:hover {
-            background: var(--gold-light);
-            transform: translateY(-3px) scale(1.03);
-            box-shadow: 0 10px 40px rgba(212,175,55,0.7);
+        .cp-time { font-size: 0.78rem; color: rgba(244,231,122,0.8); white-space: nowrap; min-width: 38px; }
+        .cp-time.right { text-align: right; }
+        .cp-progress-track {
+            flex: 1; height: 6px; background: rgba(255,255,255,0.15);
+            border-radius: 6px; position: relative; cursor: pointer;
         }
-        .play-icon {
-            width: 42px; height: 42px;
-            background: var(--primary-red);
-            color: var(--gold);
+        .cp-progress-fill {
+            height: 100%; background: var(--gold);
+            border-radius: 6px; width: 0%; pointer-events: none;
+            transition: width 0.1s linear;
+        }
+        .cp-progress-thumb {
+            position: absolute; top: 50%; right: -7px;
+            width: 14px; height: 14px; background: var(--gold);
+            border-radius: 50%; transform: translateY(-50%);
+            box-shadow: 0 0 6px rgba(212,175,55,0.6);
+            pointer-events: none; transition: transform 0.15s;
+        }
+        .cp-progress-track:hover .cp-progress-thumb { transform: translateY(-50%) scale(1.3); }
+
+        /* Main controls row */
+        .cp-controls {
+            display: flex; align-items: center; justify-content: center;
+            gap: 1.2rem; margin-bottom: 1.2rem; flex-wrap: wrap;
+        }
+        .cp-btn {
+            background: none; border: none; color: var(--white);
+            cursor: pointer; transition: all 0.2s ease;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 50%; padding: 0;
+        }
+        .cp-btn:hover { color: var(--gold); transform: scale(1.15); }
+
+        /* Skip buttons */
+        .cp-skip { width: 36px; height: 36px; font-size: 0.7rem; flex-direction: column; gap: 1px; }
+        .cp-skip svg { width: 22px; height: 22px; }
+        .cp-skip span { font-size: 0.55rem; font-weight: 700; letter-spacing: 0.5px; color: inherit; }
+
+        /* Play / Pause */
+        .cp-play-btn {
+            width: 62px; height: 62px;
+            background: var(--gold); color: var(--primary-red) !important;
             border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 1.1rem;
+            font-size: 1.4rem;
+            box-shadow: 0 4px 20px rgba(212,175,55,0.5);
             flex-shrink: 0;
-            padding-left: 3px; /* optical centering of ▶ */
+            padding-left: 3px; /* optical center ▶ */
         }
-        .play-btn-text { display: flex; flex-direction: column; text-align: left; }
-        .play-btn-text strong { font-size: 1.1rem; line-height: 1.2; }
-        .play-btn-text small  { font-size: 0.78rem; font-weight: 400; opacity: 0.8; }
-        .external-play-note {
-            margin-top: 1rem;
-            font-size: 0.78rem;
-            color: rgba(244,231,122,0.6);
-            line-height: 1.5;
+        .cp-play-btn:hover { background: var(--gold-light) !important; transform: scale(1.1) !important; box-shadow: 0 6px 28px rgba(212,175,55,0.7); }
+        .cp-play-btn.playing { padding-left: 0; }
+
+        /* Bottom row: volume + speed */
+        .cp-bottom {
+            display: flex; align-items: center; justify-content: space-between;
+            gap: 1rem; flex-wrap: wrap;
+        }
+        .cp-vol-row { display: flex; align-items: center; gap: 0.6rem; flex: 1; min-width: 120px; }
+        .cp-vol-icon { font-size: 1rem; color: rgba(255,255,255,0.6); cursor: pointer; transition: color 0.2s; flex-shrink: 0; }
+        .cp-vol-icon:hover { color: var(--gold); }
+        .cp-vol-slider {
+            flex: 1; -webkit-appearance: none; appearance: none;
+            height: 4px; border-radius: 4px; outline: none; cursor: pointer;
+            background: linear-gradient(to right, var(--gold) 100%, rgba(255,255,255,0.2) 100%);
+        }
+        .cp-vol-slider::-webkit-slider-thumb {
+            -webkit-appearance: none; width: 12px; height: 12px;
+            background: var(--gold); border-radius: 50%; cursor: pointer;
+        }
+        .cp-vol-slider::-moz-range-thumb {
+            width: 12px; height: 12px; background: var(--gold); border-radius: 50%; border: none; cursor: pointer;
+        }
+        .cp-speed-select {
+            background: rgba(212,175,55,0.15); border: 1px solid rgba(212,175,55,0.4);
+            color: var(--gold); font-size: 0.78rem; font-weight: 700;
+            padding: 4px 10px; border-radius: 20px; cursor: pointer; outline: none;
+            font-family: 'Raleway', sans-serif;
+        }
+        .cp-speed-select option { background: #1a1a1a; color: var(--white); }
+
+        /* Loading / buffering state */
+        .cp-loading {
+            text-align: center; font-size: 0.78rem;
+            color: rgba(244,231,122,0.6); padding: 0.3rem 0;
+            min-height: 1.2rem;
+        }
+
+        /* External fallback button (when no direct URL yet) */
+        .cp-external-block { text-align: center; padding: 0.5rem 0 0.8rem; }
+        .cp-external-btn {
+            display: inline-flex; align-items: center; gap: 0.9rem;
+            background: var(--gold); color: var(--primary-red);
+            text-decoration: none; padding: 0.9rem 1.8rem;
+            border-radius: 50px; font-weight: 700; font-size: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 28px rgba(212,175,55,0.45);
+        }
+        .cp-external-btn:hover {
+            background: var(--gold-light); transform: translateY(-2px) scale(1.03);
+            box-shadow: 0 10px 36px rgba(212,175,55,0.65);
+        }
+        .cp-ext-circle {
+            width: 38px; height: 38px; background: var(--primary-red);
+            color: var(--gold); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1rem; flex-shrink: 0; padding-left: 3px;
+        }
+        .cp-ext-text { display: flex; flex-direction: column; text-align: left; }
+        .cp-ext-text strong { font-size: 1rem; line-height: 1.2; }
+        .cp-ext-text small  { font-size: 0.75rem; font-weight: 400; opacity: 0.75; }
+        @media (max-width: 480px) {
+            .cp-outer { padding: 1.2rem 1rem; }
+            .cp-controls { gap: 0.8rem; }
+            .cp-play-btn { width: 54px; height: 54px; font-size: 1.2rem; }
+            .cp-bottom { flex-direction: column; align-items: stretch; }
         }
 
         /* ── Payment ─────────────────────────────────────────────────── */
@@ -493,36 +557,74 @@
                     <span class="sermon-date-tag" id="sermonDate">April 2026</span>
                 </div>
 
-                <!-- EMBEDDED AUDIO PLAYER (shown when a direct MP3 URL is set) -->
-                <div class="audio-wrapper" id="audioPlayerWrapper" style="display:none;">
-                    <audio controls id="sermonAudio" preload="metadata" style="width:100%;accent-color:var(--gold);">
-                        Your browser does not support the audio element.
-                    </audio>
-                    <div class="sermon-duration-bar">
-                        <span>🎵 Full Message</span>
-                        <span id="audioDuration">88 min</span>
+                <!-- Hidden native audio element — driven entirely by custom controls -->
+                <audio id="sermonAudio" preload="metadata" style="display:none;"></audio>
+
+                <!-- ★ CUSTOM PLAYER (visible when directUrl is set) ★ -->
+                <div class="cp-outer" id="customPlayer" style="display:none;">
+                    <!-- Animated waveform -->
+                    <div class="cp-wave" id="cpWave">
+                        <span></span><span></span><span></span><span></span><span></span>
+                        <span></span><span></span><span></span><span></span><span></span>
+                        <span></span><span></span><span></span><span></span><span></span>
+                        <span></span><span></span><span></span><span></span><span></span>
                     </div>
+                    <!-- Progress bar -->
+                    <div class="cp-progress-row">
+                        <span class="cp-time" id="cpCurrent">0:00</span>
+                        <div class="cp-progress-track" id="cpTrack">
+                            <div class="cp-progress-fill" id="cpFill">
+                                <div class="cp-progress-thumb"></div>
+                            </div>
+                        </div>
+                        <span class="cp-time right" id="cpDuration">--:--</span>
+                    </div>
+                    <!-- Play / skip controls -->
+                    <div class="cp-controls">
+                        <button class="cp-btn cp-skip" id="cpSkipBack" title="Back 15 seconds" aria-label="Skip back 15 seconds">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22">
+                                <polyline points="1 4 1 10 7 10"></polyline>
+                                <path d="M3.51 15a9 9 0 1 0 .49-4.5"></path>
+                            </svg>
+                            <span>15s</span>
+                        </button>
+                        <button class="cp-btn cp-play-btn" id="cpPlayBtn" aria-label="Play">&#9654;</button>
+                        <button class="cp-btn cp-skip" id="cpSkipFwd" title="Forward 30 seconds" aria-label="Skip forward 30 seconds">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22">
+                                <polyline points="23 4 23 10 17 10"></polyline>
+                                <path d="M20.49 15a9 9 0 1 1-.49-4.5"></path>
+                            </svg>
+                            <span>30s</span>
+                        </button>
+                    </div>
+                    <!-- Volume + Speed -->
+                    <div class="cp-bottom">
+                        <div class="cp-vol-row">
+                            <span class="cp-vol-icon" id="cpVolIcon" title="Mute/Unmute">🔊</span>
+                            <input type="range" class="cp-vol-slider" id="cpVolume" min="0" max="1" step="0.02" value="1" aria-label="Volume">
+                        </div>
+                        <select class="cp-speed-select" id="cpSpeed" aria-label="Playback speed">
+                            <option value="0.75">0.75×</option>
+                            <option value="1" selected>1×</option>
+                            <option value="1.25">1.25×</option>
+                            <option value="1.5">1.5×</option>
+                            <option value="2">2×</option>
+                        </select>
+                    </div>
+                    <div class="cp-loading" id="cpStatus"></div>
                 </div>
 
-                <!-- PROTON DRIVE PLAY BUTTON (shown when no direct MP3 URL is available) -->
-                <div id="externalPlayWrapper">
-                    <div class="external-play-block">
-                        <div class="waveform-visual" aria-hidden="true">
-                            <span></span><span></span><span></span><span></span><span></span>
-                            <span></span><span></span><span></span><span></span><span></span>
-                            <span></span><span></span><span></span><span></span><span></span>
-                        </div>
-                        <a id="playExternalBtn" href="https://drive.proton.me/urls/7H8F9PSMC8#g2hoeZ4oA89i"
-                           target="_blank" rel="noopener" class="play-external-btn" aria-label="Play TIME Pt. 2">
-                            <span class="play-icon">▶</span>
-                            <span class="play-btn-text">
+                <!-- ★ EXTERNAL FALLBACK (visible when no directUrl yet) ★ -->
+                <div id="cpExternalBlock" style="display:none;">
+                    <div class="cp-outer cp-external-block">
+                        <a id="cpExternalBtn" href="https://open.spotify.com/episode/3qvZ2kawxcqcbVEfuNKhrQ" target="_blank" rel="noopener" class="cp-external-btn">
+                            <span class="cp-ext-circle">&#9654;</span>
+                            <span class="cp-ext-text">
                                 <strong>Play Message</strong>
-                                <small>Opens &amp; plays in a new tab · 88 min</small>
+                                <small id="cpExtMeta">Opens &amp; plays in a new tab · 88 min</small>
                             </span>
                         </a>
-                        <p class="external-play-note">
-                            Click above to listen — the message will open and begin playing immediately.
-                        </p>
+                        <p class="cp-ext-note">Click above to listen — the message will open and begin playing immediately.</p>
                     </div>
                 </div>
 
@@ -965,66 +1067,160 @@
             speaker:     "Walking in His-Way Global Ministry",
             date:        "April 2026",
             duration:    "88 min",
-            description: "Part 2 of the powerful series on TIME. Be encouraged, uplifted, and transformed by the Spirit of God.",
+            description: "We live by the clock — haunted by the past, anxious about the future. But what if time, as we know it, was never meant to hold you? God doesn't live in time. He stands outside of it, above it, completely unbound by it. It's the earth that is subject to time. Not heaven. Not God. In Part 2 of the TIME series, Christ reframes everything — your delays, your seasons, your setbacks. Your breakthrough isn't late. God is just not bound by your watch.",
 
-            // ── AUDIO SOURCE ──────────────────────────────────────────
-            // Option A — Direct MP3 URL (enables the embedded player):
-            //   For Google Drive: upload the MP3, share with "Anyone with link",
-            //   copy the File ID from the share URL, then set:
-            //   directUrl: "https://docs.google.com/uc?export=open&id=YOUR_FILE_ID"
-            //
-            // Option B — Leave directUrl empty ("") to use the Proton Drive
-            //   button below, which opens and plays in a new tab.
-            directUrl:   "",   // <-- paste a direct MP3 URL here to enable embedded player
+            // Paste the direct MP3 URL from Spotify for Creators (or any host) here.
+            // Once filled in, the custom embedded player activates automatically.
+            // Leave empty ("") to show the external play button instead.
+            directUrl:   "",
 
-            // External link shown when directUrl is empty:
-            externalUrl: "https://drive.proton.me/urls/7H8F9PSMC8#g2hoeZ4oA89i"
+            // Fallback link shown when directUrl is empty:
+            externalUrl: "https://open.spotify.com/episode/3qvZ2kawxcqcbVEfuNKhrQ"
         };
         // ══════════════════════════════════════════════════════════════
 
-        // ── Populate sermon info and select correct player mode ───────
+        // ── Helpers ───────────────────────────────────────────────────
+        function fmtTime(sec) {
+            if (isNaN(sec) || !isFinite(sec)) return '--:--';
+            var s = Math.floor(sec), m = Math.floor(s / 60), r = s % 60;
+            return m + ':' + (r < 10 ? '0' : '') + r;
+        }
+
+        // ── Custom Player Engine ──────────────────────────────────────
+        function initCustomPlayer(audio) {
+            var playBtn   = document.getElementById('cpPlayBtn');
+            var skipBack  = document.getElementById('cpSkipBack');
+            var skipFwd   = document.getElementById('cpSkipFwd');
+            var track     = document.getElementById('cpTrack');
+            var fill      = document.getElementById('cpFill');
+            var curEl     = document.getElementById('cpCurrent');
+            var durEl     = document.getElementById('cpDuration');
+            var volSlider = document.getElementById('cpVolume');
+            var volIcon   = document.getElementById('cpVolIcon');
+            var speedSel  = document.getElementById('cpSpeed');
+            var wave      = document.getElementById('cpWave');
+            var status    = document.getElementById('cpStatus');
+
+            // Play / Pause
+            function setPlayState(playing) {
+                playBtn.innerHTML = playing ? '&#9646;&#9646;' : '&#9654;';
+                playBtn.setAttribute('aria-label', playing ? 'Pause' : 'Play');
+                playBtn.classList.toggle('playing', playing);
+                wave.classList.toggle('playing', playing);
+            }
+
+            playBtn.addEventListener('click', function () {
+                if (audio.paused) {
+                    audio.play().catch(function(e) {
+                        status.textContent = 'Tap play again to start.';
+                    });
+                } else {
+                    audio.pause();
+                }
+            });
+
+            // Skip
+            skipBack.addEventListener('click', function () {
+                audio.currentTime = Math.max(0, audio.currentTime - 15);
+            });
+            skipFwd.addEventListener('click', function () {
+                audio.currentTime = Math.min(audio.duration || 0, audio.currentTime + 30);
+            });
+
+            // Progress bar — click to seek
+            var seeking = false;
+            function seekTo(e) {
+                var rect = track.getBoundingClientRect();
+                var pct  = Math.min(1, Math.max(0, (e.clientX - rect.left) / rect.width));
+                if (isFinite(audio.duration)) audio.currentTime = pct * audio.duration;
+            }
+            track.addEventListener('mousedown', function(e) { seeking = true; seekTo(e); });
+            document.addEventListener('mousemove', function(e) { if (seeking) seekTo(e); });
+            document.addEventListener('mouseup',   function()  { seeking = false; });
+            // Touch support
+            track.addEventListener('touchstart', function(e) { seekTo(e.touches[0]); }, {passive:true});
+            track.addEventListener('touchmove',  function(e) { seekTo(e.touches[0]); }, {passive:true});
+
+            // Volume
+            volSlider.addEventListener('input', function () {
+                audio.volume = parseFloat(this.value);
+                audio.muted  = (audio.volume === 0);
+                updateVolIcon();
+                updateVolGradient();
+            });
+            volIcon.addEventListener('click', function () {
+                audio.muted = !audio.muted;
+                if (!audio.muted && audio.volume === 0) { audio.volume = 0.8; volSlider.value = 0.8; }
+                updateVolIcon();
+                updateVolGradient();
+            });
+            function updateVolIcon() {
+                volIcon.textContent = (audio.muted || audio.volume === 0) ? '🔇' : (audio.volume < 0.5 ? '🔉' : '🔊');
+            }
+            function updateVolGradient() {
+                var pct = (audio.muted ? 0 : audio.volume) * 100;
+                volSlider.style.background =
+                    'linear-gradient(to right, var(--gold) ' + pct + '%, rgba(255,255,255,0.2) ' + pct + '%)';
+            }
+            updateVolGradient();
+
+            // Speed
+            speedSel.addEventListener('change', function () {
+                audio.playbackRate = parseFloat(this.value);
+            });
+
+            // Audio events
+            audio.addEventListener('play',    function () { setPlayState(true);  status.textContent = ''; });
+            audio.addEventListener('pause',   function () { setPlayState(false); });
+            audio.addEventListener('ended',   function () { setPlayState(false); audio.currentTime = 0; });
+            audio.addEventListener('waiting', function () { status.textContent = 'Loading…'; });
+            audio.addEventListener('playing', function () { status.textContent = ''; });
+            audio.addEventListener('error',   function () { status.textContent = 'Could not load audio. Check the URL in SERMON config.'; setPlayState(false); });
+
+            audio.addEventListener('loadedmetadata', function () {
+                var label = fmtTime(audio.duration);
+                durEl.textContent = label;
+                // Update banner duration
+                document.getElementById('bannerSermonMeta').textContent =
+                    SERMON.speaker + ' \u00B7 ' + SERMON.date + ' \u00B7 ' + Math.floor(audio.duration/60) + ' min';
+            });
+
+            audio.addEventListener('timeupdate', function () {
+                if (!isFinite(audio.duration) || audio.duration === 0) return;
+                var pct = (audio.currentTime / audio.duration) * 100;
+                fill.style.width = pct + '%';
+                curEl.textContent = fmtTime(audio.currentTime);
+            });
+        }
+
+        // ── Populate sermon info and choose player mode ───────────────
         function loadSermonInfo() {
-            // Text fields
             document.getElementById('sermonTitle').textContent       = SERMON.title;
             document.getElementById('sermonDate').textContent        = SERMON.date;
             document.getElementById('sermonDescription').textContent = SERMON.description;
-            document.getElementById('audioDuration').textContent     = SERMON.duration;
-
-            // Home page banner
             document.getElementById('bannerSermonTitle').textContent = SERMON.title;
             document.getElementById('bannerSermonMeta').textContent  =
                 SERMON.speaker + ' \u00B7 ' + SERMON.date + ' \u00B7 ' + SERMON.duration;
 
-            var audioWrapper    = document.getElementById('audioPlayerWrapper');
-            var externalWrapper = document.getElementById('externalPlayWrapper');
-            var playBtn         = document.getElementById('playExternalBtn');
+            var audio        = document.getElementById('sermonAudio');
+            var customPlayer = document.getElementById('customPlayer');
+            var extBlock     = document.getElementById('cpExternalBlock');
 
             if (SERMON.directUrl && SERMON.directUrl.trim() !== '') {
-                // ── EMBEDDED MODE: direct URL available ───────────────
-                var audio = document.getElementById('sermonAudio');
-                audio.src = SERMON.directUrl;
+                // ── CUSTOM EMBEDDED PLAYER MODE ───────────────────────
+                customPlayer.style.display = 'block';
+                extBlock.style.display     = 'none';
+                audio.src  = SERMON.directUrl;
                 audio.load();
-                audioWrapper.style.display    = 'block';
-                externalWrapper.style.display = 'none';
-
-                audio.addEventListener('loadedmetadata', function () {
-                    var totalSec = Math.round(audio.duration);
-                    var mins = Math.floor(totalSec / 60);
-                    var secs = totalSec % 60;
-                    var label = mins + ' min' + (secs > 0 ? ' ' + secs + ' sec' : '');
-                    document.getElementById('audioDuration').textContent = label;
-                    document.getElementById('bannerSermonMeta').textContent =
-                        SERMON.speaker + ' \u00B7 ' + SERMON.date + ' \u00B7 ' + label;
-                });
+                initCustomPlayer(audio);
             } else {
-                // ── EXTERNAL MODE: show the play button ───────────────
-                audioWrapper.style.display    = 'none';
-                externalWrapper.style.display = 'block';
-                if (playBtn) {
-                    playBtn.href = SERMON.externalUrl;
-                    playBtn.querySelector('.play-btn-text small').textContent =
-                        'Opens & plays in a new tab \u00B7 ' + SERMON.duration;
-                }
+                // ── EXTERNAL BUTTON MODE (until direct URL is ready) ─
+                customPlayer.style.display = 'none';
+                extBlock.style.display     = 'block';
+                var btn  = document.getElementById('cpExternalBtn');
+                var meta = document.getElementById('cpExtMeta');
+                if (btn)  btn.href = SERMON.externalUrl;
+                if (meta) meta.textContent = 'Opens & plays in a new tab \u00B7 ' + SERMON.duration;
             }
         }
 
