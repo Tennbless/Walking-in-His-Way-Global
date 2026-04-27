@@ -372,6 +372,77 @@
             .cp-bottom { flex-direction: column; align-items: stretch; }
         }
 
+        /* ── EPISODE LIBRARY ─────────────────────────────────────────── */
+        .episode-library { margin-top: 3.5rem; }
+        .library-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem; color: var(--gold);
+            margin-bottom: 1.5rem; font-weight: 600;
+            padding-bottom: 0.8rem;
+            border-bottom: 1px solid rgba(212,175,55,0.25);
+        }
+        .episode-card {
+            display: flex; gap: 1.5rem; align-items: flex-start;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(212,175,55,0.15);
+            border-radius: 14px; padding: 1.5rem;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+        .episode-card:hover {
+            background: rgba(255,255,255,0.09);
+            border-color: rgba(212,175,55,0.4);
+            transform: translateX(4px);
+        }
+        .ep-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem; font-weight: 700;
+            color: rgba(212,175,55,0.3);
+            min-width: 42px; text-align: center;
+            line-height: 1;
+            padding-top: 4px;
+        }
+        .ep-body { flex: 1; }
+        .ep-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.15rem; font-weight: 600;
+            color: var(--white); margin-bottom: 0.5rem;
+            line-height: 1.4;
+        }
+        .ep-meta {
+            font-size: 0.78rem; color: var(--gold);
+            letter-spacing: 1px; margin-bottom: 0.7rem;
+            display: flex; gap: 1rem; flex-wrap: wrap;
+        }
+        .ep-desc {
+            font-size: 0.92rem; color: rgba(255,255,255,0.65);
+            line-height: 1.6; margin-bottom: 1rem;
+        }
+        .ep-listen-btn {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            background: transparent;
+            border: 1px solid rgba(212,175,55,0.5);
+            color: var(--gold);
+            padding: 0.5rem 1.2rem; border-radius: 20px;
+            font-size: 0.82rem; font-weight: 600;
+            text-decoration: none; letter-spacing: 0.5px;
+            transition: all 0.3s ease; cursor: pointer;
+            font-family: 'Raleway', sans-serif;
+        }
+        .ep-listen-btn:hover {
+            background: var(--gold); color: var(--primary-red);
+            border-color: var(--gold);
+            box-shadow: 0 4px 16px rgba(212,175,55,0.4);
+        }
+        .ep-listen-btn.featured {
+            background: var(--gold); color: var(--primary-red);
+            border-color: var(--gold);
+        }
+        @media (max-width: 600px) {
+            .episode-card { flex-direction: column; gap: 0.5rem; }
+            .ep-number { font-size: 1.2rem; }
+        }
+
         /* ── Payment ─────────────────────────────────────────────────── */
         .payment-options { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin: 3rem 0; }
         .payment-card { background: linear-gradient(135deg, var(--primary-red), #6d0605); padding: 3rem; border-radius: 15px; text-align: center; color: var(--white); box-shadow: 0 10px 40px rgba(0,0,0,0.2); transition: all 0.3s ease; }
@@ -540,36 +611,34 @@
     <!-- ══ Sermons ══════════════════════════════════════════════════════ -->
     <section id="sermons" class="page-section section-dark">
         <div class="container">
-            <h2 class="section-title">Sermons &amp; Messages</h2>
-            <p class="section-subtitle">Experience powerful, life-changing messages that will strengthen your faith and deepen your relationship with God.</p>
+            <h2 class="section-title">The Frequency</h2>
+            <p class="section-subtitle">Heaven is Transmitting. Are you receiving? New episodes from Walking in His-Way Global Ministry — available wherever you listen to podcasts.</p>
 
             <!-- ★ LATEST SERMON PLAYER ★ -->
             <div class="sermon-player">
                 <div class="sermon-player-header">
-                    <h3>Latest Sermon</h3>
+                    <h3>Latest Episode</h3>
                     <span class="sermon-new-pill">🔴 NEW</span>
                 </div>
 
                 <!-- Sermon Title Block -->
                 <div class="sermon-title-block">
-                    <div class="sermon-name" id="sermonTitle">TIME Pt. 2</div>
+                    <div class="sermon-name" id="sermonTitle">What Fear Does to Your Life — And Why You Were Never Meant to Live There</div>
                     <div class="sermon-speaker">Walking in His-Way Global Ministry</div>
                     <span class="sermon-date-tag" id="sermonDate">April 2026</span>
                 </div>
 
-                <!-- Hidden native audio element — driven entirely by custom controls -->
+                <!-- Hidden native audio element -->
                 <audio id="sermonAudio" preload="metadata" style="display:none;"></audio>
 
-                <!-- ★ CUSTOM PLAYER (visible when directUrl is set) ★ -->
+                <!-- ★ CUSTOM PLAYER ★ -->
                 <div class="cp-outer" id="customPlayer" style="display:none;">
-                    <!-- Animated waveform -->
                     <div class="cp-wave" id="cpWave">
                         <span></span><span></span><span></span><span></span><span></span>
                         <span></span><span></span><span></span><span></span><span></span>
                         <span></span><span></span><span></span><span></span><span></span>
                         <span></span><span></span><span></span><span></span><span></span>
                     </div>
-                    <!-- Progress bar -->
                     <div class="cp-progress-row">
                         <span class="cp-time" id="cpCurrent">0:00</span>
                         <div class="cp-progress-track" id="cpTrack">
@@ -579,9 +648,8 @@
                         </div>
                         <span class="cp-time right" id="cpDuration">--:--</span>
                     </div>
-                    <!-- Play / skip controls -->
                     <div class="cp-controls">
-                        <button class="cp-btn cp-skip" id="cpSkipBack" title="Back 15 seconds" aria-label="Skip back 15 seconds">
+                        <button class="cp-btn cp-skip" id="cpSkipBack" aria-label="Skip back 15 seconds">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22">
                                 <polyline points="1 4 1 10 7 10"></polyline>
                                 <path d="M3.51 15a9 9 0 1 0 .49-4.5"></path>
@@ -589,7 +657,7 @@
                             <span>15s</span>
                         </button>
                         <button class="cp-btn cp-play-btn" id="cpPlayBtn" aria-label="Play">&#9654;</button>
-                        <button class="cp-btn cp-skip" id="cpSkipFwd" title="Forward 30 seconds" aria-label="Skip forward 30 seconds">
+                        <button class="cp-btn cp-skip" id="cpSkipFwd" aria-label="Skip forward 30 seconds">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22">
                                 <polyline points="23 4 23 10 17 10"></polyline>
                                 <path d="M20.49 15a9 9 0 1 1-.49-4.5"></path>
@@ -597,10 +665,9 @@
                             <span>30s</span>
                         </button>
                     </div>
-                    <!-- Volume + Speed -->
                     <div class="cp-bottom">
                         <div class="cp-vol-row">
-                            <span class="cp-vol-icon" id="cpVolIcon" title="Mute/Unmute">🔊</span>
+                            <span class="cp-vol-icon" id="cpVolIcon">🔊</span>
                             <input type="range" class="cp-vol-slider" id="cpVolume" min="0" max="1" step="0.02" value="1" aria-label="Volume">
                         </div>
                         <select class="cp-speed-select" id="cpSpeed" aria-label="Playback speed">
@@ -614,14 +681,14 @@
                     <div class="cp-loading" id="cpStatus"></div>
                 </div>
 
-                <!-- ★ EXTERNAL FALLBACK (visible when no directUrl yet) ★ -->
+                <!-- ★ EXTERNAL FALLBACK ★ -->
                 <div id="cpExternalBlock" style="display:none;">
                     <div class="cp-outer cp-external-block">
-                        <a id="cpExternalBtn" href="https://open.spotify.com/episode/3qvZ2kawxcqcbVEfuNKhrQ" target="_blank" rel="noopener" class="cp-external-btn">
+                        <a id="cpExternalBtn" href="#" target="_blank" rel="noopener" class="cp-external-btn">
                             <span class="cp-ext-circle">&#9654;</span>
                             <span class="cp-ext-text">
                                 <strong>Play Message</strong>
-                                <small id="cpExtMeta">Opens &amp; plays in a new tab · 88 min</small>
+                                <small id="cpExtMeta">Opens &amp; plays in a new tab</small>
                             </span>
                         </a>
                         <p class="cp-ext-note">Click above to listen — the message will open and begin playing immediately.</p>
@@ -630,25 +697,18 @@
 
                 <div class="sermon-info">
                     <h4>About This Message</h4>
-                    <p id="sermonDescription">Part 2 of the powerful series on TIME. Be encouraged, uplifted, and transformed by the Spirit of God.</p>
+                    <p id="sermonDescription">Fear is loud. Fear is convincing. And for most people, fear has been making the decisions for years. But what if the life you've been waiting for is sitting on the other side of the very thing that terrifies you?</p>
                 </div>
             </div>
             <!-- ★ END LATEST SERMON PLAYER ★ -->
 
-            <div class="cards-grid" style="margin-top:3rem;">
-                <div class="card">
-                    <h3>Weekly Services</h3>
-                    <p>Join us every Sunday for powerful worship experiences and Spirit-filled teaching that will transform your life. We are led and guided by the Holy Spirit as you encounter God's presence, receive biblical instruction, and connect with a community of believers who are passionate about growing in their faith and serving God's kingdom.</p>
-                </div>
-                <div class="card">
-                    <h3>Bible Studies</h3>
-                    <p>Dive deeper into God's Word through our comprehensive Bible study programs. Explore the richness of Scripture through interactive discussions, practical applications, and Spirit-led insights. Our studies are designed to help you develop a solid biblical foundation, understand Kingdom principles, and apply God's truth to every area of your life with wisdom and discernment.</p>
-                </div>
-                <div class="card">
-                    <h3>Special Messages</h3>
-                    <p>Access special sermon series, prophetic messages, and anointed teachings from our ministry leaders and guest speakers. These powerful messages address relevant topics, provide spiritual insight, and equip you with the tools you need to overcome challenges, fulfill your destiny, and walk in the fullness of God's promises for your life and family.</p>
-                </div>
+            <!-- ★ EPISODE LIBRARY ★ -->
+            <div class="episode-library">
+                <h3 class="library-title">All Episodes</h3>
+                <div class="episode-list" id="episodeList"></div>
             </div>
+            <!-- ★ END EPISODE LIBRARY ★ -->
+
         </div>
     </section>
 
@@ -1060,30 +1120,70 @@
 
     <script>
         // ══════════════════════════════════════════════════════════════
-        // SERMON CONFIG — update this block each time you upload a new sermon
+        // EPISODES — add a new object to the TOP of this array each time
+        // you release a new episode. The first entry is always the featured player.
         // ══════════════════════════════════════════════════════════════
-        var SERMON = {
-            title:       "TIME Pt. 2",
-            speaker:     "Walking in His-Way Global Ministry",
-            date:        "April 2026",
-            duration:    "88 min",
-            description: "We live by the clock — haunted by the past, anxious about the future. But what if time, as we know it, was never meant to hold you? God doesn't live in time. He stands outside of it, above it, completely unbound by it. It's the earth that is subject to time. Not heaven. Not God. In Part 2 of the TIME series, Christ reframes everything — your delays, your seasons, your setbacks. Your breakthrough isn't late. God is just not bound by your watch.",
-
-            // Paste the direct MP3 URL from Spotify for Creators (or any host) here.
-            // Once filled in, the custom embedded player activates automatically.
-            // Leave empty ("") to show the external play button instead.
-            directUrl:   "",
-
-            // Fallback link shown when directUrl is empty:
-            externalUrl: "https://open.spotify.com/episode/3qvZ2kawxcqcbVEfuNKhrQ"
-        };
+        var EPISODES = [
+            {
+                title:       "What Fear Does to Your Life — And Why You Were Never Meant to Live There",
+                speaker:     "Walking in His-Way Global Ministry",
+                date:        "April 2026",
+                duration:    "",
+                description: "Fear is loud. Fear is convincing. And for most people, fear has been making the decisions for years — disguised as wisdom, caution, and common sense. But what if the life you've been waiting for is sitting on the other side of the very thing that terrifies you? This isn't a pep talk. This is a revelation. God never designed you for a fear-driven life. He designed you for a faith-fueled one — and there is a version of you that fear has been silencing for far too long.",
+                directUrl:   "",
+                externalUrl: "https://open.spotify.com/episode/6CN6Omr8RsGWaVaxr7rzH9"
+            },
+            {
+                title:       "TIME Pt. 2 — What If Everything You Knew About Time Was Wrong?",
+                speaker:     "Walking in His-Way Global Ministry",
+                date:        "April 2026",
+                duration:    "88 min",
+                description: "We live by the clock — haunted by the past, anxious about the future. But what if time, as we know it, was never meant to hold you? God doesn't live in time. He stands outside of it, above it, completely unbound by it. It's the earth that is subject to time. Not heaven. Not God. In Part 2 of the TIME series, Christ reframes everything — your delays, your seasons, your setbacks. Your breakthrough isn't late. God is just not bound by your watch.",
+                directUrl:   "sermon-latest.mp3",
+                externalUrl: "https://open.spotify.com/episode/3qvZ2kawxcqcbVEfuNKhrQ"
+            }
+        ];
         // ══════════════════════════════════════════════════════════════
+
+        // Shortcut — featured is always the first episode
+        var SERMON = EPISODES[0];
 
         // ── Helpers ───────────────────────────────────────────────────
         function fmtTime(sec) {
             if (isNaN(sec) || !isFinite(sec)) return '--:--';
             var s = Math.floor(sec), m = Math.floor(s / 60), r = s % 60;
             return m + ':' + (r < 10 ? '0' : '') + r;
+        }
+
+        // ── Render Episode Library ────────────────────────────────────
+        function renderEpisodeLibrary() {
+            var list = document.getElementById('episodeList');
+            if (!list) return;
+            var html = '';
+            EPISODES.forEach(function(ep, i) {
+                var isFeatured = (i === 0);
+                var listenHref = ep.directUrl ? '#' : ep.externalUrl;
+                var listenTarget = ep.directUrl ? '' : 'target="_blank" rel="noopener"';
+                var listenLabel = isFeatured ? '▶ Now Playing' : '▶ Listen';
+                var btnClass    = isFeatured ? 'ep-listen-btn featured' : 'ep-listen-btn';
+                var onclick     = ep.directUrl
+                    ? 'onclick="window.scrollTo({top:0,behavior:\'smooth\'});return false;"'
+                    : '';
+                html += '<div class="episode-card">' +
+                    '<div class="ep-number">' + (EPISODES.length - i) + '</div>' +
+                    '<div class="ep-body">' +
+                        '<div class="ep-title">' + ep.title + '</div>' +
+                        '<div class="ep-meta">' +
+                            '<span>📅 ' + ep.date + '</span>' +
+                            (ep.duration ? '<span>⏱ ' + ep.duration + '</span>' : '') +
+                            '<span>🎙 ' + ep.speaker + '</span>' +
+                        '</div>' +
+                        '<div class="ep-desc">' + ep.description.substring(0, 180) + '…</div>' +
+                        '<a href="' + listenHref + '" ' + listenTarget + ' ' + onclick + ' class="' + btnClass + '">' + listenLabel + '</a>' +
+                    '</div>' +
+                '</div>';
+            });
+            list.innerHTML = html;
         }
 
         // ── Custom Player Engine ──────────────────────────────────────
@@ -1364,8 +1464,8 @@
 
         // ── Init ─────────────────────────────────────────────────────────
         generateCalendar();
+        renderEpisodeLibrary();
         document.addEventListener('DOMContentLoaded', loadSermonInfo);
-        // Fallback if DOMContentLoaded already fired (script runs after parse)
         if (document.readyState !== 'loading') { loadSermonInfo(); }
     </script>
 </body>
