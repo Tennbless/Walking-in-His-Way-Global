@@ -3,206 +3,369 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Table-In™ | Walking In His Way Global Ministry</title>
+<title>Table-In&#8482; | Walking In His Way Global Ministry&#8482;</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"/>
 <style>
-  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-  :root {
-    --soil: #1e1409; --bark: #3d2b10; --amber: #c07c22; --harvest: #e8a73a;
-    --wheat: #f5dda4; --cream: #fdf7ec; --sage: #5b7a4e; --forest: #2e4a26;
-    --mist: #e8ede5; --ink: #1a1209; --linen: #f9f3e6;
-  }
-  html { scroll-behavior: smooth; }
-  body { background: var(--cream); color: var(--ink); font-family: 'Jost', sans-serif; font-weight: 300; line-height: 1.7; overflow-x: hidden; }
+/* ── RESET & TOKENS ─────────────────────────────────── */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --soil:#1e1409;--bark:#3d2b10;--amber:#c07c22;--harvest:#e8a73a;
+  --wheat:#f5dda4;--cream:#fdf7ec;--sage:#5b7a4e;--forest:#2e4a26;
+  --mist:#e8ede5;--ink:#1a1209;--linen:#f9f3e6;--nav-h:72px;
+}
+html{scroll-behavior:smooth;scroll-padding-top:var(--nav-h)}
+body{background:var(--cream);color:var(--ink);font-family:'Jost',sans-serif;font-weight:300;line-height:1.7;overflow-x:hidden}
 
-  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.2rem 4rem; background: rgba(30,20,9,0.92); backdrop-filter: blur(8px); border-bottom: 1px solid rgba(192,124,34,0.25); }
-  .nav-brand { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 600; color: var(--harvest); letter-spacing: 0.08em; text-decoration: none; }
-  .nav-brand span { color: #fff; font-weight: 300; }
-  nav ul { list-style: none; display: flex; gap: 2.5rem; }
-  nav ul a { font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(245,221,164,0.75); text-decoration: none; transition: color 0.3s; }
-  nav ul a:hover { color: var(--harvest); }
+/* ── NAV ────────────────────────────────────────────── */
+nav.main-nav{
+  position:fixed;top:0;left:0;right:0;z-index:300;
+  height:var(--nav-h);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 4rem;
+  background:rgba(20,13,5,.96);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(192,124,34,.28);
+}
+.nav-brand{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:600;color:var(--harvest);letter-spacing:.08em;text-decoration:none;flex-shrink:0}
+.nav-brand span{color:#fff;font-weight:300}
+.nav-links{list-style:none;display:flex;gap:0;align-items:center}
+.nav-links li a,.nav-links li button{
+  font-family:'Jost',sans-serif;font-size:.75rem;letter-spacing:.18em;
+  text-transform:uppercase;color:rgba(245,221,164,.72);
+  text-decoration:none;background:none;border:none;cursor:pointer;
+  padding:.5rem 1.1rem;transition:color .25s;white-space:nowrap;
+  display:block;
+}
+.nav-links li a:hover,.nav-links li button:hover{color:var(--harvest)}
+.nav-links li a.nav-cta{
+  background:var(--harvest);color:var(--soil);
+  padding:.45rem 1.2rem;font-weight:500;
+  margin-left:.6rem;transition:background .25s;
+}
+.nav-links li a.nav-cta:hover{background:var(--amber);color:var(--soil)}
 
-  .hero { min-height: 100vh; display: grid; place-items: center; position: relative; overflow: hidden; background: var(--soil); }
-  .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 70% 60% at 60% 40%, rgba(192,124,34,0.18) 0%, transparent 65%), radial-gradient(ellipse 50% 80% at 10% 80%, rgba(46,74,38,0.35) 0%, transparent 60%), linear-gradient(160deg, #0f0b04 0%, #1e1409 45%, #2e1d0b 100%); }
-  .hero-deco { position: absolute; bottom: 0; right: 0; width: 420px; height: 520px; opacity: 0.12; pointer-events: none; }
-  .hero-deco-left { position: absolute; bottom: 0; left: -40px; width: 320px; height: 480px; opacity: 0.08; pointer-events: none; transform: scaleX(-1); }
-  .hero-content { position: relative; z-index: 2; text-align: center; padding: 8rem 2rem 5rem; max-width: 860px; }
-  .hero-eyebrow { font-size: 0.72rem; letter-spacing: 0.32em; text-transform: uppercase; color: var(--harvest); margin-bottom: 1.6rem; opacity: 0; animation: fadeUp 0.8s ease 0.2s forwards; }
-  .hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(5rem, 14vw, 11rem); font-weight: 300; line-height: 0.88; color: var(--cream); letter-spacing: -0.02em; margin-bottom: 0.2em; opacity: 0; animation: fadeUp 1s ease 0.4s forwards; }
-  .hero-title em { font-style: italic; color: var(--harvest); display: block; }
-  .hero-sub { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.15rem, 2.5vw, 1.6rem); font-weight: 300; font-style: italic; color: var(--wheat); margin: 2rem auto 3rem; max-width: 640px; line-height: 1.6; opacity: 0; animation: fadeUp 1s ease 0.65s forwards; }
-  .hero-verse { font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(192,124,34,0.65); margin-bottom: 3.5rem; opacity: 0; animation: fadeUp 1s ease 0.85s forwards; }
-  .btn-group { display: flex; gap: 1.2rem; justify-content: center; flex-wrap: wrap; opacity: 0; animation: fadeUp 1s ease 1.05s forwards; }
-  .btn-primary { background: var(--harvest); color: var(--soil); padding: 1rem 2.4rem; font-family: 'Jost', sans-serif; font-size: 0.8rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; border: none; cursor: pointer; text-decoration: none; display: inline-block; transition: background 0.3s, transform 0.2s; }
-  .btn-primary:hover { background: var(--amber); transform: translateY(-2px); }
-  .btn-outline { background: transparent; color: var(--wheat); padding: 1rem 2.4rem; font-family: 'Jost', sans-serif; font-size: 0.8rem; font-weight: 400; letter-spacing: 0.18em; text-transform: uppercase; border: 1px solid rgba(245,221,164,0.35); cursor: pointer; text-decoration: none; display: inline-block; transition: border-color 0.3s, color 0.3s; }
-  .btn-outline:hover { border-color: var(--harvest); color: var(--harvest); }
-  .scroll-hint { position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 0.5rem; color: rgba(245,221,164,0.4); font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; opacity: 0; animation: fadeUp 1s ease 1.4s forwards; }
-  .scroll-line { width: 1px; height: 52px; background: linear-gradient(to bottom, var(--harvest), transparent); animation: scrollPulse 2s ease-in-out infinite; }
-  .divider { height: 4px; background: linear-gradient(90deg, transparent, var(--harvest), var(--amber), var(--sage), transparent); }
+/* Hamburger */
+.nav-toggle{display:none;flex-direction:column;justify-content:center;gap:5px;background:none;border:none;cursor:pointer;padding:6px;width:40px;height:40px}
+.nav-toggle span{display:block;height:1.5px;background:var(--harvest);transition:transform .3s,opacity .3s}
+.nav-toggle.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.nav-toggle.open span:nth-child(2){opacity:0}
+.nav-toggle.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
 
-  section { padding: 7rem 2rem; }
-  .container { max-width: 1100px; margin: 0 auto; }
-  .section-label { font-size: 0.68rem; letter-spacing: 0.32em; text-transform: uppercase; color: var(--amber); margin-bottom: 1rem; display: block; }
-  .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.4rem, 5vw, 4rem); font-weight: 400; line-height: 1.1; margin-bottom: 1.5rem; color: var(--soil); }
-  .section-title em { font-style: italic; color: var(--amber); }
+/* Mobile drawer */
+.nav-drawer{
+  display:none;position:fixed;top:var(--nav-h);left:0;right:0;z-index:299;
+  background:rgba(14,9,3,.98);backdrop-filter:blur(14px);
+  flex-direction:column;padding:1.5rem 2rem 2rem;
+  border-bottom:1px solid rgba(192,124,34,.2);
+  gap:.2rem;
+}
+.nav-drawer.open{display:flex}
+.nav-drawer a,.nav-drawer button{
+  font-family:'Jost',sans-serif;font-size:.82rem;letter-spacing:.18em;text-transform:uppercase;
+  color:rgba(245,221,164,.65);text-decoration:none;background:none;border:none;cursor:pointer;
+  padding:.85rem 0;text-align:left;
+  border-bottom:1px solid rgba(192,124,34,.1);transition:color .25s;
+}
+.nav-drawer a:last-child,.nav-drawer button:last-child{border-bottom:none}
+.nav-drawer a:hover,.nav-drawer button:hover{color:var(--harvest)}
 
-  .mission { background: var(--linen); }
-  .mission-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; margin-top: 3rem; }
-  .mission-text p { color: #4a3820; font-size: 1.05rem; margin-bottom: 1.4rem; line-height: 1.8; }
-  .mission-text p strong { font-weight: 500; color: var(--bark); }
-  .who-serve { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; }
-  .serve-card { background: #fff; border: 1px solid rgba(192,124,34,0.2); padding: 1.4rem 1.2rem; position: relative; transition: transform 0.3s, box-shadow 0.3s; }
-  .serve-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--sage), var(--harvest)); }
-  .serve-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(30,20,9,0.12); }
-  .serve-icon { width: 36px; height: 36px; background: var(--mist); border-radius: 50%; display: grid; place-items: center; margin-bottom: 0.8rem; }
-  .serve-icon svg { width: 18px; height: 18px; stroke: var(--sage); fill: none; stroke-width: 1.5; }
-  .serve-card h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; font-weight: 600; color: var(--bark); margin-bottom: 0.25rem; }
-  .serve-card p { font-size: 0.82rem; color: #7a6040; line-height: 1.55; }
+/* ── HERO ────────────────────────────────────────────── */
+.hero{min-height:100vh;display:grid;place-items:center;position:relative;overflow:hidden;background:var(--soil)}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 60% 40%,rgba(192,124,34,.18) 0%,transparent 65%),radial-gradient(ellipse 50% 80% at 10% 80%,rgba(46,74,38,.35) 0%,transparent 60%),linear-gradient(160deg,#0f0b04 0%,#1e1409 45%,#2e1d0b 100%)}
+.hero-deco{position:absolute;bottom:0;right:0;width:420px;height:520px;opacity:.12;pointer-events:none}
+.hero-deco-left{position:absolute;bottom:0;left:-40px;width:320px;height:480px;opacity:.08;pointer-events:none;transform:scaleX(-1)}
+.hero-content{position:relative;z-index:2;text-align:center;padding:8rem 2rem 5rem;max-width:860px}
+.hero-eyebrow{font-size:.72rem;letter-spacing:.32em;text-transform:uppercase;color:var(--harvest);margin-bottom:1.6rem;opacity:0;animation:fadeUp .8s ease .2s forwards}
+.hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(5rem,14vw,11rem);font-weight:300;line-height:.88;color:var(--cream);letter-spacing:-.02em;margin-bottom:.2em;opacity:0;animation:fadeUp 1s ease .4s forwards}
+.hero-title em{font-style:italic;color:var(--harvest);display:block}
+.hero-sub{font-family:'Cormorant Garamond',serif;font-size:clamp(1.15rem,2.5vw,1.6rem);font-weight:300;font-style:italic;color:var(--wheat);margin:2rem auto 3rem;max-width:640px;line-height:1.6;opacity:0;animation:fadeUp 1s ease .65s forwards}
+.hero-verse{font-size:.75rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(192,124,34,.65);margin-bottom:3.5rem;opacity:0;animation:fadeUp 1s ease .85s forwards}
+.btn-group{display:flex;gap:1.2rem;justify-content:center;flex-wrap:wrap;opacity:0;animation:fadeUp 1s ease 1.05s forwards}
+.btn-primary{background:var(--harvest);color:var(--soil);padding:1rem 2.4rem;font-family:'Jost',sans-serif;font-size:.8rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;border:none;cursor:pointer;text-decoration:none;display:inline-block;transition:background .3s,transform .2s}
+.btn-primary:hover{background:var(--amber);transform:translateY(-2px)}
+.btn-outline{background:transparent;color:var(--wheat);padding:1rem 2.4rem;font-family:'Jost',sans-serif;font-size:.8rem;font-weight:400;letter-spacing:.18em;text-transform:uppercase;border:1px solid rgba(245,221,164,.35);cursor:pointer;text-decoration:none;display:inline-block;transition:border-color .3s,color .3s}
+.btn-outline:hover{border-color:var(--harvest);color:var(--harvest)}
+.scroll-hint{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.5rem;color:rgba(245,221,164,.4);font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;opacity:0;animation:fadeUp 1s ease 1.4s forwards}
+.scroll-line{width:1px;height:52px;background:linear-gradient(to bottom,var(--harvest),transparent);animation:scrollPulse 2s ease-in-out infinite}
 
-  .pathway { background: var(--forest); color: var(--cream); overflow: hidden; position: relative; }
-  .pathway::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 50% at 80% 30%, rgba(232,167,58,0.12) 0%, transparent 65%), radial-gradient(ellipse 40% 60% at 5% 70%, rgba(91,122,78,0.3) 0%, transparent 55%); }
-  .pathway .container { position: relative; z-index: 2; }
-  .pathway .section-label { color: var(--harvest); }
-  .pathway .section-title { color: var(--cream); }
-  .pathway-intro { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.2rem, 2vw, 1.5rem); font-style: italic; color: var(--wheat); max-width: 680px; margin-bottom: 4rem; line-height: 1.65; }
-  .pathway-steps { display: grid; grid-template-columns: repeat(5, 1fr); position: relative; gap: 0; }
-  .pathway-steps::before { content: ''; position: absolute; top: 52px; left: 10%; right: 10%; height: 2px; background: linear-gradient(90deg, var(--sage), var(--harvest), var(--amber), var(--harvest), var(--sage)); }
-  .path-step { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 0 0.6rem; }
-  .path-node { width: 106px; height: 106px; border-radius: 50%; border: 2px solid rgba(232,167,58,0.4); background: rgba(30,20,9,0.6); display: grid; place-items: center; position: relative; z-index: 2; margin-bottom: 1.4rem; transition: border-color 0.3s, background 0.3s; }
-  .path-step:hover .path-node { border-color: var(--harvest); background: rgba(30,20,9,0.9); }
-  .path-node svg { width: 36px; height: 36px; stroke: var(--harvest); fill: none; stroke-width: 1.3; }
-  .path-step h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; font-weight: 600; color: var(--cream); margin-bottom: 0.4rem; }
-  .path-step p { font-size: 0.76rem; color: rgba(245,221,164,0.7); line-height: 1.5; }
-  .path-badge { display: inline-block; font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; background: rgba(232,167,58,0.18); border: 1px solid rgba(232,167,58,0.4); color: var(--harvest); padding: 0.3rem 0.7rem; margin-top: 0.6rem; }
-  .innovation-box { margin-top: 5rem; background: rgba(232,167,58,0.08); border: 1px solid rgba(232,167,58,0.25); border-left: 4px solid var(--harvest); padding: 2.5rem 3rem; display: grid; grid-template-columns: auto 1fr; gap: 2rem; align-items: start; }
-  .innovation-icon { font-size: 2.8rem; line-height: 1; }
-  .innovation-box h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 400; color: var(--harvest); margin-bottom: 0.8rem; }
-  .innovation-box p { color: var(--wheat); font-size: 0.95rem; line-height: 1.75; }
-  .innovation-box p + p { margin-top: 0.8rem; }
+/* ── DIVIDER / SECTION BASE ──────────────────────────── */
+.divider{height:4px;background:linear-gradient(90deg,transparent,var(--harvest),var(--amber),var(--sage),transparent)}
+section{padding:7rem 2rem}
+.container{max-width:1100px;margin:0 auto}
+.section-label{font-size:.68rem;letter-spacing:.32em;text-transform:uppercase;color:var(--amber);margin-bottom:1rem;display:block}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.4rem,5vw,4rem);font-weight:400;line-height:1.1;margin-bottom:1.5rem;color:var(--soil)}
+.section-title em{font-style:italic;color:var(--amber)}
 
-  .impact { background: var(--soil); }
-  .impact-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: rgba(192,124,34,0.2); border: 1px solid rgba(192,124,34,0.2); margin-top: 4rem; }
-  .impact-stat { padding: 3rem 2rem; text-align: center; background: var(--soil); transition: background 0.3s; }
-  .impact-stat:hover { background: #271a08; }
-  .impact-number { font-family: 'Cormorant Garamond', serif; font-size: 3.5rem; font-weight: 300; color: var(--harvest); line-height: 1; display: block; margin-bottom: 0.5rem; }
-  .impact-label { font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(245,221,164,0.5); }
-  .impact .section-title { color: var(--cream); }
-  .impact .section-label { color: var(--harvest); }
+/* ── MISSION ─────────────────────────────────────────── */
+.mission{background:var(--linen)}
+.mission-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;margin-top:3rem}
+.mission-text p{color:#4a3820;font-size:1.05rem;margin-bottom:1.4rem;line-height:1.8}
+.mission-text p strong{font-weight:500;color:var(--bark)}
+.who-serve{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
+.serve-card{background:#fff;border:1px solid rgba(192,124,34,.2);padding:1.4rem 1.2rem;position:relative;transition:transform .3s,box-shadow .3s}
+.serve-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--sage),var(--harvest))}
+.serve-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(30,20,9,.12)}
+.serve-icon{width:36px;height:36px;background:var(--mist);border-radius:50%;display:grid;place-items:center;margin-bottom:.8rem}
+.serve-icon svg{width:18px;height:18px;stroke:var(--sage);fill:none;stroke-width:1.5}
+.serve-card h4{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:600;color:var(--bark);margin-bottom:.25rem}
+.serve-card p{font-size:.82rem;color:#7a6040;line-height:1.55}
 
-  .how { background: var(--mist); }
-  .steps-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 3.5rem; }
-  .step-item { padding: 2.5rem 2rem; background: #fff; border: 1px solid rgba(91,122,78,0.2); position: relative; transition: transform 0.3s, box-shadow 0.3s; }
-  .step-item:hover { transform: translateY(-5px); box-shadow: 0 16px 40px rgba(30,20,9,0.1); }
-  .step-num { font-family: 'Cormorant Garamond', serif; font-size: 5rem; font-weight: 300; color: rgba(192,124,34,0.15); line-height: 0.8; position: absolute; top: 1.5rem; right: 1.5rem; }
-  .step-item h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 600; color: var(--bark); margin-bottom: 0.8rem; }
-  .step-item p { font-size: 0.9rem; color: #5a4428; line-height: 1.7; }
+/* ── PATHWAY SECTION ─────────────────────────────────── */
+.pathway{background:var(--forest);color:var(--cream);overflow:hidden;position:relative}
+.pathway::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 80% 30%,rgba(232,167,58,.12) 0%,transparent 65%),radial-gradient(ellipse 40% 60% at 5% 70%,rgba(91,122,78,.3) 0%,transparent 55%)}
+.pathway .container{position:relative;z-index:2}
+.pathway .section-label{color:var(--harvest)}
+.pathway .section-title{color:var(--cream)}
+.pathway-intro{font-family:'Cormorant Garamond',serif;font-size:clamp(1.2rem,2vw,1.5rem);font-style:italic;color:var(--wheat);max-width:680px;margin-bottom:4rem;line-height:1.65}
+.pathway-steps{display:grid;grid-template-columns:repeat(5,1fr);position:relative}
+.pathway-steps::before{content:'';position:absolute;top:52px;left:10%;right:10%;height:2px;background:linear-gradient(90deg,var(--sage),var(--harvest),var(--amber),var(--harvest),var(--sage))}
+.path-step{display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 .6rem}
+.path-node{width:106px;height:106px;border-radius:50%;border:2px solid rgba(232,167,58,.4);background:rgba(30,20,9,.6);display:grid;place-items:center;position:relative;z-index:2;margin-bottom:1.4rem;transition:border-color .3s,background .3s}
+.path-step:hover .path-node{border-color:var(--harvest);background:rgba(30,20,9,.9)}
+.path-node svg{width:36px;height:36px;stroke:var(--harvest);fill:none;stroke-width:1.3}
+.path-step h4{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-weight:600;color:var(--cream);margin-bottom:.4rem}
+.path-step p{font-size:.76rem;color:rgba(245,221,164,.7);line-height:1.5}
+.path-badge{display:inline-block;font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;background:rgba(232,167,58,.18);border:1px solid rgba(232,167,58,.4);color:var(--harvest);padding:.3rem .7rem;margin-top:.6rem}
+.innovation-box{margin-top:5rem;background:rgba(232,167,58,.08);border:1px solid rgba(232,167,58,.25);border-left:4px solid var(--harvest);padding:2.5rem 3rem;display:grid;grid-template-columns:auto 1fr;gap:2rem;align-items:start}
+.innovation-icon{font-size:2.8rem;line-height:1}
+.innovation-box h3{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:400;color:var(--harvest);margin-bottom:.8rem}
+.innovation-box p{color:var(--wheat);font-size:.95rem;line-height:1.75}
+.innovation-box p+p{margin-top:.8rem}
 
-  .involved { background: var(--linen); }
-  .involved-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 5rem; align-items: start; margin-top: 3rem; }
-  .involved-left p { font-size: 1rem; color: #4a3820; line-height: 1.8; margin-bottom: 1.2rem; }
-  .ways-list { list-style: none; margin-top: 1.5rem; }
-  .ways-list li { display: flex; gap: 1rem; align-items: flex-start; padding: 1rem 0; border-bottom: 1px solid rgba(192,124,34,0.15); }
-  .ways-list li:last-child { border-bottom: none; }
-  .ways-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--harvest); flex-shrink: 0; margin-top: 0.5rem; }
-  .ways-list strong { font-weight: 500; color: var(--bark); display: block; font-size: 0.95rem; }
-  .ways-list span { font-size: 0.84rem; color: #7a6040; }
-  .contact-form { background: #fff; border: 1px solid rgba(192,124,34,0.18); padding: 3rem; }
-  .contact-form h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 400; color: var(--bark); margin-bottom: 0.5rem; }
-  .contact-form p.form-sub { font-size: 0.84rem; color: #7a6040; margin-bottom: 2rem; }
-  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-  .form-group { margin-bottom: 1.2rem; }
-  .form-group label { display: block; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: #8a6838; margin-bottom: 0.4rem; }
-  .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 0.85rem 1rem; border: 1px solid rgba(192,124,34,0.25); background: var(--cream); font-family: 'Jost', sans-serif; font-size: 0.9rem; font-weight: 300; color: var(--ink); outline: none; transition: border-color 0.25s; -webkit-appearance: none; }
-  .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--harvest); background: #fff; }
-  .form-group textarea { resize: vertical; min-height: 100px; }
-  .form-msg { display: none; padding: 1rem; background: rgba(91,122,78,0.12); border: 1px solid rgba(91,122,78,0.3); border-left: 4px solid var(--sage); color: var(--forest); font-size: 0.88rem; margin-top: 1rem; }
-  .form-msg.visible { display: block; }
-  .submit-btn { width: 100%; padding: 1rem; background: var(--forest); color: var(--cream); border: none; cursor: pointer; font-family: 'Jost', sans-serif; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; margin-top: 0.5rem; transition: background 0.3s, transform 0.2s; }
-  .submit-btn:hover { background: var(--bark); transform: translateY(-1px); }
+/* ── IMPACT ──────────────────────────────────────────── */
+.impact{background:var(--soil)}
+.impact .section-title{color:var(--cream)}
+.impact .section-label{color:var(--harvest)}
+.impact-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(192,124,34,.2);border:1px solid rgba(192,124,34,.2);margin-top:4rem}
+.impact-stat{padding:3rem 2rem;text-align:center;background:var(--soil);transition:background .3s}
+.impact-stat:hover{background:#271a08}
+.impact-number{font-family:'Cormorant Garamond',serif;font-size:3.5rem;font-weight:300;color:var(--harvest);line-height:1;display:block;margin-bottom:.5rem}
+.impact-label{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(245,221,164,.5)}
 
-  /* FOOTER */
-  footer { background: var(--soil); border-top: 1px solid rgba(192,124,34,0.2); padding: 4rem 2rem 2.5rem; text-align: center; }
-  .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 300; color: var(--harvest); margin-bottom: 0.5rem; }
-  .footer-logo span { color: rgba(245,221,164,0.5); }
-  .footer-tagline { font-size: 0.8rem; color: rgba(245,221,164,0.45); letter-spacing: 0.12em; margin-bottom: 2rem; }
-  .footer-links { display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; margin-bottom: 1.5rem; }
-  .footer-links a { font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(245,221,164,0.45); text-decoration: none; transition: color 0.3s; }
-  .footer-links a:hover { color: var(--harvest); }
-  .footer-legal { display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; padding: 1.5rem 0; margin-bottom: 1.5rem; border-top: 1px solid rgba(192,124,34,0.14); border-bottom: 1px solid rgba(192,124,34,0.14); }
-  .footer-legal button { background: none; border: none; font-family: 'Jost', sans-serif; font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(245,221,164,0.4); cursor: pointer; padding: 0; transition: color 0.3s; }
-  .footer-legal button:hover { color: var(--harvest); }
-  .footer-legal span { color: rgba(192,124,34,0.3); font-size: 0.7rem; }
-  .footer-copy { font-size: 0.72rem; color: rgba(245,221,164,0.25); margin-bottom: 0.5rem; }
-  .footer-email { color: var(--harvest); text-decoration: none; }
-  .footer-email:hover { text-decoration: underline; }
-  .footer-parent { font-size: 0.76rem; color: rgba(245,221,164,0.3); margin-top: 0.4rem; }
+/* ── HOW IT WORKS ────────────────────────────────────── */
+.how{background:var(--mist)}
+.steps-row{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:3.5rem}
+.step-item{padding:2.5rem 2rem;background:#fff;border:1px solid rgba(91,122,78,.2);position:relative;transition:transform .3s,box-shadow .3s}
+.step-item:hover{transform:translateY(-5px);box-shadow:0 16px 40px rgba(30,20,9,.1)}
+.step-num{font-family:'Cormorant Garamond',serif;font-size:5rem;font-weight:300;color:rgba(192,124,34,.15);line-height:.8;position:absolute;top:1.5rem;right:1.5rem}
+.step-item h3{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:600;color:var(--bark);margin-bottom:.8rem}
+.step-item p{font-size:.9rem;color:#5a4428;line-height:1.7}
 
-  /* MODAL */
-  .modal-overlay { display: none; position: fixed; inset: 0; z-index: 500; background: rgba(10,7,2,0.85); backdrop-filter: blur(6px); align-items: center; justify-content: center; padding: 2rem; }
-  .modal-overlay.open { display: flex; animation: fadeIn 0.25s ease; }
-  .modal { background: var(--linen); max-width: 760px; width: 100%; max-height: 88vh; overflow-y: auto; position: relative; border-top: 4px solid var(--harvest); box-shadow: 0 40px 100px rgba(10,7,2,0.7); }
-  .modal-header { position: sticky; top: 0; background: var(--linen); z-index: 10; padding: 2rem 2.5rem 1.4rem; border-bottom: 1px solid rgba(192,124,34,0.2); display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; }
-  .modal-eyebrow { font-size: 0.65rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--amber); margin-bottom: 0.3rem; display: block; }
-  .modal-title { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 400; color: var(--bark); line-height: 1.1; }
-  .modal-close { background: none; border: 1px solid rgba(192,124,34,0.35); color: var(--amber); width: 38px; height: 38px; cursor: pointer; font-size: 1rem; flex-shrink: 0; display: grid; place-items: center; transition: background 0.2s, color 0.2s; font-family: sans-serif; }
-  .modal-close:hover { background: rgba(192,124,34,0.15); color: var(--harvest); }
-  .modal-body { padding: 2.2rem 2.5rem 3rem; }
-  .modal-effective { font-size: 0.74rem; color: #9a7040; letter-spacing: 0.1em; margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid rgba(192,124,34,0.15); }
-  .modal-body h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 600; color: var(--bark); margin: 2rem 0 0.7rem; padding-left: 0.8rem; border-left: 3px solid var(--harvest); }
-  .modal-body p { font-size: 0.9rem; color: #4a3820; line-height: 1.85; margin-bottom: 0.9rem; }
-  .modal-body ul { margin: 0.4rem 0 1rem 1.4rem; }
-  .modal-body ul li { font-size: 0.9rem; color: #4a3820; line-height: 1.75; margin-bottom: 0.4rem; }
-  .modal-body ul li strong { font-weight: 500; color: var(--bark); }
-  .modal-body a { color: var(--amber); text-decoration: none; }
-  .modal-body a:hover { text-decoration: underline; }
-  .modal-rule { height: 1px; background: rgba(192,124,34,0.15); margin: 0.5rem 0 0; }
+/* ── GET INVOLVED ────────────────────────────────────── */
+.involved{background:var(--linen)}
+.involved-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:5rem;align-items:start;margin-top:3rem}
+.involved-left p{font-size:1rem;color:#4a3820;line-height:1.8;margin-bottom:1.2rem}
+.ways-list{list-style:none;margin-top:1.5rem}
+.ways-list li{display:flex;gap:1rem;align-items:flex-start;padding:1rem 0;border-bottom:1px solid rgba(192,124,34,.15)}
+.ways-list li:last-child{border-bottom:none}
+.ways-dot{width:8px;height:8px;border-radius:50%;background:var(--harvest);flex-shrink:0;margin-top:.5rem}
+.ways-list strong{font-weight:500;color:var(--bark);display:block;font-size:.95rem}
+.ways-list span{font-size:.84rem;color:#7a6040}
+.involved-cta-box{background:#fff;border:1px solid rgba(192,124,34,.18);padding:3rem;text-align:center}
+.involved-cta-box h3{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;color:var(--bark);margin-bottom:.6rem}
+.involved-cta-box p{font-size:.92rem;color:#5a4428;margin-bottom:2rem;line-height:1.7}
+.cta-btn-stack{display:flex;flex-direction:column;gap:.8rem}
+.cta-btn-main{background:var(--forest);color:var(--cream);border:none;padding:1rem 2rem;font-family:'Jost',sans-serif;font-size:.8rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;transition:background .3s;width:100%}
+.cta-btn-main:hover{background:var(--bark)}
+.cta-btn-sec{background:none;color:var(--amber);border:1px solid rgba(192,124,34,.35);padding:.85rem 2rem;font-family:'Jost',sans-serif;font-size:.78rem;font-weight:400;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;transition:border-color .3s,color .3s;width:100%;text-decoration:none;display:block}
+.cta-btn-sec:hover{border-color:var(--harvest);color:var(--harvest)}
 
-  @keyframes fadeUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
-  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-  @keyframes scrollPulse { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
-  .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
-  .reveal.visible { opacity: 1; transform: translateY(0); }
+/* ── BACK TO TOP ─────────────────────────────────────── */
+#backTop{position:fixed;bottom:2rem;right:2rem;z-index:290;width:44px;height:44px;background:var(--harvest);color:var(--soil);border:none;cursor:pointer;display:grid;place-items:center;font-size:1.2rem;opacity:0;pointer-events:none;transition:opacity .3s,transform .3s}
+#backTop.visible{opacity:1;pointer-events:auto}
+#backTop:hover{background:var(--amber);transform:translateY(-3px)}
 
-  @media (max-width: 900px) {
-    nav { padding: 1rem 1.5rem; } nav ul { gap: 1.4rem; }
-    .mission-grid, .involved-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-    .pathway-steps { grid-template-columns: 1fr 1fr; gap: 2rem; }
-    .pathway-steps::before { display: none; }
-    .impact-grid { grid-template-columns: 1fr 1fr; }
-    .steps-row { grid-template-columns: 1fr; }
-    .form-row { grid-template-columns: 1fr; }
-    .innovation-box { grid-template-columns: 1fr; gap: 1rem; }
-    .who-serve { grid-template-columns: 1fr; }
-    section { padding: 5rem 1.5rem; }
-    .modal-body, .modal-header { padding-left: 1.5rem; padding-right: 1.5rem; }
-  }
-  @media (max-width: 600px) {
-    nav ul { display: none; }
-    .hero-content { padding: 7rem 1.5rem 4rem; }
-    .pathway-steps { grid-template-columns: 1fr; }
-    .impact-grid { grid-template-columns: 1fr 1fr; }
-    .contact-form { padding: 2rem 1.5rem; }
-  }
+/* ── FOOTER ──────────────────────────────────────────── */
+footer{background:var(--soil);border-top:1px solid rgba(192,124,34,.2);padding:4rem 2rem 2.5rem;text-align:center}
+.footer-logo{font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:300;color:var(--harvest);margin-bottom:.5rem}
+.footer-logo span{color:rgba(245,221,164,.5)}
+.footer-tagline{font-size:.8rem;color:rgba(245,221,164,.45);letter-spacing:.12em;margin-bottom:2rem}
+.footer-nav{display:flex;gap:0;justify-content:center;flex-wrap:wrap;margin-bottom:1.8rem}
+.footer-nav a,.footer-nav button{font-family:'Jost',sans-serif;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(245,221,164,.45);text-decoration:none;background:none;border:none;cursor:pointer;padding:.3rem .9rem;transition:color .3s}
+.footer-nav a:hover,.footer-nav button:hover{color:var(--harvest)}
+.footer-legal{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;align-items:center;padding:1.4rem 0;margin-bottom:1.6rem;border-top:1px solid rgba(192,124,34,.14);border-bottom:1px solid rgba(192,124,34,.14)}
+.flb{background:none;border:none;font-family:'Jost',sans-serif;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(245,221,164,.38);cursor:pointer;padding:.2rem 0;transition:color .3s;text-decoration:none;display:inline-block}
+.flb:hover{color:var(--harvest)}
+.flsep{color:rgba(192,124,34,.28);font-size:.75rem;user-select:none}
+.footer-copy{font-size:.72rem;color:rgba(245,221,164,.22);margin-bottom:.4rem}
+.footer-parent{font-size:.75rem;color:rgba(245,221,164,.3);margin-top:.3rem}
+.footer-parent a{color:rgba(245,221,164,.45);text-decoration:none;transition:color .3s}
+.footer-parent a:hover{color:var(--harvest)}
+
+/* ── MODAL BASE ──────────────────────────────────────── */
+.modal-overlay{
+  display:none;position:fixed;inset:0;z-index:500;
+  background:rgba(6,4,1,.9);backdrop-filter:blur(8px);
+  align-items:center;justify-content:center;padding:1.5rem;
+  overflow-y:auto;
+}
+.modal-overlay.open{display:flex;animation:fadeIn .22s ease}
+.modal{
+  background:var(--linen);width:100%;max-width:820px;
+  max-height:92vh;overflow-y:auto;position:relative;
+  border-top:4px solid var(--harvest);
+  box-shadow:0 40px 120px rgba(4,2,0,.8);
+  margin:auto;
+}
+.modal-header{
+  position:sticky;top:0;background:var(--linen);z-index:10;
+  padding:1.8rem 2.5rem 1.4rem;
+  border-bottom:1px solid rgba(192,124,34,.2);
+  display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;
+}
+.modal-eyebrow{font-size:.63rem;letter-spacing:.28em;text-transform:uppercase;color:var(--amber);margin-bottom:.3rem;display:block}
+.modal-title{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:400;color:var(--bark);line-height:1.1}
+.modal-close{flex-shrink:0;background:none;border:1.5px solid rgba(192,124,34,.4);color:var(--amber);width:40px;height:40px;cursor:pointer;font-size:1.05rem;display:grid;place-items:center;transition:background .2s,color .2s,border-color .2s}
+.modal-close:hover{background:rgba(192,124,34,.18);color:var(--harvest);border-color:var(--harvest)}
+.modal-body{padding:2.2rem 2.5rem 3rem}
+.modal-effective{font-size:.74rem;color:#9a7040;letter-spacing:.08em;margin-bottom:2rem;padding-bottom:1.4rem;border-bottom:1px solid rgba(192,124,34,.15);line-height:1.6}
+.modal-body h3{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:600;color:var(--bark);margin:2rem 0 .7rem;padding-left:.9rem;border-left:3px solid var(--harvest)}
+.modal-body h3:first-of-type{margin-top:0}
+.modal-body p{font-size:.9rem;color:#4a3820;line-height:1.9;margin-bottom:.9rem}
+.modal-body ul{margin:.4rem 0 1rem 1.5rem}
+.modal-body ul li{font-size:.9rem;color:#4a3820;line-height:1.8;margin-bottom:.4rem}
+.modal-body ul li strong{font-weight:500;color:var(--bark)}
+.modal-body a{color:var(--amber);text-decoration:none}
+.modal-body a:hover{text-decoration:underline;color:var(--harvest)}
+.modal-rule{height:1px;background:rgba(192,124,34,.15);margin:2rem 0 0}
+
+/* ── PATHWAY MODAL SPECIFICS ─────────────────────────── */
+.pm-stage{
+  display:grid;grid-template-columns:56px 1fr;gap:1.2rem;
+  padding:1.5rem 0;border-bottom:1px solid rgba(192,124,34,.15);
+  align-items:start;
+}
+.pm-stage:last-of-type{border-bottom:none}
+.pm-num{
+  width:52px;height:52px;border-radius:50%;
+  background:var(--forest);color:var(--harvest);
+  display:grid;place-items:center;
+  font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:300;
+  flex-shrink:0;
+}
+.pm-stage h4{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600;color:var(--bark);margin-bottom:.35rem}
+.pm-stage .pm-tag{display:inline-block;font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;background:rgba(91,122,78,.12);border:1px solid rgba(91,122,78,.3);color:var(--sage);padding:.25rem .65rem;margin-bottom:.6rem}
+.pm-stage p{font-size:.88rem;color:#4a3820;line-height:1.8;margin:0}
+.pm-highlight{background:rgba(232,167,58,.08);border:1px solid rgba(232,167,58,.2);border-left:4px solid var(--harvest);padding:1.4rem 1.6rem;margin:2rem 0}
+.pm-highlight p{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-style:italic;color:var(--bark);line-height:1.65;margin:0}
+.pm-grid{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin:1rem 0}
+.pm-card{background:#fff;border:1px solid rgba(192,124,34,.18);padding:1.1rem 1.2rem}
+.pm-card strong{display:block;font-size:.85rem;font-weight:500;color:var(--bark);margin-bottom:.3rem}
+.pm-card span{font-size:.8rem;color:#7a6040;line-height:1.5}
+
+/* ── JOIN MODAL SPECIFICS ────────────────────────────── */
+.role-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.7rem;margin:1.2rem 0 1.8rem}
+.role-btn{
+  background:#fff;border:2px solid rgba(192,124,34,.2);
+  padding:1rem .8rem;text-align:center;cursor:pointer;
+  transition:border-color .25s,background .25s;font-family:'Jost',sans-serif;
+}
+.role-btn:hover{border-color:var(--harvest);background:rgba(232,167,58,.05)}
+.role-btn.active{border-color:var(--harvest);background:rgba(232,167,58,.1)}
+.role-btn .role-icon{display:flex;align-items:center;justify-content:center;margin-bottom:.55rem;height:32px}
+.role-btn .role-icon svg{width:28px;height:28px;stroke:var(--amber);transition:stroke .25s}
+.role-btn:hover .role-icon svg,.role-btn.active .role-icon svg{stroke:var(--harvest)}
+.role-btn .role-name{font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--bark);font-weight:500}
+.role-panel{display:none}
+.role-panel.active{display:block}
+
+/* Form fields */
+.fg{margin-bottom:1.1rem}
+.fg label{display:block;font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:#8a6838;margin-bottom:.4rem}
+.fg input,.fg select,.fg textarea{
+  width:100%;padding:.8rem 1rem;
+  border:1px solid rgba(192,124,34,.25);background:var(--cream);
+  font-family:'Jost',sans-serif;font-size:.9rem;font-weight:300;color:var(--ink);
+  outline:none;transition:border-color .25s;-webkit-appearance:none;border-radius:0;
+}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--harvest);background:#fff}
+.fg textarea{resize:vertical;min-height:88px}
+.fg-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.fg-note{font-size:.78rem;color:#8a7050;margin-top:.4rem;line-height:1.5}
+.form-error{display:none;padding:.7rem 1rem;background:#fff0ec;border-left:3px solid #c0392b;color:#8b2011;font-size:.84rem;margin-bottom:1rem}
+.form-success{display:none;padding:1.1rem 1.2rem;background:rgba(91,122,78,.12);border:1px solid rgba(91,122,78,.35);border-left:4px solid var(--sage);color:var(--forest);font-size:.9rem;line-height:1.6;margin-top:1rem}
+.form-success.visible{display:block}
+.join-submit{width:100%;padding:1rem;background:var(--forest);color:var(--cream);border:none;cursor:pointer;font-family:'Jost',sans-serif;font-size:.8rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;margin-top:.6rem;transition:background .3s,transform .2s}
+.join-submit:hover{background:var(--bark);transform:translateY(-1px)}
+.modal-consent{font-size:.78rem;color:#8a7050;margin-top:.8rem;line-height:1.55;text-align:center}
+.modal-consent a{color:var(--amber)}
+
+/* Contact modal */
+.contact-info-row{display:flex;gap:1.5rem;flex-wrap:wrap;margin-bottom:2rem}
+.contact-chip{display:flex;align-items:center;gap:.6rem;font-size:.85rem;color:#4a3820}
+.contact-chip a{color:var(--amber);text-decoration:none}
+.contact-chip a:hover{color:var(--harvest);text-decoration:underline}
+
+/* ── ANIMATIONS ──────────────────────────────────────── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes scrollPulse{0%,100%{opacity:.4}50%{opacity:1}}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:none}
+
+/* ── RESPONSIVE ──────────────────────────────────────── */
+@media(max-width:960px){
+  nav.main-nav{padding:0 1.5rem}
+  .nav-links{display:none}
+  .nav-toggle{display:flex}
+  .mission-grid,.involved-grid{grid-template-columns:1fr;gap:2.5rem}
+  .pathway-steps{grid-template-columns:1fr 1fr;gap:2rem}
+  .pathway-steps::before{display:none}
+  .impact-grid{grid-template-columns:1fr 1fr}
+  .steps-row,.pm-grid{grid-template-columns:1fr}
+  .form-row,.fg-row{grid-template-columns:1fr}
+  .innovation-box{grid-template-columns:1fr;gap:1rem}
+  .who-serve{grid-template-columns:1fr}
+  section{padding:5rem 1.5rem}
+  .modal-header,.modal-body{padding-left:1.5rem;padding-right:1.5rem}
+  .role-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:600px){
+  .hero-content{padding:7rem 1.5rem 4rem}
+  .pathway-steps{grid-template-columns:1fr}
+  .impact-grid{grid-template-columns:1fr 1fr}
+  .role-grid{grid-template-columns:1fr 1fr}
+  .pm-stage{grid-template-columns:44px 1fr}
+  .pm-num{width:40px;height:40px;font-size:1.1rem}
+}
 </style>
 </head>
 <body>
 
-<nav>
-  <a class="nav-brand" href="#"><span>Table</span>-In&#8482;</a>
-  <ul>
-    <li><a href="#mission">Mission</a></li>
-    <li><a href="#pathway">Farm to Table</a></li>
-    <li><a href="#how">How It Works</a></li>
-    <li><a href="#involved">Get Involved</a></li>
+<!-- ══ NAV ══════════════════════════════════════════════ -->
+<nav class="main-nav" role="navigation" aria-label="Main navigation">
+  <a class="nav-brand" href="#top">Table<span>-In&#8482;</span></a>
+  <ul class="nav-links">
+    <li><a href="#mission" onclick="smoothNav(event,'mission')">Mission</a></li>
+    <li><button onclick="openModal('pathway')">Farm to Table</button></li>
+    <li><a href="#how" onclick="smoothNav(event,'how')">How It Works</a></li>
+    <li><button onclick="openModal('join')">Get Involved</button></li>
+    <li><button onclick="openModal('contact')">Contact</button></li>
+    <li><a class="nav-cta" href="#" onclick="event.preventDefault();openModal('join')">Join the Table</a></li>
   </ul>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
-<section class="hero">
-  <div class="hero-bg"></div>
-  <svg class="hero-deco" viewBox="0 0 420 520" fill="none" xmlns="http://www.w3.org/2000/svg">
+<!-- Mobile drawer -->
+<div class="nav-drawer" id="navDrawer" aria-label="Mobile navigation">
+  <a href="#mission" onclick="smoothNavMobile(event,'mission')">Mission</a>
+  <button onclick="closeDrawer();openModal('pathway')">Farm to Table</button>
+  <a href="#how" onclick="smoothNavMobile(event,'how')">How It Works</a>
+  <button onclick="closeDrawer();openModal('join')">Get Involved</button>
+  <button onclick="closeDrawer();openModal('contact')">Contact</button>
+  <button onclick="closeDrawer();openModal('join')">Join the Table</button>
+  <button onclick="closeDrawer();openModal('terms')">Terms &amp; Conditions</button>
+  <button onclick="closeDrawer();openModal('privacy')">Privacy Policy</button>
+</div>
+
+<!-- ══ HERO ══════════════════════════════════════════════ -->
+<section class="hero" id="top">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <svg class="hero-deco" viewBox="0 0 420 520" fill="none" aria-hidden="true">
     <line x1="210" y1="520" x2="210" y2="60" stroke="#c07c22" stroke-width="1.5"/>
     <g stroke="#c07c22" stroke-width="1">
       <ellipse cx="210" cy="60" rx="18" ry="32" transform="rotate(-10 210 60)" fill="rgba(192,124,34,0.3)"/>
@@ -229,7 +392,7 @@
       <ellipse cx="240" cy="200" rx="10" ry="20" transform="rotate(12 240 200)"/>
     </g>
   </svg>
-  <svg class="hero-deco-left" viewBox="0 0 320 480" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <svg class="hero-deco-left" viewBox="0 0 320 480" fill="none" aria-hidden="true">
     <line x1="160" y1="480" x2="160" y2="40" stroke="#5b7a4e" stroke-width="1.5"/>
     <g stroke="#5b7a4e" stroke-width="0.9">
       <ellipse cx="160" cy="40" rx="16" ry="28" transform="rotate(-12 160 40)" fill="rgba(91,122,78,0.25)"/>
@@ -243,18 +406,19 @@
   <div class="hero-content">
     <p class="hero-eyebrow">Walking in His Way Global Ministry&#8482; presents</p>
     <h1 class="hero-title">Table<em>In&#8482;</em></h1>
-    <p class="hero-sub">"You prepare a table before me in the presence of my enemies&#8230; my cup overflows."</p>
+    <p class="hero-sub">&#8220;You prepare a table before me in the presence of my enemies&#8230; my cup overflows.&#8221;</p>
     <p class="hero-verse">Psalm 23:5 &nbsp;&middot;&nbsp; A pathway of provision, dignity &amp; harvest</p>
     <div class="btn-group">
-      <a href="#involved" class="btn-primary">Join the Table</a>
-      <a href="#pathway" class="btn-outline">Discover Our Pathway</a>
+      <button class="btn-primary" onclick="openModal('join')">Join the Table</button>
+      <button class="btn-outline" onclick="openModal('pathway')">Discover Our Pathway</button>
     </div>
   </div>
-  <div class="scroll-hint"><div class="scroll-line"></div><span>Scroll</span></div>
+  <div class="scroll-hint" aria-hidden="true"><div class="scroll-line"></div><span>Scroll</span></div>
 </section>
 
-<div class="divider"></div>
+<div class="divider" aria-hidden="true"></div>
 
+<!-- ══ MISSION ══════════════════════════════════════════ -->
 <section class="mission" id="mission">
   <div class="container">
     <span class="section-label reveal">Our Calling</span>
@@ -263,73 +427,75 @@
       <div class="mission-text reveal">
         <p>Table-In&#8482; is more than a feeding program &#8212; it is <strong>a sacred extended pathway</strong> rooted in the belief that every human being deserves to sit at a table with dignity, nourishment, and belonging.</p>
         <p>Born from the heart of Walking in His Way Global Ministry&#8482;, Table-In&#8482; reaches those the world too often overlooks: the single parent raising children alone, the orphan who has never known a family meal, the widow who eats in silence, the child who goes to school hungry.</p>
-        <p>We are not simply handing out food. We are <strong>restoring the table</strong> &#8212; a place of community, of healing, of God&#8217;s provision made tangible.</p>
+        <p>We are not simply handing out food. We are <strong>restoring the table</strong> &#8212; a place of community, of healing, and of God&#8217;s provision made tangible in every meal served.</p>
       </div>
       <div class="who-serve reveal">
         <div class="serve-card">
           <div class="serve-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="7" r="4"/><path d="M5 20c0-4 3.1-7 7-7s7 3 7 7"/></svg></div>
-          <h4>Single Mothers</h4><p>Nourishment, community, and support for mothers carrying the weight of the household.</p>
+          <h4>Single Mothers</h4><p>Nourishment, community, and support for mothers carrying the weight of the household alone.</p>
         </div>
         <div class="serve-card">
           <div class="serve-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="7" r="4"/><path d="M5 20c0-4 3.1-7 7-7s7 3 7 7"/></svg></div>
-          <h4>Single Fathers</h4><p>Honoring fathers who show up every day &#8212; giving them rest, a hot meal, and a community.</p>
+          <h4>Single Fathers</h4><p>Honoring fathers who show up every day &#8212; giving them rest, a hot meal, and a place to belong.</p>
         </div>
         <div class="serve-card">
-          <div class="serve-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
-          <h4>Children &amp; Orphans</h4><p>Every child deserves a full plate. We prioritize the youngest among us with fresh, wholesome food.</p>
+          <div class="serve-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+          <h4>Children &amp; Orphans</h4><p>Every child deserves a full plate. We prioritize the youngest with fresh, wholesome food and care.</p>
         </div>
         <div class="serve-card">
           <div class="serve-icon"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
-          <h4>Widows &amp; Singles</h4><p>No one should eat alone. We create tables of belonging for those who have lost or have none.</p>
+          <h4>Widows &amp; Singles</h4><p>No one should eat alone. We create tables of belonging for those who have lost community or have none.</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- ══ FARM TO TABLE SECTION ════════════════════════════ -->
 <section class="pathway" id="pathway">
   <div class="container">
     <span class="section-label reveal">The Innovation</span>
     <h2 class="section-title reveal">Farm-to-Table &#8212; <em>Reimagined</em></h2>
-    <p class="pathway-intro reveal">What if the hands that plant the seed could sit at the same table where it is served? What if those we feed could grow the food that feeds them &#8212; and in doing so, discover purpose, livelihood, and community? This is the Table-In&#8482; Pathway. Never before done quite like this.</p>
+    <p class="pathway-intro reveal">What if the hands that plant the seed sit at the same table where it is served? This is the Table-In&#8482; Pathway &#8212; five revolutionary stages from soil to soul.</p>
     <div class="pathway-steps reveal">
       <div class="path-step">
         <div class="path-node"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></div>
-        <h4>Partner Farms</h4><p>We partner with local and regional farms committed to clean, sustainable growing.</p>
+        <h4>Partner Farms</h4><p>Vetted local farms committed to clean, sustainable growing.</p>
         <span class="path-badge">Seed to Steward</span>
       </div>
       <div class="path-step">
         <div class="path-node"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10"/><path d="M12 6v6l4 2"/></svg></div>
-        <h4>Training Gardens</h4><p>Recipients are invited to learn to grow &#8212; turning tables into classrooms of dignity.</p>
+        <h4>Training Gardens</h4><p>Recipients learn to grow &#8212; tables become classrooms of dignity.</p>
         <span class="path-badge">Hands in the Soil</span>
       </div>
       <div class="path-step">
         <div class="path-node"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg></div>
-        <h4>Community Harvest</h4><p>Together we gather &#8212; harvests become celebrations of God&#8217;s provision.</p>
+        <h4>Community Harvest</h4><p>Harvests become celebrations of God&#8217;s faithful provision.</p>
         <span class="path-badge">Together We Reap</span>
       </div>
       <div class="path-step">
         <div class="path-node"><svg viewBox="0 0 24 24"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg></div>
-        <h4>The Shared Table</h4><p>Meals are prepared fresh from harvest and served at communal tables &#8212; dignity at the center.</p>
+        <h4>The Shared Table</h4><p>Fresh harvest meals served at communal tables &#8212; dignity centered.</p>
         <span class="path-badge">From Field to Feast</span>
       </div>
       <div class="path-step">
         <div class="path-node"><svg viewBox="0 0 24 24"><path d="M12 22V12"/><path d="M12 12C12 6 6 4 4 8c0 4 4 4 8 4s8 0 8-4c-2-4-8-2-8 4"/></svg></div>
-        <h4>Seeds of Income</h4><p>Surplus produce is sold &#8212; generating sustainable micro-income for participating families.</p>
+        <h4>Seeds of Income</h4><p>Surplus sold &#8212; generating sustainable micro-income for families.</p>
         <span class="path-badge">Multiplied Provision</span>
       </div>
     </div>
     <div class="innovation-box reveal">
-      <div class="innovation-icon">&#10022;</div>
+      <div class="innovation-icon" aria-hidden="true">&#10022;</div>
       <div>
         <h3>Why This Has Never Been Done Quite This Way</h3>
-        <p>Most farm-to-table programs supply food to those in need. Table-In&#8482; does something radically different: we invite the people we serve into every stage of the cycle &#8212; not as recipients but as participants, co-creators, and ultimately providers. A single mother plants tomatoes in month one; by month four, she is teaching others and earning income from the surplus.</p>
-        <p>The pathway doesn&#8217;t just feed bodies &#8212; it restores agency, community, and the deeply human joy of providing for others. This is Table-In&#8482;: where the table is not just set for you, but built by you.</p>
+        <p>Most farm-to-table programs supply food to those in need. Table-In&#8482; does something radically different: we invite the people we serve into every stage of the cycle &#8212; not as passive recipients but as participants, co-creators, and ultimately providers themselves.</p>
+        <p>A single mother plants tomatoes in month one; by month four she is teaching others and earning income from the surplus. This is Table-In&#8482;: where the table is not just set for you, but built by you.</p>
       </div>
     </div>
   </div>
 </section>
 
+<!-- ══ IMPACT ════════════════════════════════════════════ -->
 <section class="impact">
   <div class="container">
     <span class="section-label reveal">The Vision</span>
@@ -338,275 +504,788 @@
       <div class="impact-stat"><span class="impact-number">500+</span><span class="impact-label">Meals per Month Goal</span></div>
       <div class="impact-stat"><span class="impact-number">5</span><span class="impact-label">Stage Harvest Pathway</span></div>
       <div class="impact-stat"><span class="impact-number">100%</span><span class="impact-label">Farm-Fresh Ingredients</span></div>
-      <div class="impact-stat"><span class="impact-number">0</span><span class="impact-label">Cost to Participants</span></div>
+      <div class="impact-stat"><span class="impact-number">$0</span><span class="impact-label">Cost to Participants</span></div>
     </div>
   </div>
 </section>
 
+<!-- ══ HOW IT WORKS ══════════════════════════════════════ -->
 <section class="how" id="how">
   <div class="container">
     <span class="section-label reveal">The Process</span>
     <h2 class="section-title reveal">How Table-In&#8482; <em>works</em></h2>
     <div class="steps-row">
-      <div class="step-item reveal"><span class="step-num">01</span><h3>Register or Refer</h3><p>Single parents, widows, orphans, and individuals in need can self-register or be referred by a church, school, or community partner. There is no means test &#8212; just a need for a table.</p></div>
-      <div class="step-item reveal"><span class="step-num">02</span><h3>Come to the Table</h3><p>Participants are welcomed at scheduled community meal gatherings &#8212; warm, farm-fresh meals served with dignity. No queues, no stigma, just fellowship.</p></div>
-      <div class="step-item reveal"><span class="step-num">03</span><h3>Grow with Us</h3><p>Those who wish can join our training garden program &#8212; learning to grow food, harvest it, cook it, and eventually earn from the surplus. Every season brings a new participant into the full circle.</p></div>
+      <div class="step-item reveal"><span class="step-num" aria-hidden="true">01</span><h3>Register or Refer</h3><p>Single parents, widows, orphans, and individuals in need can self-register or be referred by a church, school, or community partner. There is no means test &#8212; just a need for a table.</p></div>
+      <div class="step-item reveal"><span class="step-num" aria-hidden="true">02</span><h3>Come to the Table</h3><p>Participants are welcomed at scheduled community meal gatherings &#8212; warm, farm-fresh meals served with dignity. No queues, no stigma, just fellowship and nourishment.</p></div>
+      <div class="step-item reveal"><span class="step-num" aria-hidden="true">03</span><h3>Grow with Us</h3><p>Those who wish can join our training garden program &#8212; learning to grow food, harvest it, cook it, and eventually earn from the surplus. Every season brings new participants into the full cycle.</p></div>
     </div>
   </div>
 </section>
 
+<!-- ══ GET INVOLVED ══════════════════════════════════════ -->
 <section class="involved" id="involved">
   <div class="container">
     <span class="section-label reveal">Be Part of It</span>
     <h2 class="section-title reveal">Pull up a <em>chair</em></h2>
     <div class="involved-grid">
       <div class="involved-left reveal">
-        <p>Table-In&#8482; needs people &#8212; those who give, those who grow, those who cook, those who show up. Whether you have ten minutes or ten thousand dollars, there is a seat at this table for you.</p>
+        <p>Table-In&#8482; needs people &#8212; those who give, those who grow, those who cook, those who simply show up. Whether you have ten minutes or ten thousand dollars, there is a seat at this table for you.</p>
         <ul class="ways-list">
-          <li><div class="ways-dot"></div><div><strong>Volunteer</strong><span>Cook, serve, garden, teach &#8212; every hand matters at the table.</span></div></li>
-          <li><div class="ways-dot"></div><div><strong>Donate</strong><span>Your gift provides seeds, ingredients, equipment, and dignity.</span></div></li>
-          <li><div class="ways-dot"></div><div><strong>Partner Your Farm</strong><span>Land owners and farmers &#8212; join our growing network of provision.</span></div></li>
-          <li><div class="ways-dot"></div><div><strong>Refer a Family</strong><span>Know someone who needs a seat? Let us know &#8212; confidentially.</span></div></li>
-          <li><div class="ways-dot"></div><div><strong>Corporate Sponsor</strong><span>Businesses &#8212; align your brand with this extraordinary mission.</span></div></li>
+          <li><div class="ways-dot" aria-hidden="true"></div><div><strong>Volunteer</strong><span>Cook, serve, garden, teach &#8212; every hand matters at the table.</span></div></li>
+          <li><div class="ways-dot" aria-hidden="true"></div><div><strong>Donate</strong><span>Your gift provides seeds, ingredients, equipment, and dignity.</span></div></li>
+          <li><div class="ways-dot" aria-hidden="true"></div><div><strong>Partner Your Farm</strong><span>Land owners and farmers &#8212; join our growing network of provision.</span></div></li>
+          <li><div class="ways-dot" aria-hidden="true"></div><div><strong>Refer a Family</strong><span>Know someone who needs a seat? Let us know &#8212; confidentially.</span></div></li>
+          <li><div class="ways-dot" aria-hidden="true"></div><div><strong>Corporate Sponsor</strong><span>Align your organization with this life-changing mission.</span></div></li>
         </ul>
       </div>
-      <div class="contact-form reveal">
-        <h3>Reach Out</h3>
-        <p class="form-sub">All responses go to our team at <strong>support@tsegroup.world</strong></p>
-        <form id="tableInForm" onsubmit="handleSubmit(event)">
-          <div class="form-row">
-            <div class="form-group"><label>First Name</label><input type="text" name="firstName" placeholder="Grace" required/></div>
-            <div class="form-group"><label>Last Name</label><input type="text" name="lastName" placeholder="Okafor" required/></div>
-          </div>
-          <div class="form-group"><label>Email Address</label><input type="email" name="email" placeholder="your@email.com" required/></div>
-          <div class="form-group"><label>Phone (Optional)</label><input type="tel" name="phone" placeholder="+1 (555) 000-0000"/></div>
-          <div class="form-group">
-            <label>I would like to&#8230;</label>
-            <select name="interest" required>
-              <option value="">&#8212; Select your interest &#8212;</option>
-              <option>Volunteer at Table-In&#8482; events</option>
-              <option>Make a financial donation</option>
-              <option>Partner my farm or land</option>
-              <option>Refer a family or individual in need</option>
-              <option>Become a corporate sponsor</option>
-              <option>Learn more about Table-In&#8482;</option>
-              <option>Request a meal seat for myself or my family</option>
-            </select>
-          </div>
-          <div class="form-group"><label>Your Message</label><textarea name="message" placeholder="Tell us a little about yourself or how you&#8217;d like to be involved&#8230;"></textarea></div>
-          <button type="submit" class="submit-btn">Send My Message &#8594;</button>
-          <div class="form-msg" id="formMsg">Thank you! Your message has been received and will be forwarded to support@tsegroup.world. We will be in touch soon. God bless you.</div>
-        </form>
+      <div class="involved-cta-box reveal">
+        <h3>Ready to join?</h3>
+        <p>Whether you need a seat at the table or want to help set one &#8212; we have a place for you. Fill out our comprehensive intake form and we will be in touch within 48 hours.</p>
+        <div class="cta-btn-stack">
+          <button class="cta-btn-main" onclick="openModal('join')">Join the Table &#8594;</button>
+          <button class="cta-btn-sec" onclick="openModal('pathway')">Learn About Our Pathway</button>
+          <button class="cta-btn-sec" onclick="openModal('contact')">Send Us a Message</button>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
+<!-- ══ FOOTER ════════════════════════════════════════════ -->
 <footer>
   <div class="footer-logo">Table<span>-In&#8482;</span></div>
   <p class="footer-tagline">A pathway of provision &nbsp;&middot;&nbsp; Farm. Harvest. Share. Restore.</p>
-  <div class="footer-links">
-    <a href="#mission">Mission</a>
-    <a href="#pathway">Farm to Table</a>
-    <a href="#how">How It Works</a>
-    <a href="#involved">Get Involved</a>
-    <a href="mailto:support@tsegroup.world">Contact</a>
-  </div>
+  <nav class="footer-nav" aria-label="Footer links">
+    <a href="#mission" onclick="smoothNav(event,'mission')">Mission</a>
+    <button onclick="openModal('pathway')">Farm to Table</button>
+    <a href="#how" onclick="smoothNav(event,'how')">How It Works</a>
+    <button onclick="openModal('join')">Get Involved</button>
+    <button onclick="openModal('contact')">Contact</button>
+  </nav>
   <div class="footer-legal">
-    <button onclick="openModal('terms')">Terms &amp; Conditions</button>
-    <span>|</span>
-    <button onclick="openModal('privacy')">Privacy Policy</button>
-    <span>|</span>
-    <a href="mailto:support@tsegroup.world" style="color:rgba(245,221,164,0.4);text-decoration:none;font-size:0.7rem;letter-spacing:0.18em;text-transform:uppercase;transition:color 0.3s;" onmouseover="this.style.color='#e8a73a'" onmouseout="this.style.color='rgba(245,221,164,0.4)'">support@tsegroup.world</a>
+    <button class="flb" onclick="openModal('terms')">Terms &amp; Conditions</button>
+    <span class="flsep">|</span>
+    <button class="flb" onclick="openModal('privacy')">Privacy Policy</button>
+    <span class="flsep">|</span>
+    <a class="flb" href="mailto:support@tsegroup.world">support@tsegroup.world</a>
   </div>
   <p class="footer-copy">&copy; <span id="yr"></span> Table-In&#8482;. All rights reserved.</p>
-  <p class="footer-parent">A Table-In&#8482; initiative of Walking in His Way Global Ministry&#8482; &nbsp;&middot;&nbsp; ministry-walkinginhiswayglobal.org</p>
+  <p class="footer-parent">A Table-In&#8482; initiative of <a href="https://www.ministry-walkinginhiswayglobal.org" target="_blank" rel="noopener">Walking in His Way Global Ministry&#8482;</a></p>
 </footer>
 
-<!-- TERMS & CONDITIONS MODAL -->
-<div class="modal-overlay" id="modal-terms" onclick="closeOnOverlay(event,'terms')">
-  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="terms-title">
+<button id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top" title="Back to top">&#8679;</button>
+
+<!-- ══════════════════════════════════════════════════════
+  MODAL 1 — JOIN THE TABLE (Comprehensive Registration)
+══════════════════════════════════════════════════════ -->
+<div class="modal-overlay" id="modal-join" role="dialog" aria-modal="true" aria-labelledby="join-title">
+  <div class="modal">
     <div class="modal-header">
       <div>
-        <span class="modal-eyebrow">Legal Document</span>
-        <h2 class="modal-title" id="terms-title">Terms &amp; Conditions</h2>
+        <span class="modal-eyebrow">Registration &amp; Inquiry</span>
+        <h2 class="modal-title" id="join-title">Join the Table&#8482;</h2>
       </div>
+      <button class="modal-close" onclick="closeModal('join')" aria-label="Close">&#10005;</button>
+    </div>
+    <div class="modal-body">
+      <p style="font-size:.92rem;color:#4a3820;margin-bottom:1.5rem;line-height:1.8">
+        Welcome. Every seat at this table matters. Tell us who you are and how you would like to be part of Table-In&#8482;.
+        All submissions are sent directly to <a href="mailto:support@tsegroup.world">support@tsegroup.world</a> and our team will be in touch within 48 hours. Your information is kept strictly confidential.
+      </p>
+
+      <!-- Role selector -->
+      <h3 style="margin-top:0">Step 1 &mdash; I am here to&#8230;</h3>
+      <div class="role-grid" role="group" aria-label="Select your role">
+        <button class="role-btn active" onclick="selectRole('recipient',this)" type="button">
+          <span class="role-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11h18M3 11a9 9 0 0 1 18 0M3 11v2a9 9 0 0 0 18 0v-2M12 3v2M8 5.5l1 1.5M16 5.5l-1 1.5"/><line x1="3" y1="19" x2="21" y2="19"/></svg></span>
+          <span class="role-name">Receive a Meal Seat</span>
+        </button>
+        <button class="role-btn" onclick="selectRole('volunteer',this)" type="button">
+          <span class="role-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M18 11V6a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v5"/><path d="M3 13h18"/><path d="M7 13v5a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-5"/><circle cx="12" cy="7" r="1"/></svg></span>
+          <span class="role-name">Volunteer</span>
+        </button>
+        <button class="role-btn" onclick="selectRole('donor',this)" type="button">
+          <span class="role-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></span>
+          <span class="role-name">Donate</span>
+        </button>
+        <button class="role-btn" onclick="selectRole('farmer',this)" type="button">
+          <span class="role-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22V12"/><path d="M12 12C12 6 6 4 4 8c0 4 4 4 8 4"/><path d="M12 12c0-6 6-8 8-4 0 4-4 4-8 4"/><line x1="5" y1="20" x2="19" y2="20"/></svg></span>
+          <span class="role-name">Partner My Farm</span>
+        </button>
+        <button class="role-btn" onclick="selectRole('sponsor',this)" type="button">
+          <span class="role-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="1"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg></span>
+          <span class="role-name">Corporate Sponsor</span>
+        </button>
+        <button class="role-btn" onclick="selectRole('referral',this)" type="button">
+          <span class="role-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="4"/><path d="M3 20c0-4 2.7-7 6-7"/><circle cx="17" cy="17" r="3"/><line x1="17" y1="14" x2="17" y2="10"/><line x1="14" y1="17" x2="10" y2="17"/></svg></span>
+          <span class="role-name">Refer Someone</span>
+        </button>
+      </div>
+
+      <form id="joinForm" novalidate>
+        <input type="hidden" id="join-role" value="recipient"/>
+
+        <!-- SHARED: Personal Info -->
+        <h3>Step 2 &mdash; Your Information</h3>
+        <div class="fg-row">
+          <div class="fg"><label for="j-first">First Name *</label><input type="text" id="j-first" name="firstName" required autocomplete="given-name" placeholder="Grace"/></div>
+          <div class="fg"><label for="j-last">Last Name *</label><input type="text" id="j-last" name="lastName" required autocomplete="family-name" placeholder="Okafor"/></div>
+        </div>
+        <div class="fg-row">
+          <div class="fg"><label for="j-email">Email Address *</label><input type="email" id="j-email" name="email" required autocomplete="email" placeholder="your@email.com"/></div>
+          <div class="fg"><label for="j-phone">Phone Number</label><input type="tel" id="j-phone" name="phone" autocomplete="tel" placeholder="+1 (555) 000-0000"/></div>
+        </div>
+        <div class="fg">
+          <label for="j-location">City / State / Country *</label>
+          <input type="text" id="j-location" name="location" required placeholder="e.g. Atlanta, GA, USA"/>
+        </div>
+
+        <!-- PANEL: Meal Recipient -->
+        <div class="role-panel active" id="panel-recipient">
+          <h3>Step 3 &mdash; About Your Need</h3>
+          <div class="fg">
+            <label for="j-family">Household Situation *</label>
+            <select id="j-family" name="householdType">
+              <option value="">&#8212; Select &#8212;</option>
+              <option>Single Mother</option>
+              <option>Single Father</option>
+              <option>Widow / Widower</option>
+              <option>Orphan / Youth in Need</option>
+              <option>Single Individual</option>
+              <option>Family with children</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="fg">
+            <label for="j-size">Number of People in Your Household *</label>
+            <select id="j-size" name="householdSize">
+              <option value="">&#8212; Select &#8212;</option>
+              <option>1 (just me)</option><option>2</option><option>3</option>
+              <option>4</option><option>5</option><option>6+</option>
+            </select>
+          </div>
+          <div class="fg">
+            <label for="j-children">Number of Children Under 18 (if any)</label>
+            <input type="number" id="j-children" name="numChildren" min="0" max="20" placeholder="0"/>
+          </div>
+          <div class="fg">
+            <label for="j-dietary">Dietary Needs or Food Allergies</label>
+            <input type="text" id="j-dietary" name="dietary" placeholder="e.g. gluten-free, nut allergy, vegetarian&#8230;"/>
+          </div>
+          <div class="fg">
+            <label for="j-frequency">How Often Do You Need Support?</label>
+            <select id="j-frequency" name="frequency">
+              <option value="">&#8212; Select &#8212;</option>
+              <option>Weekly</option><option>Bi-weekly</option>
+              <option>Monthly</option><option>One-time / Emergency</option>
+            </select>
+          </div>
+          <div class="fg">
+            <label for="j-rref">How Did You Hear About Table-In&#8482;?</label>
+            <select id="j-rref" name="referralSource">
+              <option value="">&#8212; Select &#8212;</option>
+              <option>Church / Faith community</option><option>School or teacher</option>
+              <option>Social media</option><option>Friend or family</option>
+              <option>Community organization</option><option>Other</option>
+            </select>
+          </div>
+          <div class="fg">
+            <label for="j-rnote">Anything else you&#8217;d like us to know?</label>
+            <textarea id="j-rnote" name="recipientNote" placeholder="Please share anything that helps us serve you and your family better&#8230;"></textarea>
+          </div>
+        </div>
+
+        <!-- PANEL: Volunteer -->
+        <div class="role-panel" id="panel-volunteer">
+          <h3>Step 3 &mdash; About Your Availability</h3>
+          <div class="fg">
+            <label for="j-vskills">Skills &amp; Background</label>
+            <select id="j-vskills" name="volunteerSkills">
+              <option value="">&#8212; Primary skill &#8212;</option>
+              <option>Cooking &amp; food preparation</option>
+              <option>Gardening &amp; farming</option>
+              <option>Event coordination</option>
+              <option>Teaching &amp; training</option>
+              <option>Logistics &amp; delivery</option>
+              <option>Admin &amp; communications</option>
+              <option>Photography &amp; media</option>
+              <option>General labor</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="fg">
+            <label for="j-vavail">Availability</label>
+            <select id="j-vavail" name="volunteerAvailability">
+              <option value="">&#8212; Select &#8212;</option>
+              <option>Weekdays only</option><option>Weekends only</option>
+              <option>Both weekdays and weekends</option><option>Flexible</option>
+              <option>One-time events only</option>
+            </select>
+          </div>
+          <div class="fg">
+            <label for="j-vhours">Hours Per Month You Can Offer</label>
+            <select id="j-vhours" name="volunteerHours">
+              <option value="">&#8212; Select &#8212;</option>
+              <option>1&#8211;4 hours</option><option>5&#8211;10 hours</option>
+              <option>11&#8211;20 hours</option><option>20+ hours</option>
+            </select>
+          </div>
+          <div class="fg">
+            <label for="j-vnote">Tell Us About Yourself</label>
+            <textarea id="j-vnote" name="volunteerNote" placeholder="Share any relevant experience, languages spoken, special skills, or why you want to serve at Table-In&#8482;&#8230;"></textarea>
+          </div>
+        </div>
+
+        <!-- PANEL: Donor -->
+        <div class="role-panel" id="panel-donor">
+          <h3>Step 3 &mdash; About Your Gift</h3>
+          <div class="fg">
+            <label for="j-dtype">Type of Donation</label>
+            <select id="j-dtype" name="donationType">
+              <option value="">&#8212; Select &#8212;</option>
+              <option>One-time financial gift</option>
+              <option>Monthly recurring donation</option>
+              <option>In-kind donation (food, supplies, equipment)</option>
+              <option>Sponsor a specific meal event</option>
+              <option>Sponsor a training garden</option>
+              <option>Sponsor a family for one month</option>
+              <option>Legacy / planned giving</option>
+            </select>
+          </div>
+          <div class="fg">
+            <label for="j-damt">Approximate Gift Amount (if financial)</label>
+            <select id="j-damt" name="donationAmount">
+              <option value="">&#8212; Select &#8212;</option>
+              <option>Under $50</option><option>$50&#8211;$100</option>
+              <option>$101&#8211;$250</option><option>$251&#8211;$500</option>
+              <option>$501&#8211;$1,000</option><option>$1,001&#8211;$5,000</option>
+              <option>$5,000+</option><option>Prefer not to say</option>
+            </select>
+          </div>
+          <div class="fg">
+            <label for="j-dinkind">If In-Kind &#8212; What Would You Like to Donate?</label>
+            <input type="text" id="j-dinkind" name="inkind" placeholder="e.g. fresh produce, canned goods, gardening tools, kitchen equipment&#8230;"/>
+          </div>
+          <div class="fg">
+            <label for="j-dnote">Message to the Ministry</label>
+            <textarea id="j-dnote" name="donorNote" placeholder="Share what moves you to give, or any conditions or designations for your gift&#8230;"></textarea>
+          </div>
+        </div>
+
+        <!-- PANEL: Farm Partner -->
+        <div class="role-panel" id="panel-farmer">
+          <h3>Step 3 &mdash; About Your Farm</h3>
+          <div class="fg-row">
+            <div class="fg"><label for="j-fname">Farm / Property Name</label><input type="text" id="j-fname" name="farmName" placeholder="Green Acres Farm"/></div>
+            <div class="fg"><label for="j-facres">Approximate Acreage</label><input type="text" id="j-facres" name="farmAcres" placeholder="e.g. 5 acres"/></div>
+          </div>
+          <div class="fg">
+            <label for="j-fcrops">Primary Crops / Produce Grown</label>
+            <input type="text" id="j-fcrops" name="farmCrops" placeholder="e.g. tomatoes, leafy greens, corn, sweet potatoes&#8230;"/>
+          </div>
+          <div class="fg">
+            <label for="j-ftype">Farm Partnership Interest</label>
+            <select id="j-ftype" name="farmPartnerType">
+              <option value="">&#8212; Select &#8212;</option>
+              <option>Donate surplus produce to Table-In&#8482;</option>
+              <option>Host a Table-In&#8482; Training Garden on my land</option>
+              <option>Supply produce at reduced cost</option>
+              <option>Co-sponsor a community harvest event</option>
+              <option>All of the above / open to discussion</option>
+            </select>
+          </div>
+          <div class="fg">
+            <label for="j-fcert">Is your farm certified organic or sustainably managed?</label>
+            <select id="j-fcert" name="farmCertified">
+              <option value="">&#8212; Select &#8212;</option>
+              <option>Yes, certified organic</option>
+              <option>Yes, sustainably managed (not certified)</option>
+              <option>No, conventional farming</option>
+              <option>In transition to sustainable practices</option>
+            </select>
+          </div>
+          <div class="fg">
+            <label for="j-fnote">Tell Us About Your Farm</label>
+            <textarea id="j-fnote" name="farmerNote" placeholder="Share your story, your passion for this mission, or any questions about the Table-In&#8482; partnership program&#8230;"></textarea>
+          </div>
+        </div>
+
+        <!-- PANEL: Corporate Sponsor -->
+        <div class="role-panel" id="panel-sponsor">
+          <h3>Step 3 &mdash; About Your Organization</h3>
+          <div class="fg-row">
+            <div class="fg"><label for="j-cname">Company / Organization Name *</label><input type="text" id="j-cname" name="companyName" placeholder="ABC Corporation"/></div>
+            <div class="fg"><label for="j-ctitle">Your Job Title</label><input type="text" id="j-ctitle" name="jobTitle" placeholder="CEO / Director of CSR&#8230;"/></div>
+          </div>
+          <div class="fg">
+            <label for="j-ctype">Type of Sponsorship Interest</label>
+            <select id="j-ctype" name="sponsorType">
+              <option value="">&#8212; Select &#8212;</option>
+              <option>Sponsor a monthly meal event (branding + impact report)</option>
+              <option>Sponsor a Training Garden (named recognition)</option>
+              <option>Annual Founding Sponsor Partner</option>
+              <option>Employee volunteer program partner</option>
+              <option>In-kind product or service donation</option>
+              <option>Media &amp; awareness partnership</option>
+              <option>Open to discussion</option>
+            </select>
+          </div>
+          <div class="fg">
+            <label for="j-cbudget">Approximate Annual Budget for This Partnership</label>
+            <select id="j-cbudget" name="sponsorBudget">
+              <option value="">&#8212; Select &#8212;</option>
+              <option>Under $1,000</option><option>$1,000&#8211;$5,000</option>
+              <option>$5,001&#8211;$10,000</option><option>$10,001&#8211;$25,000</option>
+              <option>$25,000+</option><option>In-kind only</option>
+            </select>
+          </div>
+          <div class="fg">
+            <label for="j-cnote">Message to Our Team</label>
+            <textarea id="j-cnote" name="sponsorNote" placeholder="Tell us about your company&#8217;s CSR mission, what excites you about Table-In&#8482;, or specific outcomes you hope to achieve through this partnership&#8230;"></textarea>
+          </div>
+        </div>
+
+        <!-- PANEL: Referral -->
+        <div class="role-panel" id="panel-referral">
+          <h3>Step 3 &mdash; About the Person You&#8217;re Referring</h3>
+          <div class="fg-row">
+            <div class="fg"><label for="j-refname">Their First Name *</label><input type="text" id="j-refname" name="refFirstName" placeholder="Mary"/></div>
+            <div class="fg"><label for="j-reflast">Their Last Name</label><input type="text" id="j-reflast" name="refLastName" placeholder="(optional)"/></div>
+          </div>
+          <div class="fg">
+            <label for="j-refcontact">Their Contact (Phone or Email, if you have it)</label>
+            <input type="text" id="j-refcontact" name="refContact" placeholder="Optional"/>
+          </div>
+          <div class="fg">
+            <label for="j-refsit">Their Situation</label>
+            <select id="j-refsit" name="refSituation">
+              <option value="">&#8212; Select &#8212;</option>
+              <option>Single mother in need of meals</option>
+              <option>Single father in need of meals</option>
+              <option>Child / orphan in need</option>
+              <option>Widow / widower in need</option>
+              <option>Individual facing food insecurity</option>
+              <option>Family in crisis</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="fg">
+            <label for="j-refrel">Your Relationship to This Person</label>
+            <select id="j-refrel" name="refRelationship">
+              <option value="">&#8212; Select &#8212;</option>
+              <option>Friend</option><option>Neighbor</option>
+              <option>Church member</option><option>Teacher / counselor</option>
+              <option>Social worker</option><option>Family member</option>
+              <option>Prefer not to say</option>
+            </select>
+          </div>
+          <div class="fg">
+            <label for="j-refnote">Additional Context</label>
+            <textarea id="j-refnote" name="refNote" placeholder="Share any details that will help us reach out sensitively and appropriately. All referrals are handled with the utmost confidentiality&#8230;"></textarea>
+          </div>
+          <p class="fg-note"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="color:var(--sage);vertical-align:middle;margin-right:4px"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>All referral information is treated with strict confidentiality. We will make contact gently and respectfully.</p>
+        </div>
+
+        <!-- Error / Submit -->
+        <div class="form-error" id="join-error" role="alert"></div>
+        <button type="submit" class="join-submit">Submit to Table-In&#8482; &#8594;</button>
+        <div class="form-success" id="join-success" role="status">
+          <strong>Message received.</strong> Your submission has been sent to <a href="mailto:support@tsegroup.world">support@tsegroup.world</a>. Our team will be in touch within 48 hours. God bless you for reaching out.
+        </div>
+        <p class="modal-consent">By submitting, you agree to our <button type="button" style="background:none;border:none;color:var(--amber);cursor:pointer;font-family:'Jost',sans-serif;font-size:inherit;padding:0;text-decoration:underline" onclick="closeModal('join');openModal('terms')">Terms &amp; Conditions</button> and <button type="button" style="background:none;border:none;color:var(--amber);cursor:pointer;font-family:'Jost',sans-serif;font-size:inherit;padding:0;text-decoration:underline" onclick="closeModal('join');openModal('privacy')">Privacy Policy</button>.</p>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════
+  MODAL 2 — DISCOVER OUR PATHWAY (Comprehensive)
+══════════════════════════════════════════════════════ -->
+<div class="modal-overlay" id="modal-pathway" role="dialog" aria-modal="true" aria-labelledby="pathway-title">
+  <div class="modal">
+    <div class="modal-header">
+      <div>
+        <span class="modal-eyebrow">The Innovation</span>
+        <h2 class="modal-title" id="pathway-title">The Table-In&#8482; Pathway</h2>
+      </div>
+      <button class="modal-close" onclick="closeModal('pathway')" aria-label="Close">&#10005;</button>
+    </div>
+    <div class="modal-body">
+
+      <div class="pm-highlight">
+        <p>&#8220;What if the hands that plant the seed sit at the same table where it is served? What if those we feed become the very ones who feed others?&#8221;</p>
+      </div>
+      <p>The Table-In&#8482; Pathway is a five-stage, closed-loop model of provision, community, and economic empowerment &#8212; woven together in a way that has never been done before. It is not merely a feeding program. It is a complete pathway from vulnerability to dignity to leadership.</p>
+
+      <h3>What Makes This Unique</h3>
+      <p>Traditional food relief programs move in one direction: from donor to recipient. Table-In&#8482; moves in a <strong>circle</strong>. Recipients become growers. Growers become teachers. Teachers inspire donors. Donors fund the next cycle. Every person in the program is both giving and receiving &#8212; and that changes everything.</p>
+      <div class="pm-grid">
+        <div class="pm-card">
+          <strong><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="color:var(--sage);vertical-align:middle;margin-right:6px"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>Economic Empowerment</strong>
+          <span>Participants earn income from surplus produce, creating financial independence alongside food security.</span>
+        </div>
+        <div class="pm-card">
+          <strong><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="color:var(--sage);vertical-align:middle;margin-right:6px"><path d="M12 22V12"/><path d="M12 12C12 6 6 4 4 8c0 4 4 4 8 4"/><path d="M12 12c0-6 6-8 8-4 0 4-4 4-8 4"/></svg>Agricultural Training</strong>
+          <span>Hands-on growing skills transferred for life &#8212; not just a meal, but the ability to grow the next one.</span>
+        </div>
+        <div class="pm-card">
+          <strong><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="color:var(--sage);vertical-align:middle;margin-right:6px"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>Community Restoration</strong>
+          <span>Communal harvest tables rebuild the social bonds broken by poverty, grief, and isolation.</span>
+        </div>
+        <div class="pm-card">
+          <strong><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="color:var(--sage);vertical-align:middle;margin-right:6px"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Faith-Rooted Purpose</strong>
+          <span>Every stage of the pathway is grounded in the belief that God&#8217;s provision is for everyone at the table.</span>
+        </div>
+      </div>
+
+      <h3>The Five Stages</h3>
+
+      <div class="pm-stage">
+        <div class="pm-num">1</div>
+        <div>
+          <span class="pm-tag">Seed to Steward</span>
+          <h4>Partner Farms</h4>
+          <p>Table-In&#8482; establishes formal partnerships with vetted local and regional farms committed to clean, sustainable agricultural practices. Partner farms supply fresh produce to the program, agree to host training visits from participants, and co-sign our Farm Partner Covenant &#8212; a commitment to community-first growing. In return, partners receive recognition, surplus-sale revenue sharing, and the opportunity to invest their harvest in lasting human transformation.</p>
+        </div>
+      </div>
+
+      <div class="pm-stage">
+        <div class="pm-num">2</div>
+        <div>
+          <span class="pm-tag">Hands in the Soil</span>
+          <h4>Training Gardens</h4>
+          <p>Every participant who receives meals at the Table-In&#8482; table is invited &#8212; never required &#8212; to join one of our Training Gardens. These are community growing spaces established in partnership with farms, churches, schools, and municipalities. Participants learn to plant, tend, water, protect, and harvest crops under the guidance of experienced agricultural trainers. Single mothers plant alongside widows. Children learn beside their parents. Orphans discover that their hands can feed a table. The Training Garden is where vulnerability begins its transformation into agency.</p>
+        </div>
+      </div>
+
+      <div class="pm-stage">
+        <div class="pm-num">3</div>
+        <div>
+          <span class="pm-tag">Together We Reap</span>
+          <h4>Community Harvest Events</h4>
+          <p>When crops are ready, Table-In&#8482; hosts Community Harvest Events &#8212; joyful, faith-filled gatherings where participants, volunteers, farm partners, and community members come together to bring in the crop. These events are not just logistical &#8212; they are celebratory. They mark what God has done through seed, soil, sun, and the hands of people who were told they had nothing to offer. Harvests are blessed, recorded, and distributed according to the program&#8217;s two-track system: half to the communal table, half to the income track.</p>
+        </div>
+      </div>
+
+      <div class="pm-stage">
+        <div class="pm-num">4</div>
+        <div>
+          <span class="pm-tag">From Field to Feast</span>
+          <h4>The Shared Table</h4>
+          <p>The heart of Table-In&#8482; is the meal itself &#8212; prepared by hand from the harvest and served at communal tables. No queues. No vouchers. No stigma. Guests are welcomed by name, seated together regardless of background, and served food that was grown &#8212; in many cases &#8212; by their own hands or the hands of someone just like them. The Shared Table is a spiritual act as much as a practical one. It is the realization of Psalm 23:5: a table prepared in the very presence of hardship, overflowing with provision and dignity.</p>
+        </div>
+      </div>
+
+      <div class="pm-stage">
+        <div class="pm-num">5</div>
+        <div>
+          <span class="pm-tag">Multiplied Provision</span>
+          <h4>Seeds of Income</h4>
+          <p>Surplus produce from every harvest &#8212; what exceeds the needs of the communal table &#8212; is sold through local markets, farm-to-consumer channels, and community buyers. Revenue generated is distributed directly to participating families as micro-income. A single mother who plants and tends a plot of sweet potatoes receives a proportional share of the surplus sale. This income stream, however small at first, is the beginning of economic independence. Over successive seasons, participants graduate from recipients to micro-entrepreneurs &#8212; and many go on to become Training Garden facilitators, completing the circle entirely.</p>
+        </div>
+      </div>
+
+      <h3>Who This Pathway Serves</h3>
+      <p>The Table-In&#8482; Pathway is designed for the people most overlooked by conventional food systems:</p>
+      <div class="pm-grid">
+        <div class="pm-card">
+          <strong><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="color:var(--amber);vertical-align:middle;margin-right:6px"><circle cx="12" cy="7" r="4"/><path d="M5 20c0-4 3.1-7 7-7s7 3 7 7"/></svg>Single Mothers</strong>
+          <span>Meals, training, income, and a community of support.</span>
+        </div>
+        <div class="pm-card">
+          <strong><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="color:var(--amber);vertical-align:middle;margin-right:6px"><circle cx="12" cy="7" r="4"/><path d="M5 20c0-4 3.1-7 7-7s7 3 7 7"/></svg>Single Fathers</strong>
+          <span>Dignity, rest, nourishment, and a seat at a table that sees them.</span>
+        </div>
+        <div class="pm-card">
+          <strong><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="color:var(--amber);vertical-align:middle;margin-right:6px"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>Children &amp; Orphans</strong>
+          <span>Nutrition, education, and the lifelong knowledge of how to grow food.</span>
+        </div>
+        <div class="pm-card">
+          <strong><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="color:var(--amber);vertical-align:middle;margin-right:6px"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>Widows &amp; Singles</strong>
+          <span>Community, belonging, and a place where no one eats alone.</span>
+        </div>
+      </div>
+
+      <h3>How to Join the Pathway</h3>
+      <p>Whether you want to receive meals, volunteer, grow with us, donate, partner your farm, or sponsor the program &#8212; the pathway begins with one step. Fill out the Join the Table&#8482; form and our team will match you to the right entry point.</p>
+      <div style="text-align:center;margin-top:1.5rem">
+        <button class="cta-btn-main" onclick="closeModal('pathway');openModal('join')" style="max-width:320px;display:inline-block">Join the Table&#8482; &#8594;</button>
+      </div>
+      <div class="modal-rule"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════
+  MODAL 3 — CONTACT
+══════════════════════════════════════════════════════ -->
+<div class="modal-overlay" id="modal-contact" role="dialog" aria-modal="true" aria-labelledby="contact-title">
+  <div class="modal">
+    <div class="modal-header">
+      <div>
+        <span class="modal-eyebrow">Get in Touch</span>
+        <h2 class="modal-title" id="contact-title">Contact Table-In&#8482;</h2>
+      </div>
+      <button class="modal-close" onclick="closeModal('contact')" aria-label="Close">&#10005;</button>
+    </div>
+    <div class="modal-body">
+      <p style="font-size:.92rem;color:#4a3820;margin-bottom:1.5rem;line-height:1.8">
+        Have a question, a story to share, or a partnership idea? We would love to hear from you. Every message is read and responded to personally by our team.
+      </p>
+      <div class="contact-info-row">
+        <div class="contact-chip">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="color:var(--amber);flex-shrink:0"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <a href="mailto:support@tsegroup.world">support@tsegroup.world</a>
+        </div>
+        <div class="contact-chip">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="color:var(--amber);flex-shrink:0"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          <a href="https://www.ministry-walkinginhiswayglobal.org" target="_blank" rel="noopener">ministry-walkinginhiswayglobal.org</a>
+        </div>
+      </div>
+      <form id="contactForm" novalidate>
+        <div class="fg-row">
+          <div class="fg"><label for="c-first">First Name *</label><input type="text" id="c-first" name="firstName" required placeholder="Grace" autocomplete="given-name"/></div>
+          <div class="fg"><label for="c-last">Last Name *</label><input type="text" id="c-last" name="lastName" required placeholder="Okafor" autocomplete="family-name"/></div>
+        </div>
+        <div class="fg"><label for="c-email">Email Address *</label><input type="email" id="c-email" name="email" required placeholder="your@email.com" autocomplete="email"/></div>
+        <div class="fg"><label for="c-phone">Phone (Optional)</label><input type="tel" id="c-phone" name="phone" placeholder="+1 (555) 000-0000" autocomplete="tel"/></div>
+        <div class="fg">
+          <label for="c-subject">Subject *</label>
+          <select id="c-subject" name="subject" required>
+            <option value="">&#8212; What is this about? &#8212;</option>
+            <option>General inquiry</option>
+            <option>Question about Table-In&#8482; programs</option>
+            <option>Media / press inquiry</option>
+            <option>Speaking or event invitation</option>
+            <option>Partnership or collaboration</option>
+            <option>Prayer request or encouragement</option>
+            <option>Feedback or suggestion</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="fg"><label for="c-msg">Your Message *</label><textarea id="c-msg" name="message" required placeholder="Write your message here&#8230;" style="min-height:130px"></textarea></div>
+        <div class="form-error" id="contact-error" role="alert"></div>
+        <button type="submit" class="join-submit">Send Message &#8594;</button>
+        <div class="form-success" id="contact-success" role="status">
+          <strong>Message sent.</strong> Your message has been forwarded to <a href="mailto:support@tsegroup.world">support@tsegroup.world</a>. We will respond personally within 48 hours. Thank you for reaching out.
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════
+  MODAL 4 — TERMS & CONDITIONS
+══════════════════════════════════════════════════════ -->
+<div class="modal-overlay" id="modal-terms" role="dialog" aria-modal="true" aria-labelledby="terms-title">
+  <div class="modal">
+    <div class="modal-header">
+      <div><span class="modal-eyebrow">Legal</span><h2 class="modal-title" id="terms-title">Terms &amp; Conditions</h2></div>
       <button class="modal-close" onclick="closeModal('terms')" aria-label="Close">&#10005;</button>
     </div>
     <div class="modal-body">
-      <p class="modal-effective">Effective Date: April 9, 2026 &nbsp;&nbsp;|&nbsp;&nbsp; Table-In&#8482; &#8212; Walking in His Way Global Ministry&#8482;</p>
-
-      <h3>1. Acceptance of Terms</h3>
-      <p>By accessing or using the Table-In&#8482; website, registering for our programs, volunteering, donating, or otherwise engaging with Walking in His Way Global Ministry&#8482; (&#8220;Ministry,&#8221; &#8220;we,&#8221; &#8220;us,&#8221; or &#8220;our&#8221;), you agree to be bound by these Terms &amp; Conditions. If you do not agree, please do not use this site or our services.</p>
-
-      <h3>2. About Table-In&#8482;</h3>
-      <p>Table-In&#8482; is a charitable outreach pathway of Walking in His Way Global Ministry&#8482;, a faith-based nonprofit organization. Our mission is to provide free, farm-fresh meals and agricultural training to single parents, children, orphans, widows, and individuals in need. Participation in our programs is free of charge to qualifying individuals.</p>
-
-      <h3>3. Use of This Website</h3>
-      <p>You agree to use this website only for lawful purposes. You must not:</p>
-      <ul>
-        <li>Reproduce, distribute, or exploit any content from this site without prior written permission.</li>
-        <li>Attempt to gain unauthorized access to any part of the site or its systems.</li>
-        <li>Submit false, misleading, or fraudulent information through our contact or registration forms.</li>
-        <li>Use the site to transmit unsolicited communications or malicious code of any kind.</li>
-      </ul>
-
-      <h3>4. Intellectual Property</h3>
-      <p>Table-In&#8482; and Walking in His Way Global Ministry&#8482; are trademarks of Walking in His Way Global Ministry. All content on this website &#8212; including text, graphics, logos, images, and the farm-to-table pathway model &#8212; is the exclusive property of Walking in His Way Global Ministry&#8482; and is protected by applicable intellectual property laws. Unauthorized use is strictly prohibited.</p>
-
-      <h3>5. Donations &amp; Financial Contributions</h3>
-      <p>All donations made through Table-In&#8482; are voluntary gifts to Walking in His Way Global Ministry&#8482; in support of its charitable mission. Donations are non-refundable except at the sole discretion of the Ministry. We are committed to using donations faithfully and transparently in furtherance of our mission. Donors may contact <a href="mailto:support@tsegroup.world">support@tsegroup.world</a> with any questions regarding their contributions.</p>
-
-      <h3>6. Volunteer &amp; Participant Conduct</h3>
-      <p>Volunteers and program participants agree to conduct themselves in a manner consistent with the Ministry&#8217;s values of respect, dignity, compassion, and Christian faith. Any individual engaging in harmful, disruptive, or disrespectful behavior may be removed from participation at the Ministry&#8217;s discretion.</p>
-
-      <h3>7. Disclaimer of Warranties</h3>
-      <p>This website and its content are provided &#8220;as is&#8221; without warranties of any kind, express or implied. We do not guarantee that the site will be uninterrupted, error-free, or free of viruses or other harmful components. We reserve the right to modify or discontinue any aspect of the site or our programs at any time without notice.</p>
-
-      <h3>8. Limitation of Liability</h3>
-      <p>To the fullest extent permitted by law, Walking in His Way Global Ministry&#8482; and its officers, directors, volunteers, and affiliates shall not be liable for any direct, indirect, incidental, or consequential damages arising from your use of this site or participation in Table-In&#8482; programs.</p>
-
-      <h3>9. Third-Party Links</h3>
-      <p>This website may contain links to third-party websites. We do not endorse or assume responsibility for the content, privacy practices, or accuracy of any external sites. Access to third-party sites is entirely at your own risk.</p>
-
-      <h3>10. Governing Law</h3>
-      <p>These Terms &amp; Conditions shall be governed by and construed in accordance with applicable federal and state laws. Any disputes shall be subject to the exclusive jurisdiction of the courts in the jurisdiction where Walking in His Way Global Ministry&#8482; is registered.</p>
-
-      <h3>11. Changes to These Terms</h3>
-      <p>We reserve the right to update these Terms &amp; Conditions at any time. Continued use of the site following any changes constitutes your acceptance of the revised terms. We encourage you to review this page periodically.</p>
-
-      <h3>12. Contact</h3>
-      <p>For questions or concerns regarding these Terms &amp; Conditions, please contact us at <a href="mailto:support@tsegroup.world">support@tsegroup.world</a>.</p>
+      <p class="modal-effective"><strong>Effective:</strong> April 9, 2026 &nbsp;|&nbsp; Table-In&#8482; &#8212; Walking in His Way Global Ministry&#8482;<br/><strong>Contact:</strong> <a href="mailto:support@tsegroup.world">support@tsegroup.world</a></p>
+      <h3>1. Acceptance</h3><p>By using this site or engaging with Table-In&#8482; in any capacity, you agree to these Terms. If you do not agree, please do not use this site or our services.</p>
+      <h3>2. About Table-In&#8482;</h3><p>Table-In&#8482; is a charitable outreach pathway of Walking in His Way Global Ministry&#8482;, a faith-based nonprofit. All programs and meals are provided free of charge to qualifying participants.</p>
+      <h3>3. Permitted Use</h3><p>You may use this site for lawful, non-commercial purposes only. You must not: reproduce or distribute site content without permission; submit fraudulent information; use automated scraping tools; attempt unauthorized system access; or use the site to transmit spam or malicious code.</p>
+      <h3>4. Intellectual Property</h3><p>Table-In&#8482; and Walking in His Way Global Ministry&#8482; are registered trademarks. All site content &#8212; including text, images, logos, and the five-stage Farm-to-Table Pathway model &#8212; is the exclusive property of Walking in His Way Global Ministry&#8482; and protected by applicable IP laws. Unauthorized use is strictly prohibited.</p>
+      <h3>5. Donations</h3><p>All donations are voluntary, non-refundable gifts in support of the Ministry&#8217;s charitable mission. Tax deductibility depends on your jurisdiction. Contact <a href="mailto:support@tsegroup.world">support@tsegroup.world</a> with any questions.</p>
+      <h3>6. Program Participation</h3><p>The Ministry reserves the right to determine eligibility for any program at its discretion. Photography and video may be taken at events for ministry purposes &#8212; notify staff if you do not wish to be recorded. The Ministry is not responsible for personal property brought to events.</p>
+      <h3>7. Volunteer Conduct</h3><p>Volunteers agree to follow staff instructions, maintain participant confidentiality, and conduct themselves with respect and compassion. Harmful or abusive behavior results in immediate removal. Further legal action may be taken where warranted.</p>
+      <h3>8. Disclaimer of Warranties</h3><p>This site is provided &#8220;as is&#8221; without warranties of any kind. We do not warrant that the site will be uninterrupted, error-free, or free of harmful code. We reserve the right to modify or discontinue any part of the site or programs at any time.</p>
+      <h3>9. Limitation of Liability</h3><p>To the fullest extent permitted by law, Walking in His Way Global Ministry&#8482; and its officers, directors, volunteers, and affiliates shall not be liable for any direct, indirect, incidental, or consequential damages arising from use of this site or participation in Table-In&#8482; programs.</p>
+      <h3>10. Indemnification</h3><p>You agree to indemnify and hold harmless Walking in His Way Global Ministry&#8482; and its agents from any claims, losses, or expenses arising from your violation of these Terms.</p>
+      <h3>11. Third-Party Links</h3><p>Links to external sites are for convenience only. We do not endorse or assume responsibility for any third-party content, privacy practices, or security.</p>
+      <h3>12. Governing Law</h3><p>These Terms are governed by applicable U.S. federal and state law. Disputes shall be subject to binding arbitration or the exclusive jurisdiction of courts where Walking in His Way Global Ministry&#8482; is registered, at the Ministry&#8217;s election.</p>
+      <h3>13. Changes</h3><p>We reserve the right to update these Terms at any time. Continued use of the site constitutes acceptance of updated Terms.</p>
+      <h3>14. Severability &amp; Entire Agreement</h3><p>If any provision is found unenforceable, remaining provisions continue in full force. These Terms and the Privacy Policy constitute the entire agreement between you and the Ministry regarding use of this site.</p>
+      <h3>15. Contact</h3><p><strong>Walking in His Way Global Ministry&#8482; &#8212; Table-In&#8482;</strong><br/>Email: <a href="mailto:support@tsegroup.world">support@tsegroup.world</a><br/>Website: <a href="https://www.ministry-walkinginhiswayglobal.org" target="_blank" rel="noopener">ministry-walkinginhiswayglobal.org</a></p>
       <div class="modal-rule"></div>
     </div>
   </div>
 </div>
 
-<!-- PRIVACY POLICY MODAL -->
-<div class="modal-overlay" id="modal-privacy" onclick="closeOnOverlay(event,'privacy')">
-  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="privacy-title">
+<!-- ══════════════════════════════════════════════════════
+  MODAL 5 — PRIVACY POLICY
+══════════════════════════════════════════════════════ -->
+<div class="modal-overlay" id="modal-privacy" role="dialog" aria-modal="true" aria-labelledby="privacy-title">
+  <div class="modal">
     <div class="modal-header">
-      <div>
-        <span class="modal-eyebrow">Legal Document</span>
-        <h2 class="modal-title" id="privacy-title">Privacy Policy</h2>
-      </div>
+      <div><span class="modal-eyebrow">Legal</span><h2 class="modal-title" id="privacy-title">Privacy Policy</h2></div>
       <button class="modal-close" onclick="closeModal('privacy')" aria-label="Close">&#10005;</button>
     </div>
     <div class="modal-body">
-      <p class="modal-effective">Effective Date: April 9, 2026 &nbsp;&nbsp;|&nbsp;&nbsp; Table-In&#8482; &#8212; Walking in His Way Global Ministry&#8482;</p>
-
-      <h3>1. Our Commitment to Your Privacy</h3>
-      <p>Walking in His Way Global Ministry&#8482; respects the privacy of every person who interacts with Table-In&#8482;. This Privacy Policy explains what information we collect, how we use it, and how we protect it. We are committed to handling your personal information with care, transparency, and integrity.</p>
-
-      <h3>2. Information We Collect</h3>
-      <p>We collect information that you voluntarily provide to us, including:</p>
-      <ul>
-        <li><strong>Contact information</strong> &#8212; name, email address, and phone number submitted via our contact form.</li>
-        <li><strong>Program interest</strong> &#8212; the nature of your inquiry (e.g., volunteering, donating, requesting a meal seat).</li>
-        <li><strong>Messages</strong> &#8212; any personal information included in the message field of our contact form.</li>
-        <li><strong>Referral information</strong> &#8212; if you refer an individual or family, we collect the information you provide on their behalf.</li>
-      </ul>
-      <p>We do not collect payment information directly on this website. Any financial transactions are handled through secure, third-party platforms.</p>
-
-      <h3>3. How We Use Your Information</h3>
-      <p>Information you provide is used solely to:</p>
-      <ul>
-        <li>Respond to your inquiry or request promptly and personally.</li>
-        <li>Facilitate your participation in Table-In&#8482; programs as a volunteer, donor, partner, or recipient.</li>
-        <li>Send relevant updates about Table-In&#8482; if you have opted in or expressed interest.</li>
-        <li>Improve the quality and reach of our programs and communications.</li>
-      </ul>
-      <p>We do not sell, rent, trade, or otherwise share your personal information with third parties for commercial purposes.</p>
-
-      <h3>4. How We Share Information</h3>
-      <p>Your information may be shared in the following limited circumstances:</p>
-      <ul>
-        <li><strong>Internal ministry use:</strong> Information is shared among authorized staff and volunteers of Walking in His Way Global Ministry&#8482; who need it to serve you.</li>
-        <li><strong>Partner organizations:</strong> With your consent, we may share information with vetted partner farms, churches, or community organizations involved in the Table-In&#8482; pathway.</li>
-        <li><strong>Legal compliance:</strong> We may disclose information if required to do so by law or in response to valid legal processes.</li>
-      </ul>
-      <p>All form submissions are directed to <a href="mailto:support@tsegroup.world">support@tsegroup.world</a> and handled with strict confidentiality.</p>
-
-      <h3>5. Protection of Children&#8217;s Privacy</h3>
-      <p>Table-In&#8482; serves children and is deeply committed to their safety and privacy. We do not knowingly collect personal information directly from children under the age of 13. Information about children submitted by parents, guardians, schools, or referral partners is handled with the highest degree of confidentiality and used only for the purpose of providing program services.</p>
-
-      <h3>6. Data Security</h3>
-      <p>We take reasonable technical and organizational measures to protect your personal information from unauthorized access, loss, misuse, or disclosure. All contact form submissions are transmitted via encrypted email to <a href="mailto:support@tsegroup.world">support@tsegroup.world</a>. However, no method of transmission over the internet is completely secure, and we cannot guarantee absolute security.</p>
-
-      <h3>7. Cookies &amp; Analytics</h3>
-      <p>This website may use basic browser cookies to enhance your browsing experience. We may use analytics tools to understand how visitors use the site (e.g., page views, traffic sources). No personally identifiable information is collected through cookies. You may disable cookies in your browser settings at any time without affecting your ability to use the site.</p>
-
-      <h3>8. Your Rights</h3>
-      <p>You have the right to:</p>
-      <ul>
-        <li>Request access to the personal information we hold about you.</li>
-        <li>Request correction of inaccurate or incomplete information.</li>
-        <li>Request deletion of your information, subject to legal retention requirements.</li>
-        <li>Withdraw consent for communications at any time by contacting us directly.</li>
-      </ul>
-      <p>To exercise any of these rights, please email us at <a href="mailto:support@tsegroup.world">support@tsegroup.world</a>.</p>
-
-      <h3>9. Retention of Information</h3>
-      <p>We retain personal information only for as long as necessary to fulfill the purposes for which it was collected, or as required by law. Program participant records may be retained for a reasonable period to support ongoing service delivery and reporting requirements.</p>
-
-      <h3>10. Changes to This Policy</h3>
-      <p>We may update this Privacy Policy from time to time. Any changes will be reflected on this page with an updated effective date. We encourage you to review this policy periodically to stay informed about how we protect your information.</p>
-
-      <h3>11. Contact Us</h3>
-      <p>If you have any questions, concerns, or requests regarding this Privacy Policy or your personal information, please contact us at:</p>
-      <p><strong>Walking in His Way Global Ministry&#8482; &#8212; Table-In&#8482;</strong><br/>Email: <a href="mailto:support@tsegroup.world">support@tsegroup.world</a><br/>Website: ministry-walkinginhiswayglobal.org</p>
+      <p class="modal-effective"><strong>Effective:</strong> April 9, 2026 &nbsp;|&nbsp; Table-In&#8482; &#8212; Walking in His Way Global Ministry&#8482;<br/><strong>Contact:</strong> <a href="mailto:support@tsegroup.world">support@tsegroup.world</a></p>
+      <h3>1. Our Commitment</h3><p>We respect the privacy of every person who interacts with Table-In&#8482;. This Policy explains what we collect, how we use it, and how we protect it. We handle all personal information with care, transparency, and integrity.</p>
+      <h3>2. Scope</h3><p>This Policy applies to all information collected through the Table-In&#8482; website, registration and contact forms, and direct communication with the Ministry. It does not apply to third-party sites linked from our site.</p>
+      <h3>3. What We Collect</h3><p>We collect only information necessary to serve you, including: name, email, and phone (contact forms); household situation and dietary needs (meal recipients); skills, availability (volunteers); farm details (farm partners); company information (sponsors); referral details; and program participation records. We do not collect payment data directly; financial transactions use secure third-party platforms.</p>
+      <h3>4. How We Use It</h3><p>We use your information solely to: respond to your inquiry; facilitate program participation; coordinate events and training; send ministry updates (with your consent); improve our programs; and maintain accountability records. We never use your data for purposes incompatible with these without your explicit consent.</p>
+      <h3>5. How We Share It</h3><p>We do not sell, rent, or share your information for commercial purposes. We share only with: (a) authorized Ministry staff and volunteers on a need-to-know basis; (b) vetted program partners (farms, churches, schools) with your consent; (c) law enforcement or legal authorities when required by law; (d) trusted service providers operating under confidentiality agreements.</p>
+      <h3>6. Children&#8217;s Privacy</h3><p>We do not knowingly collect information directly from children under 13 without verified parental consent. Referral data about minors is treated with the highest confidentiality and used solely to provide services. Contact us immediately at <a href="mailto:support@tsegroup.world">support@tsegroup.world</a> if you believe a child&#8217;s data was submitted inappropriately.</p>
+      <h3>7. Data Security</h3><p>We use reasonable technical and organizational measures to protect your data, including encrypted form transmission, access controls, and regular practice reviews. No internet transmission is 100% secure; we will notify you of any breach affecting your rights as required by law.</p>
+      <h3>8. Cookies &amp; Analytics</h3><p>We may use session cookies and anonymous analytics (page views, traffic sources) to improve site experience. No personally identifiable information is collected via cookies. You may disable cookies in your browser without affecting core site functionality. We do not use advertising cookies or sell analytics data.</p>
+      <h3>9. Your Rights</h3><p>You have the right to: access your personal data; correct inaccuracies; request deletion (subject to legal retention needs); restrict processing; request data portability; withdraw consent; and object to processing. Email <a href="mailto:support@tsegroup.world">support@tsegroup.world</a> to exercise any right.</p>
+      <h3>10. Retention</h3><p>We retain data only as long as necessary. Contact inquiries are kept up to 3 years unless deletion is requested. Volunteer and participant records may be kept longer for continuity and reporting. Financial contribution records follow nonprofit legal requirements. Data no longer needed is securely deleted or anonymized.</p>
+      <h3>11. International Users</h3><p>Table-In&#8482; is operated from the United States. By using this site, you consent to your data being processed in the U.S. in accordance with this Policy.</p>
+      <h3>12. Changes</h3><p>We may update this Policy at any time. Changes are posted with an updated effective date. Material changes will be communicated directly where reasonably possible.</p>
+      <h3>13. Contact</h3><p><strong>Walking in His Way Global Ministry&#8482; &#8212; Table-In&#8482;</strong><br/>Email: <a href="mailto:support@tsegroup.world">support@tsegroup.world</a><br/>Website: <a href="https://www.ministry-walkinginhiswayglobal.org" target="_blank" rel="noopener">ministry-walkinginhiswayglobal.org</a></p>
       <div class="modal-rule"></div>
     </div>
   </div>
 </div>
 
+<!-- ══ SCRIPTS ════════════════════════════════════════════ -->
 <script>
-  document.getElementById('yr').textContent = new Date().getFullYear();
+/* Year */
+document.getElementById('yr').textContent = new Date().getFullYear();
 
-  const revealEls = document.querySelectorAll('.reveal');
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach((e, i) => {
-      if (e.isIntersecting) {
-        setTimeout(() => e.target.classList.add('visible'), i * 80);
-        io.unobserve(e.target);
-      }
+/* Scroll reveal */
+(function(){
+  const els = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver((entries)=>{
+    entries.forEach((e,i)=>{
+      if(e.isIntersecting){setTimeout(()=>e.target.classList.add('visible'),i*80);obs.unobserve(e.target);}
     });
-  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-  revealEls.forEach(el => io.observe(el));
+  },{threshold:.1,rootMargin:'0px 0px -36px 0px'});
+  els.forEach(el=>obs.observe(el));
+})();
 
-  function openModal(id) {
-    document.getElementById('modal-' + id).classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
-  function closeModal(id) {
-    document.getElementById('modal-' + id).classList.remove('open');
-    document.body.style.overflow = '';
-  }
-  function closeOnOverlay(e, id) {
-    if (e.target === document.getElementById('modal-' + id)) closeModal(id);
-  }
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') { closeModal('terms'); closeModal('privacy'); }
+/* Back to top */
+window.addEventListener('scroll',()=>{
+  document.getElementById('backTop').classList.toggle('visible',window.scrollY>500);
+},{passive:true});
+
+/* Smooth nav (desktop) */
+function smoothNav(e, id){
+  e.preventDefault();
+  const el = document.getElementById(id);
+  if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+/* Mobile drawer */
+const toggle = document.getElementById('navToggle');
+const drawer = document.getElementById('navDrawer');
+function closeDrawer(){
+  toggle.classList.remove('open');
+  drawer.classList.remove('open');
+  toggle.setAttribute('aria-expanded','false');
+  document.body.style.overflow='';
+}
+function smoothNavMobile(e,id){
+  closeDrawer();
+  setTimeout(()=>{
+    const el=document.getElementById(id);
+    if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
+  },200);
+  e.preventDefault();
+}
+toggle.addEventListener('click',()=>{
+  const open=drawer.classList.toggle('open');
+  toggle.classList.toggle('open',open);
+  toggle.setAttribute('aria-expanded',String(open));
+  document.body.style.overflow=open?'hidden':'';
+});
+
+/* Modal engine */
+function openModal(id){
+  const ov=document.getElementById('modal-'+id);
+  if(!ov) return;
+  const m=ov.querySelector('.modal');
+  if(m) m.scrollTop=0;
+  ov.classList.add('open');
+  document.body.style.overflow='hidden';
+  setTimeout(()=>{const cb=ov.querySelector('.modal-close');if(cb)cb.focus();},120);
+}
+function closeModal(id){
+  const ov=document.getElementById('modal-'+id);
+  if(!ov) return;
+  ov.classList.remove('open');
+  if(!document.querySelector('.modal-overlay.open')) document.body.style.overflow='';
+}
+document.querySelectorAll('.modal-overlay').forEach(ov=>{
+  ov.addEventListener('click',function(e){
+    if(e.target===this) closeModal(this.id.replace('modal-',''));
   });
-
-  function handleSubmit(e) {
-    e.preventDefault();
-    const data = new FormData(e.target);
-    const b = Object.fromEntries(data.entries());
-    const subject = encodeURIComponent('Table-In Inquiry: ' + (b.interest || 'General'));
-    const body = encodeURIComponent(
-      'Name: ' + b.firstName + ' ' + b.lastName + '\n' +
-      'Email: ' + b.email + '\n' +
-      'Phone: ' + (b.phone || 'Not provided') + '\n' +
-      'Interest: ' + (b.interest || 'General') + '\n\nMessage:\n' + (b.message || '')
-    );
-    window.location.href = 'mailto:support@tsegroup.world?subject=' + subject + '&body=' + body;
-    const msg = document.getElementById('formMsg');
-    msg.classList.add('visible');
-    e.target.reset();
-    setTimeout(() => msg.classList.remove('visible'), 8000);
+});
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){
+    document.querySelectorAll('.modal-overlay.open').forEach(ov=>closeModal(ov.id.replace('modal-','')));
+    closeDrawer();
   }
+});
+
+/* Role selector */
+function selectRole(role, btn){
+  document.querySelectorAll('.role-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('join-role').value=role;
+  document.querySelectorAll('.role-panel').forEach(p=>p.classList.remove('active'));
+  document.getElementById('panel-'+role).classList.add('active');
+  // Clear success/error on role change
+  document.getElementById('join-error').style.display='none';
+  document.getElementById('join-success').classList.remove('visible');
+}
+
+/* Join form */
+document.getElementById('joinForm').addEventListener('submit',function(e){
+  e.preventDefault();
+  const err=document.getElementById('join-error');
+  err.style.display='none';
+  const role=document.getElementById('join-role').value;
+  const first=this.firstName.value.trim();
+  const last=this.lastName.value.trim();
+  const email=this.email.value.trim();
+  const loc=this.location.value.trim();
+  if(!first||!last){err.textContent='Please enter your first and last name.';err.style.display='block';return;}
+  if(!email||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){err.textContent='Please enter a valid email address.';err.style.display='block';return;}
+  if(!loc){err.textContent='Please enter your city, state, and country.';err.style.display='block';return;}
+
+  // Build email body
+  const data=new FormData(this);
+  let body='TABLE-IN INQUIRY\n';
+  body+='Role: '+role.toUpperCase()+'\n\n';
+  body+='--- PERSONAL INFORMATION ---\n';
+  body+='Name: '+first+' '+last+'\n';
+  body+='Email: '+email+'\n';
+  body+='Phone: '+(this.phone.value.trim()||'Not provided')+'\n';
+  body+='Location: '+loc+'\n\n';
+  body+='--- ROLE DETAILS ---\n';
+  for(let[k,v] of data.entries()){
+    if(['firstName','lastName','email','phone','location'].includes(k)) continue;
+    if(v) body+=k+': '+v+'\n';
+  }
+
+  const subject=encodeURIComponent('Table-In\u2122 Inquiry \u2014 '+role.charAt(0).toUpperCase()+role.slice(1));
+  window.location.href='mailto:support@tsegroup.world?subject='+subject+'&body='+encodeURIComponent(body);
+
+  document.getElementById('join-success').classList.add('visible');
+  this.reset();
+  // Re-activate default role panel
+  document.querySelectorAll('.role-btn').forEach((b,i)=>b.classList.toggle('active',i===0));
+  document.querySelectorAll('.role-panel').forEach((p,i)=>p.classList.toggle('active',i===0));
+  document.getElementById('join-role').value='recipient';
+});
+
+/* Contact form */
+document.getElementById('contactForm').addEventListener('submit',function(e){
+  e.preventDefault();
+  const err=document.getElementById('contact-error');
+  err.style.display='none';
+  const first=this.firstName.value.trim();
+  const last=this.lastName.value.trim();
+  const email=this.email.value.trim();
+  const subject=this.subject.value;
+  const msg=this.message.value.trim();
+  if(!first||!last){err.textContent='Please enter your name.';err.style.display='block';return;}
+  if(!email||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){err.textContent='Please enter a valid email.';err.style.display='block';return;}
+  if(!subject){err.textContent='Please select a subject.';err.style.display='block';return;}
+  if(!msg){err.textContent='Please write a message.';err.style.display='block';return;}
+  const sub=encodeURIComponent('Table-In\u2122 Contact: '+subject);
+  const body=encodeURIComponent('Name: '+first+' '+last+'\nEmail: '+email+'\nPhone: '+(this.phone.value.trim()||'Not provided')+'\nSubject: '+subject+'\n\nMessage:\n'+msg);
+  window.location.href='mailto:support@tsegroup.world?subject='+sub+'&body='+body;
+  document.getElementById('contact-success').classList.add('visible');
+  this.reset();
+});
 </script>
 </body>
 </html>
