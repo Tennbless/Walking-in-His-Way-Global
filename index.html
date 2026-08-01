@@ -1009,7 +1009,7 @@ footer{background:var(--ink);color:var(--white);padding:3.5rem 0 1.5rem}
     <div class="giving-grid">
       <div class="giving-card">
         <h3>Give via Donorbox</h3>
-        <p>Give securely with credit card, debit card, PayPal, or digital wallet. Fast, simple, and trusted.</p>
+        <p>Give securely with credit card, debit card, or digital wallet. Fast, simple, and trusted.</p>
         <div class="giving-btns">
           <a href="https://donorbox.org/partner-with-walkinginhis-way-ministries-2-2" target="_blank" rel="noopener" class="giving-btn">Give Now</a>
         </div>
@@ -1019,7 +1019,6 @@ footer{background:var(--ink);color:var(--white);padding:3.5rem 0 1.5rem}
         <p>Multiple secure payment methods available — choose what works best for you.</p>
         <div class="giving-btns">
           <a href="https://square.link/u/YyaZ8GPL" target="_blank" rel="noopener" class="giving-btn">Square</a>
-          <a href="https://www.paypal.com/ncp/payment/T3LDB3F7MRQYS" target="_blank" rel="noopener" class="giving-btn">PayPal</a>
         </div>
       </div>
     </div>
@@ -1275,7 +1274,7 @@ footer{background:var(--ink);color:var(--white);padding:3.5rem 0 1.5rem}
       <h3>How We Use Your Information</h3>
       <p>We use your information to process donations, communicate ministry updates, respond to prayer requests, coordinate volunteer activities, and provide spiritual resources. We will never sell or share your personal information with third parties for marketing purposes.</p>
       <h3>Data Security</h3>
-      <p>We implement appropriate security measures to protect your personal information. All payment processing is handled through secure, encrypted third-party platforms (Square and PayPal).</p>
+      <p>We implement appropriate security measures to protect your personal information. All payment processing is handled through secure, encrypted third-party platforms (Square and Donorbox).</p>
       <h3>Your Rights</h3>
       <p>You have the right to access, update, or delete your personal information at any time. Contact us at WIHWGlobal@pm.me.</p>
     </div>
@@ -1505,9 +1504,21 @@ function showPage(pageId){
   document.querySelectorAll('.page-section').forEach(function(s){s.classList.remove('active')});
   var t=document.getElementById(pageId);
   if(t){t.classList.add('active');}
-  window.scrollTo(0,0);
   document.getElementById('hamburger').classList.remove('active');
   document.getElementById('navLinks').classList.remove('active');
+
+  // Force an instant, reliable jump to the top of the newly shown section.
+  // (Using requestAnimationFrame ensures this runs after the browser has
+  // applied the display change, so the scroll isn't fighting the old
+  // page's height / the smooth-scroll CSS behavior.)
+  var scrollNow=function(){
+    document.documentElement.scrollTop=0;
+    document.body.scrollTop=0;
+    window.scrollTo({top:0,left:0,behavior:'instant'});
+  };
+  scrollNow();
+  requestAnimationFrame(scrollNow);
+  requestAnimationFrame(function(){requestAnimationFrame(scrollNow);});
 }
 
 function openModal(id){
